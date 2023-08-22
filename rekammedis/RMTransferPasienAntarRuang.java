@@ -1548,10 +1548,10 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
         }else if(KeluhanUtamaSetelahTransfer.getText().trim().equals("")){
             Valid.textKosong(KeluhanUtamaSetelahTransfer,"Keluhan Utama Setelah Transfer");
         }else{
-            if(akses.getkode().equals("Admin Utama")){
+            if(akses.getkode3().equals("Admin Utama")){
                 simpan();
             }else {
-                if(akses.getkode().equals(KdPetugasMenerima.getText())||akses.getkode().equals(KdPetugasMenyerahkan.getText())){
+                if(akses.getkode2().equals(KdPetugasMenerima.getText())||akses.getkode2().equals(KdPetugasMenyerahkan.getText())){
                     simpan();
                 }else{
                     JOptionPane.showMessageDialog(null,"Harus salah satu petugas sesuai user login..!!");
@@ -1580,10 +1580,10 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if(tbObat.getSelectedRow()>-1){
-            if(akses.getkode().equals("Admin Utama")){
+            if(akses.getkode3().equals("Admin Utama")){
                 hapus();
             }else {
-                if(akses.getkode().equals(tbObat.getValueAt(tbObat.getSelectedRow(),34).toString())||akses.getkode().equals(tbObat.getValueAt(tbObat.getSelectedRow(),36).toString())){
+                if(akses.getkode2().equals(tbObat.getValueAt(tbObat.getSelectedRow(),34).toString())||akses.getkode2().equals(tbObat.getValueAt(tbObat.getSelectedRow(),36).toString())){
                     hapus();
                 }else{
                     JOptionPane.showMessageDialog(null,"Harus salah satu petugas sesuai user login..!!");
@@ -1644,10 +1644,10 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
             Valid.textKosong(KeluhanUtamaSetelahTransfer,"Keluhan Utama Setelah Transfer");
         }else{
             if(tbObat.getSelectedRow()>-1){
-                if(akses.getkode().equals("Admin Utama")){
+                if(akses.getkode3().equals("Admin Utama")){
                     ganti();
                 }else {
-                    if(akses.getkode().equals(tbObat.getValueAt(tbObat.getSelectedRow(),34).toString())||akses.getkode().equals(tbObat.getValueAt(tbObat.getSelectedRow(),36).toString())){
+                    if(akses.getkode2().equals(tbObat.getValueAt(tbObat.getSelectedRow(),34).toString())||akses.getkode2().equals(tbObat.getValueAt(tbObat.getSelectedRow(),36).toString())){
                         ganti();
                     }else{
                         JOptionPane.showMessageDialog(null,"Harus salah satu petugas sesuai user login..!!");

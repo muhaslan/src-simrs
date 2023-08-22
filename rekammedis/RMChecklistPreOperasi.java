@@ -1290,10 +1290,10 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if(tbObat.getSelectedRow()>-1){
-            if(akses.getkode().equals("Admin Utama")){
+            if(akses.getkode3().equals("Admin Utama")){
                 hapus();
             }else {
-                if(akses.getkode().equals(tbObat.getValueAt(tbObat.getSelectedRow(),31).toString())||akses.getkode().equals(tbObat.getValueAt(tbObat.getSelectedRow(),33).toString())){
+                if(akses.getkode3().equals(tbObat.getValueAt(tbObat.getSelectedRow(),31).toString())||akses.getkode3().equals(tbObat.getValueAt(tbObat.getSelectedRow(),33).toString())){
                     hapus();
                 }else{
                     JOptionPane.showMessageDialog(null,"Harus salah satu petugas sesuai user login..!!");
@@ -1325,10 +1325,10 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
             Valid.textKosong(SNCN,"SN/CN");
         }else{  
             if(tbObat.getSelectedRow()>-1){
-                if(akses.getkode().equals("Admin Utama")){
+                if(akses.getkode3().equals("Admin Utama")){
                     ganti();
                 }else {
-                    if(akses.getkode().equals(tbObat.getValueAt(tbObat.getSelectedRow(),31).toString())||akses.getkode().equals(tbObat.getValueAt(tbObat.getSelectedRow(),33).toString())){
+                    if(akses.getkode3().equals(tbObat.getValueAt(tbObat.getSelectedRow(),31).toString())||akses.getkode3().equals(tbObat.getValueAt(tbObat.getSelectedRow(),33).toString())){
                         ganti();
                     }else{
                         JOptionPane.showMessageDialog(null,"Harus salah satu petugas sesuai user login..!!");

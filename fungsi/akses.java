@@ -202,7 +202,8 @@ public final class akses {
             checklist_pre_operasi=false,satu_sehat_kirim_observationttv=false,signin_sebelum_anestesi=false,satu_sehat_kirim_procedure=false,operasi_per_bulan=false,
             timeout_sebelum_insisi=false,signout_sebelum_menutup_luka=false,dapur_barang=false,dapur_opname=false,satu_sehat_mapping_vaksin=false,dapur_suplier=false,
             satu_sehat_kirim_Immunization=false,checklist_post_operasi=false,dapur_pembelian=false,dapur_stok_keluar=false,dapur_riwayat_barang=false,permintaan_dapur=false,
-            rekonsiliasi_obat=false,biaya_pengadaan_dapur=false,rekap_pengadaan_dapur=false,ba_pemusnahan_obat=false,riwayat_pemberian_obat=false,indikator_mutu=false,ampra=false,tarif_mcu=false;
+            rekonsiliasi_obat=false,biaya_pengadaan_dapur=false,rekap_pengadaan_dapur=false,ba_pemusnahan_obat=false,riwayat_pemberian_obat=false,indikator_mutu=false,ampra=false,tarif_mcu=false,
+            gethasil_lab=false,gethasil_rad=false;
     
     public static void setData(String user, String pass) {
         try {        
@@ -1158,6 +1159,8 @@ public final class akses {
                         akses.indikator_mutu=true;
                         akses.ampra=true;
                         akses.tarif_mcu=true;
+                        akses.gethasil_lab=true;
+                        akses.gethasil_rad=true;
                     }else if(rs2.getRow()>=1){   
                         rs2.beforeFirst();
                         rs2.next();
@@ -2089,6 +2092,8 @@ public final class akses {
                         akses.indikator_mutu=rs2.getBoolean("indikator_mutu");
                         akses.ampra=rs2.getBoolean("ampra");
                         akses.tarif_mcu=rs2.getBoolean("tarif_mcu");
+                        akses.gethasil_lab=rs2.getBoolean("seek_lab");
+                        akses.gethasil_rad=rs2.getBoolean("seek_rad");
                     }else if((rs.getRow()==0)&&(rs2.getRow()==0)){
                         akses.kode="";                  
                         akses.penyakit= false;
@@ -3017,6 +3022,8 @@ public final class akses {
                         akses.indikator_mutu=false;
                         akses.ampra=false;
                         akses.tarif_mcu=false;
+                        akses.gethasil_lab=false;
+                        akses.gethasil_rad=false;
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -4004,4 +4011,6 @@ public final class akses {
     public static boolean getindikator_mutu(){return akses.indikator_mutu;}
     public static boolean getampra(){return akses.ampra;}
     public static boolean gettarif_mcu(){return akses.tarif_mcu;}
+    public static boolean gethasil_lab(){return akses.gethasil_lab;}
+    public static boolean gethasil_rad(){return akses.gethasil_rad;}
 }   
