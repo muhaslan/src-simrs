@@ -2424,7 +2424,7 @@ public final class RMPenilaianAwalKeperawatanGigi extends javax.swing.JDialog {
             if(Sequel.queryu2tf("delete from penilaian_awal_keperawatan_gigi where no_rawat=?",1,new String[]{
                 tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
             })==true){
-                if(akses.getkode().equals("Admin Utama")){
+                if(akses.getkode3().equals("Admin Utama")){
                     hapus();
                 }else{
                     if(KdPetugas.getText().equals(tbObat.getValueAt(tbObat.getSelectedRow(),63).toString())){
@@ -2459,7 +2459,7 @@ public final class RMPenilaianAwalKeperawatanGigi extends javax.swing.JDialog {
             Valid.textKosong(BtnDokter,"Petugas");
         }else{
             if(tbObat.getSelectedRow()>-1){
-                if(akses.getkode().equals("Admin Utama")){
+                if(akses.getkode3().equals("Admin Utama")){
                     ganti();
                 }else{
                     if(KdPetugas.getText().equals(tbObat.getValueAt(tbObat.getSelectedRow(),63).toString())){
@@ -3999,7 +3999,7 @@ public final class RMPenilaianAwalKeperawatanGigi extends javax.swing.JDialog {
         if(akses.getjml2()>=1){
             KdPetugas.setEditable(false);
             BtnDokter.setEnabled(false);
-            KdPetugas.setText(akses.getkode());
+            KdPetugas.setText(akses.getkode2());
             Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?", NmPetugas,KdPetugas.getText());
             if(NmPetugas.getText().equals("")){
                 KdPetugas.setText("");

@@ -5483,7 +5483,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                             "</tr>"+
                             "<tr class='isi'>"+
                                 "<td valign='middle'>Nama Dokter/Petugas</td>"+
-                                "<td valign='middle'>"+rs.getString("nik")+" "+Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",rs.getString("nik"))+"</td>"+
+                                "<td valign='middle'>"+Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",rs.getString("nik"))+"</td>"+
                             "</tr>"
                         );
                         
@@ -5757,7 +5757,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                             "</tr>"+
                             "<tr class='isi'>"+
                                 "<td valign='middle'>Nama Dokter/Petugas</td>"+
-                                "<td valign='middle'>"+rs.getString("nik")+" "+Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",rs.getString("nik"))+"</td>"+
+                                "<td valign='middle'>"+Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",rs.getString("nik"))+"</td>"+
                             "</tr>"
                         );
                         

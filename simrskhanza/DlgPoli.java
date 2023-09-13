@@ -890,7 +890,7 @@ private void NmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NmKeyP
         BtnHapus.setEnabled(akses.getregistrasi());
         BtnEdit.setEnabled(akses.getregistrasi());
         BtnPrint.setEnabled(akses.getregistrasi());
-        if(akses.getkode().equals("Admin Utama")){
+        if(akses.getkode3().equals("Admin Utama")){
             MnRestore.setEnabled(true);
         }else{
             MnRestore.setEnabled(false);

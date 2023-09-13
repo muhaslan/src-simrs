@@ -833,7 +833,7 @@ import rekammedis.RMPenilaianPsikologi;
 import rekammedis.RMPenilaianTambahanGeriatri;
 import rekammedis.RMPerencanaanPemulangan;
 import rekammedis.RMRiwayatKamarPasien;
-import rekammedis.RMSKriningRawatJalan;
+import rekammedis.RMSkriningRawatJalan;
 import rekammedis.RMSignInSebelumAnastesi;
 import rekammedis.RMSignOutSebelumMenutupLuka;
 import rekammedis.RMSkriningNutrisiAnak;
@@ -842,6 +842,7 @@ import rekammedis.RMSkriningNutrisiLansia;
 import rekammedis.RMTimeOutSebelumInsisi;
 import rekammedis.RMTransferPasienAntarRuang;
 import rekammedis.RMUjiFungsiKFR;
+import rekammedis.RMSKriningPasien;
 import setting.DlgJamDietPasien;
 import setting.DlgPasswordBPJS;
 import setting.DlgRuangOperasi;
@@ -1088,6 +1089,8 @@ public class frmUtama extends javax.swing.JFrame {
         btnIndikatorMutu = new widget.ButtonBig();
         btnAmpra = new widget.ButtonBig();
         btnTarifMcu = new widget.ButtonBig();
+        btnIGDPonek = new widget.ButtonBig();
+        btnSkriningAwalPasien = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -1763,7 +1766,7 @@ public class frmUtama extends javax.swing.JFrame {
         DlgHome.setResizable(false);
 
         panelMenu.setBackground(new java.awt.Color(255, 253, 253));
-        panelMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(223, 233, 213)), "::[ Menu Utama ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        panelMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(223, 233, 213)), "::[ Menu Utama ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         panelMenu.setName("panelMenu"); // NOI18N
         panelMenu.setPreferredSize(new java.awt.Dimension(2412, 3653));
         panelMenu.setWarnaAtas(new java.awt.Color(255, 252, 252));
@@ -1912,6 +1915,30 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnTarifMcu);
 
+        btnIGDPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/7744777_pregnant_mothers day_mother_mom_love_icon.png"))); // NOI18N
+        btnIGDPonek.setText("IGD Ponek");
+        btnIGDPonek.setIconTextGap(0);
+        btnIGDPonek.setName("btnIGDPonek"); // NOI18N
+        btnIGDPonek.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnIGDPonek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIGDPonekActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnIGDPonek);
+
+        btnSkriningAwalPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_report-clipboard-medical-checklist-healthcare_5859123.png"))); // NOI18N
+        btnSkriningAwalPasien.setText("Skrining Awal Pasien");
+        btnSkriningAwalPasien.setIconTextGap(0);
+        btnSkriningAwalPasien.setName("btnSkriningAwalPasien"); // NOI18N
+        btnSkriningAwalPasien.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSkriningAwalPasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSkriningAwalPasienActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnSkriningAwalPasien);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -1920,7 +1947,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26/05/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24/08/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -11358,7 +11385,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     }//GEN-LAST:event_btnAplicareKetersediaanKamarActionPerformed
 
     private void btnInaCBGKlaimBaruOtomatisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInaCBGKlaimBaruOtomatisActionPerformed
-        if(akses.getkode().equals("Admin Utama")){
+        if(akses.getkode3().equals("Admin Utama")){
             pilihpage="KlaimBaruOtomatis";
             judulform="::[ Otomatisasi Klaim Pasien Baru Dari Data SEP Ke INACBG ]::";
             isTutup();
@@ -11367,7 +11394,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             cariNIK.setLocationRelativeTo(PanelUtama);
             cariNIK.setVisible(true);
         }else{
-            coder_nik=Sequel.cariIsi("select inacbg_coder_nik.no_ik from inacbg_coder_nik where inacbg_coder_nik.nik=?",akses.getkode());
+            coder_nik=Sequel.cariIsi("select inacbg_coder_nik.no_ik from inacbg_coder_nik where inacbg_coder_nik.nik=?",akses.getkode2());
             if(!coder_nik.equals("")){
                 isTutup();
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -11393,7 +11420,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     }//GEN-LAST:event_btnInaCBGKlaimBaruOtomatisActionPerformed
 
     private void btnInaCBGKlaimBaruManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInaCBGKlaimBaruManualActionPerformed
-        if(akses.getkode().equals("Admin Utama")){
+        if(akses.getkode3().equals("Admin Utama")){
             pilihpage="KlaimBaruManual";
             judulform="::[ Klaim Manual Pasien Baru Dari Data SEP Ke INACBG ]::";
             isTutup();
@@ -11402,7 +11429,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             cariNIK.setLocationRelativeTo(PanelUtama);
             cariNIK.setVisible(true);
         }else{
-            coder_nik=Sequel.cariIsi("select inacbg_coder_nik.no_ik from inacbg_coder_nik where inacbg_coder_nik.nik=?",akses.getkode());
+            coder_nik=Sequel.cariIsi("select inacbg_coder_nik.no_ik from inacbg_coder_nik where inacbg_coder_nik.nik=?",akses.getkode2());
             if(!coder_nik.equals("")){
                 isTutup();
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -12228,7 +12255,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     }//GEN-LAST:event_MnInfoBed3ActionPerformed
 
     private void btnInaCBGKlaimBaruManual2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInaCBGKlaimBaruManual2ActionPerformed
-        if(akses.getkode().equals("Admin Utama")){
+        if(akses.getkode3().equals("Admin Utama")){
             pilihpage="KlaimBaruManual2";
             judulform="::[ Klaim Manual Ke INACBG ]::";
             isTutup();
@@ -12237,7 +12264,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             cariNIK.setLocationRelativeTo(PanelUtama);
             cariNIK.setVisible(true);
         }else{
-            coder_nik=Sequel.cariIsi("select inacbg_coder_nik.no_ik from inacbg_coder_nik where inacbg_coder_nik.nik=?",akses.getkode());
+            coder_nik=Sequel.cariIsi("select inacbg_coder_nik.no_ik from inacbg_coder_nik where inacbg_coder_nik.nik=?",akses.getkode2());
             if(!coder_nik.equals("")){
                 isTutup();
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -14567,6 +14594,23 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnTarifMcuActionPerformed
 
+    private void btnIGDPonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIGDPonekActionPerformed
+        System.out.println("Ini menu igd ponek");
+    }//GEN-LAST:event_btnIGDPonekActionPerformed
+
+    private void btnSkriningAwalPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkriningAwalPasienActionPerformed
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMSKriningPasien form=new RMSKriningPasien(this,false);
+        form.isCek();
+        form.emptTeks();
+        form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnSkriningAwalPasienActionPerformed
+
     private void btnKategoriPerpustakaanActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -15113,7 +15157,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     private void btnSkriningRawatJalanActionPerformed(java.awt.event.ActionEvent evt) { 
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        RMSKriningRawatJalan form=new RMSKriningRawatJalan(this,false);
+        RMSkriningRawatJalan form=new RMSkriningRawatJalan(this,false);
         form.isCek();
         form.emptTeks();
         form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
@@ -20213,6 +20257,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     private widget.ButtonBig btnICD;
     private widget.ButtonBig btnICD9;
     private widget.ButtonBig btnIGD;
+    private widget.ButtonBig btnIGDPonek;
     private widget.ButtonBig btnInaCBGCoderNIK;
     private widget.ButtonBig btnInaCBGKlaimBaruManual;
     private widget.ButtonBig btnInaCBGKlaimBaruManual2;
@@ -20475,6 +20520,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     private widget.ButtonBig btnSirkulasiInventaris;
     private widget.ButtonBig btnSirkulasiNonMedis;
     private widget.ButtonBig btnSisaStok;
+    private widget.ButtonBig btnSkriningAwalPasien;
     private widget.ButtonBig btnStokKeluarIPSRSPerTanggal;
     private widget.ButtonBig btnStokKeluarMedis;
     private widget.ButtonBig btnStokObatPasien;
@@ -20799,7 +20845,17 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             if(akses.getigd()==true){
                 Panelmenu.add(btnIGD);  
                 jmlmenu++;
-            }               
+            } 
+            
+            if(akses.getigd_ponek()==true){
+                Panelmenu.add(btnIGDPonek);
+                jmlmenu++;
+            }
+            
+            if(akses.getskrining_pasien()==true){
+                Panelmenu.add(btnSkriningAwalPasien);
+                jmlmenu++;
+            }
 
             if(akses.gettindakan_ralan()==true){
                 Panelmenu.add(btnRalan); 
@@ -25395,7 +25451,17 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         if(akses.getigd()==true){
             Panelmenu.add(btnIGD);  
             jmlmenu++;
-        }               
+        }
+        
+        if(akses.getigd_ponek()==true){
+            Panelmenu.add(btnIGDPonek);  
+            jmlmenu++;
+        }
+        
+        if(akses.getskrining_pasien()==true){
+            Panelmenu.add(btnSkriningAwalPasien);  
+            jmlmenu++;
+        }    
 
         if(akses.gettindakan_ralan()==true){
             Panelmenu.add(btnRalan); 
@@ -29949,7 +30015,21 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
                 Panelmenu.add(btnIGD);  
                 jmlmenu++;
             }                
-        }               
+        } 
+        
+        if(akses.getigd_ponek()==true){
+            if(btnIGDPonek.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnIGDPonek);  
+                jmlmenu++;
+            }                
+        }
+        
+        if(akses.getskrining_pasien()==true){
+            if(btnSkriningAwalPasien.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnSkriningAwalPasien);  
+                jmlmenu++;
+            }                
+        }  
 
         if(akses.gettindakan_ralan()==true){
             if(btnRalan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){

@@ -1806,7 +1806,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         if(akses.getjml2()>=1){
             kdptg.setEditable(false);
             BtnPtg.setEnabled(false);
-            kdptg.setText(akses.getkode());
+            kdptg.setText(akses.getkode2());
             Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?", nmptg,kdptg.getText());
         }
     }

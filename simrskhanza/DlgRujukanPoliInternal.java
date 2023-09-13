@@ -400,7 +400,7 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
 
     private void BtnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokterActionPerformed
         if(aktifjadwal.equals("aktif")){
-            if(akses.getkode().equals("Admin Utama")){
+            if(akses.getkode3().equals("Admin Utama")){
                 dokter.isCek();
                 dokter.TCari.requestFocus();
                 dokter.setSize(lebar-20,tinggi-20);
@@ -426,7 +426,7 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
 
     private void BtnUnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUnitActionPerformed
         if(aktifjadwal.equals("aktif")){
-            if(akses.getkode().equals("Admin Utama")){
+            if(akses.getkode3().equals("Admin Utama")){
                 poli.isCek();
                 poli.setSize(lebar-20,tinggi-20);
                 poli.setLocationRelativeTo(internalFrame1);

@@ -1968,7 +1968,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if(tbObat.getSelectedRow()>-1){
-            if(akses.getkode().equals("Admin Utama")){
+            if(akses.getkode3().equals("Admin Utama")){
                 hapus();
             }else{
                 if(KodeDokter.getText().equals(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString())){
@@ -2004,7 +2004,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
             Valid.textKosong(DiagnosaUtama,"Diagnosa Utama");
         }else{
             if(tbObat.getSelectedRow()>-1){
-                if(akses.getkode().equals("Admin Utama")){
+                if(akses.getkode3().equals("Admin Utama")){
                     ganti();
                 }else{
                     if(KodeDokter.getText().equals(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString())){
@@ -3077,7 +3077,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         if(akses.getjml2()>=1){
             KodeDokter.setEditable(false);
             BtnDokter.setEnabled(false);
-            KodeDokter.setText(akses.getkode());
+            KodeDokter.setText(akses.getkode2());
             Sequel.cariIsi("select dokter.nm_dokter from dokter where dokter.kd_dokter=?", NamaDokter,KodeDokter.getText());
             if(NamaDokter.getText().equals("")){
                 KodeDokter.setText("");

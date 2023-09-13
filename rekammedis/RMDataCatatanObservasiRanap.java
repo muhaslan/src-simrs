@@ -853,7 +853,7 @@ public final class RMDataCatatanObservasiRanap extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if(tbObat.getSelectedRow()>-1){
-            if(akses.getkode().equals("Admin Utama")){
+            if(akses.getkode3().equals("Admin Utama")){
                 hapus();
             }else{
                 if(NIP.getText().equals(tbObat.getValueAt(tbObat.getSelectedRow(),14).toString())){
@@ -882,7 +882,7 @@ public final class RMDataCatatanObservasiRanap extends javax.swing.JDialog {
             Valid.textKosong(NIP,"Petugas");
         }else{ 
             if(tbObat.getSelectedRow()>-1){
-                if(akses.getkode().equals("Admin Utama")){
+                if(akses.getkode3().equals("Admin Utama")){
                     ganti();
                 }else{
                     if(NIP.getText().equals(tbObat.getValueAt(tbObat.getSelectedRow(),14).toString())){
@@ -1332,7 +1332,7 @@ public final class RMDataCatatanObservasiRanap extends javax.swing.JDialog {
         if(akses.getjml2()>=1){
             NIP.setEditable(false);
             btnPetugas.setEnabled(false);
-            NIP.setText(akses.getkode());
+            NIP.setText(akses.getkode2());
             Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?", NamaPetugas,NIP.getText());
             if(NamaPetugas.getText().equals("")){
                 NIP.setText("");

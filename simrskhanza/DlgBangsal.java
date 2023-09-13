@@ -744,7 +744,7 @@ public final class DlgBangsal extends javax.swing.JDialog {
     }
     
     public void isCek(){
-        if(akses.getkode().equals("Admin Utama")){
+        if(akses.getkode3().equals("Admin Utama")){
             MnRestore.setEnabled(true);
         }else{
             MnRestore.setEnabled(false);

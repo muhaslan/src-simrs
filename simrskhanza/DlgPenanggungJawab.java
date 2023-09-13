@@ -1056,7 +1056,7 @@ private void NmAsuransiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         BtnEdit.setEnabled(akses.getcara_bayar());
         BtnPrint.setEnabled(akses.getcara_bayar());
         btnAmbilPhoto.setEnabled(akses.getcara_bayar());
-        if(akses.getkode().equals("Admin Utama")){
+        if(akses.getkode3().equals("Admin Utama")){
             MnRestore.setEnabled(true);
         }else{
             MnRestore.setEnabled(false);

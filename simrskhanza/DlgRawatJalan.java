@@ -4611,7 +4611,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                         if(KdPeg.getText().trim().equals("")||TPegawai.getText().trim().equals("")){
                             Valid.textKosong(KdPeg,"Dokter/Paramedis masih kosong...!!");
                         }else{
-                            if(akses.getkode2().equals("Admin Utama")){
+                            if(akses.getkode3().equals("Admin Utama")){
                                 if(Sequel.menyimpantf("pemeriksaan_ralan","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","Data",21,new String[]{
                                     TNoRw.getText(),Valid.SetTgl(DTPTgl.getSelectedItem()+""),cmbJam.getSelectedItem()+":"+cmbMnt.getSelectedItem()+":"+cmbDtk.getSelectedItem(),
                                     TSuhu.getText(),TTensi.getText(),TNadi.getText(),TRespirasi.getText(),TTinggi.getText(),TBerat.getText(),
@@ -4855,7 +4855,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                             Sequel.menyimpan("tampjurnal","'"+HPP_BHP_Tindakan_Ralan+"','HPP BHP Tindakan Ralan','0','"+ttlbhp+"'","kredit=kredit+'"+(ttlbhp)+"'","kd_rek='"+HPP_BHP_Tindakan_Ralan+"'");    
                             Sequel.menyimpan("tampjurnal","'"+Persediaan_BHP_Tindakan_Ralan+"','Persediaan BHP Tindakan Ralan','"+ttlbhp+"','0'","debet=debet+'"+(ttlbhp)+"'","kd_rek='"+Persediaan_BHP_Tindakan_Ralan+"'");                            
                         }
-                        sukses=jur.simpanJurnal(TNoRw.getText(),"U","PEMBATALAN TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+" OLEH "+akses.getkode());
+                        sukses=jur.simpanJurnal(TNoRw.getText(),"U","PEMBATALAN TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+" OLEH "+akses.getkode2());
                     }
                       
                     if(sukses==true){
@@ -4939,7 +4939,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                             Sequel.menyimpan("tampjurnal","'"+HPP_BHP_Tindakan_Ralan+"','HPP BHP Tindakan Ralan','0','"+ttlbhp+"'","kredit=kredit+'"+(ttlbhp)+"'","kd_rek='"+HPP_BHP_Tindakan_Ralan+"'");    
                             Sequel.menyimpan("tampjurnal","'"+Persediaan_BHP_Tindakan_Ralan+"','Persediaan BHP Tindakan Ralan','"+ttlbhp+"','0'","debet=debet+'"+(ttlbhp)+"'","kd_rek='"+Persediaan_BHP_Tindakan_Ralan+"'");                            
                         }
-                        sukses=jur.simpanJurnal(TNoRw.getText(),"U","PEMBATALAN TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+" OLEH "+akses.getkode());
+                        sukses=jur.simpanJurnal(TNoRw.getText(),"U","PEMBATALAN TINDAKAN RAWAT JALAN PASIEN "+TNoRM.getText()+" "+TPasien.getText()+" OLEH "+akses.getkode2());
                     }
                         
                     if(sukses==true){
@@ -4965,14 +4965,14 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                 }else{
                     for(i=0;i<tbPemeriksaan.getRowCount();i++){
                         if(tbPemeriksaan.getValueAt(i,0).toString().equals("true")){
-                            if(akses.getkode().equals("Admin Utama")){
+                            if(akses.getkode3().equals("Admin Utama")){
                                 Sequel.queryu("delete from pemeriksaan_ralan where no_rawat='"+tbPemeriksaan.getValueAt(i,1).toString()+
                                         "' and tgl_perawatan='"+tbPemeriksaan.getValueAt(i,4).toString()+
                                         "' and jam_rawat='"+tbPemeriksaan.getValueAt(i,5).toString()+"' ");
                                 tabModePemeriksaan.removeRow(i);
                                 i--;
                             }else{
-                                if(akses.getkode().equals(tbPemeriksaan.getValueAt(i,23).toString())){
+                                if(akses.getkode2().equals(tbPemeriksaan.getValueAt(i,23).toString())){
                                     Sequel.queryu("delete from pemeriksaan_ralan where no_rawat='"+tbPemeriksaan.getValueAt(i,1).toString()+
                                             "' and tgl_perawatan='"+tbPemeriksaan.getValueAt(i,4).toString()+
                                             "' and jam_rawat='"+tbPemeriksaan.getValueAt(i,5).toString()+"' ");
@@ -5495,7 +5495,7 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                             (!KdPeg.getText().trim().equals(""))||(!TPegawai.getText().trim().equals(""))||(!TInstruksi.getText().trim().equals(""))||
                             (!SpO2.getText().trim().equals(""))||(!TEvaluasi.getText().trim().equals(""))){
                         if(tbPemeriksaan.getSelectedRow()>-1){
-                            if(akses.getkode2().equals("Admin Utama")){
+                            if(akses.getkode3().equals("Admin Utama")){
                                 if(Sequel.mengedittf("pemeriksaan_ralan","no_rawat='"+tbPemeriksaan.getValueAt(tbPemeriksaan.getSelectedRow(),1)+
                                     "' and tgl_perawatan='"+tbPemeriksaan.getValueAt(tbPemeriksaan.getSelectedRow(),4)+
                                     "' and jam_rawat='"+tbPemeriksaan.getValueAt(tbPemeriksaan.getSelectedRow(),5)+"'",

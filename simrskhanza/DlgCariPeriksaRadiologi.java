@@ -1639,8 +1639,9 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
             finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdpenjab);
             param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbDokter.getValueAt(tbDokter.getSelectedRow(),6).toString()+"\nID "+(finger.equals("")?kdpenjab:finger)+"\n"+Valid.SetTgl3(tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString()));  
-            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdpetugas);
-            param.put("finger2","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbDokter.getValueAt(tbDokter.getSelectedRow(),2).toString()+"\nID "+(finger.equals("")?kdpetugas:finger)+"\n"+Valid.SetTgl3(tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString()));  
+            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nama=",kdpetugas);
+//            param.put("finger2","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbDokter.getValueAt(tbDokter.getSelectedRow(),2).toString()+"\nID "+(finger.equals("")?kdpetugas:finger)+"\n"+Valid.SetTgl3(tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString()));  
+            param.put("finger2","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh dr. Sumiati, Sp.Rad "+"\n"+Valid.SetTgl3(tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString()));  
 
             pilihan = (String)JOptionPane.showInputDialog(null,"Silahkan pilih hasil pemeriksaan..!","Hasil Pemeriksaan",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Model 1","Model 2", "Model 3","PDF Model 1","PDF Model 2","PDF Model 3"},"Model 1");
             switch (pilihan) {

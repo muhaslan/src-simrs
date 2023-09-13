@@ -42,7 +42,7 @@ import simrskhanza.DlgReg;
  *
  * @author dosen
  */
-public class RMSKriningRawatJalan extends javax.swing.JDialog {
+public class RMSkriningRawatJalan extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
@@ -60,7 +60,7 @@ public class RMSKriningRawatJalan extends javax.swing.JDialog {
     /** Creates new form DlgPemberianInfus
      * @param parent
      * @param modal */
-    public RMSKriningRawatJalan(java.awt.Frame parent, boolean modal) {
+    public RMSkriningRawatJalan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -381,6 +381,14 @@ public class RMSKriningRawatJalan extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
+        tbObat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         tbObat.setComponentPopupMenu(jPopupMenu1);
         tbObat.setName("tbObat"); // NOI18N
         tbObat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -543,7 +551,7 @@ public class RMSKriningRawatJalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(55, 23));
         panelGlass7.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2022" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -556,7 +564,7 @@ public class RMSKriningRawatJalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass7.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2022" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -645,6 +653,11 @@ public class RMSKriningRawatJalan extends javax.swing.JDialog {
 
         TNoRM.setHighlighter(null);
         TNoRM.setName("TNoRM"); // NOI18N
+        TNoRM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TNoRMActionPerformed(evt);
+            }
+        });
         TNoRM.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TNoRMKeyPressed(evt);
@@ -681,7 +694,7 @@ public class RMSKriningRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel8);
         jLabel8.setBounds(571, 100, 80, 23);
 
-        DTPReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2022" }));
+        DTPReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-09-2023" }));
         DTPReg.setDisplayFormat("dd-MM-yyyy");
         DTPReg.setName("DTPReg"); // NOI18N
         DTPReg.setOpaque(false);
@@ -959,7 +972,7 @@ public class RMSKriningRawatJalan extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if(tbObat.getSelectedRow()> -1){ 
-            if(akses.getkode().equals("Admin Utama")){
+            if(akses.getkode3().equals("Admin Utama")){
                 hapus();
             }else{
                 if(KdPetugas.getText().equals(tbObat.getValueAt(tbObat.getSelectedRow(),13).toString())){
@@ -1334,12 +1347,16 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_ppPasienCoronaBtnPrintActionPerformed
 
+    private void TNoRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TNoRMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TNoRMActionPerformed
+
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            RMSKriningRawatJalan dialog = new RMSKriningRawatJalan(new javax.swing.JFrame(), true);
+            RMSkriningRawatJalan dialog = new RMSkriningRawatJalan(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -1544,7 +1561,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         if(akses.getjml2()>=1){
             KdPetugas.setEditable(false);
             BtnPtg.setEnabled(false);
-            KdPetugas.setText(akses.getkode());
+            KdPetugas.setText(akses.getkode2());
             Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?", NmPetugas,KdPetugas.getText());
             if(NmPetugas.getText().equals("")){
                 KdPetugas.setText("");

@@ -4702,7 +4702,7 @@ public final class RMPenilaianAwalKeperawatanMata extends javax.swing.JDialog {
         if(akses.getjml2()>=1){
             KdPetugas.setEditable(false);
             BtnDokter.setEnabled(false);
-            KdPetugas.setText(akses.getkode());
+            KdPetugas.setText(akses.getkode2());
             Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?", NmPetugas,KdPetugas.getText());
             if(NmPetugas.getText().equals("")){
                 KdPetugas.setText("");

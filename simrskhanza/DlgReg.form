@@ -7455,7 +7455,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="26-06-2023"/>
+                        <StringItem index="0" value="12-09-2023"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -7480,7 +7480,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="26-06-2023"/>
+                        <StringItem index="0" value="12-09-2023"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -7743,7 +7743,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="26-06-2023"/>
+                        <StringItem index="0" value="12-09-2023"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -8417,14 +8417,15 @@
                 <Component class="widget.ComboBox" name="CmbStts1">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="7">
+                      <StringArray count="8">
                         <StringItem index="0" value="REGULER"/>
                         <StringItem index="1" value="MCU (MEDICAL CHECK UP)"/>
                         <StringItem index="2" value="PEMKES (PEMERIKSAAN KESEHATAN)"/>
                         <StringItem index="3" value="SKBS"/>
                         <StringItem index="4" value="SKBN"/>
-                        <StringItem index="5" value="LAINNYA"/>
-                        <StringItem index="6" value="-"/>
+                        <StringItem index="5" value="FOLLOW UP"/>
+                        <StringItem index="6" value="LAINNYA"/>
+                        <StringItem index="7" value="-"/>
                       </StringArray>
                     </Property>
                     <Property name="lightWeightPopupEnabled" type="boolean" value="false"/>

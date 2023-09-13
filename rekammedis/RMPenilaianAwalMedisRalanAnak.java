@@ -1548,7 +1548,7 @@ public final class RMPenilaianAwalMedisRalanAnak extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if(tbObat.getSelectedRow()>-1){
-            if(akses.getkode().equals("Admin Utama")){
+            if(akses.getkode3().equals("Admin Utama")){
                 hapus();
             }else{
                 if(KdDokter.getText().equals(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString())){
@@ -1588,7 +1588,7 @@ public final class RMPenilaianAwalMedisRalanAnak extends javax.swing.JDialog {
             Valid.textKosong(RPO,"Riwayat Pengunaan obat");
         }else{
             if(tbObat.getSelectedRow()>-1){
-                if(akses.getkode().equals("Admin Utama")){
+                if(akses.getkode3().equals("Admin Utama")){
                     ganti();
                 }else{
                     if(KdDokter.getText().equals(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString())){
@@ -2428,7 +2428,7 @@ public final class RMPenilaianAwalMedisRalanAnak extends javax.swing.JDialog {
         if(akses.getjml2()>=1){
             KdDokter.setEditable(false);
             BtnDokter.setEnabled(false);
-            KdDokter.setText(akses.getkode());
+            KdDokter.setText(akses.getkode2());
             Sequel.cariIsi("select dokter.nm_dokter from dokter where dokter.kd_dokter=?", NmDokter,KdDokter.getText());
             if(NmDokter.getText().equals("")){
                 KdDokter.setText("");

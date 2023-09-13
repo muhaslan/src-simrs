@@ -542,11 +542,11 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                             Sequel.mengedit3("data_batch","no_batch=? and kode_brng=? and no_faktur=?","sisa=sisa-?",4,new String[]{
                                 ""+tabMode.getValueAt(i,0).toString(),tabMode.getValueAt(i,8).toString(),tabMode.getValueAt(i,1).toString(),tabMode.getValueAt(i,9).toString()
                             });
-                            Trackobat.catatRiwayat(tbKamar.getValueAt(i,1).toString(),0,Valid.SetAngka(tbKamar.getValueAt(i,0).toString()),"Resep Pulang",akses.getkode(),kdgudang.getText(),"Simpan",tbKamar.getValueAt(i,8).toString(),tbKamar.getValueAt(i,9).toString(),TNoRw.getText()+" "+TNoRM.getText()+" "+TPasien.getText());
+                            Trackobat.catatRiwayat(tbKamar.getValueAt(i,1).toString(),0,Valid.SetAngka(tbKamar.getValueAt(i,0).toString()),"Resep Pulang",akses.getkode2(),kdgudang.getText(),"Simpan",tbKamar.getValueAt(i,8).toString(),tbKamar.getValueAt(i,9).toString(),TNoRw.getText()+" "+TNoRM.getText()+" "+TPasien.getText());
                             Sequel.menyimpan("gudangbarang","'"+tbKamar.getValueAt(i,1).toString()+"','"+kdgudang.getText()+"','-"+tbKamar.getValueAt(i,0).toString()+"','"+tabMode.getValueAt(i,8).toString()+"','"+tabMode.getValueAt(i,9).toString()+"'", 
                                          "stok=stok-'"+tbKamar.getValueAt(i,0).toString()+"'","kode_brng='"+tbKamar.getValueAt(i,1).toString()+"' and kd_bangsal='"+kdgudang.getText()+"' and no_batch='"+tabMode.getValueAt(i,8).toString()+"' and no_faktur='"+tabMode.getValueAt(i,9).toString()+"'");           
                         }else{
-                            Trackobat.catatRiwayat(tbKamar.getValueAt(i,1).toString(),0,Valid.SetAngka(tbKamar.getValueAt(i,0).toString()),"Resep Pulang",akses.getkode(),kdgudang.getText(),"Simpan","","",TNoRw.getText()+" "+TNoRM.getText()+" "+TPasien.getText());
+                            Trackobat.catatRiwayat(tbKamar.getValueAt(i,1).toString(),0,Valid.SetAngka(tbKamar.getValueAt(i,0).toString()),"Resep Pulang",akses.getkode2(),kdgudang.getText(),"Simpan","","",TNoRw.getText()+" "+TNoRM.getText()+" "+TPasien.getText());
                             Sequel.menyimpan("gudangbarang","'"+tbKamar.getValueAt(i,1).toString()+"','"+kdgudang.getText()+"','-"+tbKamar.getValueAt(i,0).toString()+"','',''", 
                                          "stok=stok-'"+tbKamar.getValueAt(i,0).toString()+"'","kode_brng='"+tbKamar.getValueAt(i,1).toString()+"' and kd_bangsal='"+kdgudang.getText()+"' and no_batch='' and no_faktur=''");           
                         }

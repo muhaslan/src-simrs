@@ -1126,10 +1126,10 @@ public final class RMSignInSebelumAnastesi extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if(tbObat.getSelectedRow()>-1){
-            if(akses.getkode().equals("Admin Utama")){
+            if(akses.getkode3().equals("Admin Utama")){
                 hapus();
             }else {
-                if(akses.getkode().equals(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString())||akses.getkode().equals(tbObat.getValueAt(tbObat.getSelectedRow(),22).toString())){
+                if(akses.getkode2().equals(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString())||akses.getkode2().equals(tbObat.getValueAt(tbObat.getSelectedRow(),22).toString())){
                     hapus();
                 }else{
                     JOptionPane.showMessageDialog(null,"User Login harus Petugas OK/Dokter Anestesi..!!");
@@ -1161,10 +1161,10 @@ public final class RMSignInSebelumAnastesi extends javax.swing.JDialog {
             Valid.textKosong(SNCN,"SN/CN");
         }else{  
             if(tbObat.getSelectedRow()>-1){
-                if(akses.getkode().equals("Admin Utama")){
+                if(akses.getkode3().equals("Admin Utama")){
                     ganti();
                 }else {
-                    if(akses.getkode().equals(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString())||akses.getkode().equals(tbObat.getValueAt(tbObat.getSelectedRow(),22).toString())){
+                    if(akses.getkode2().equals(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString())||akses.getkode2().equals(tbObat.getValueAt(tbObat.getSelectedRow(),22).toString())){
                         ganti();
                     }else{
                         JOptionPane.showMessageDialog(null,"User Login harus Petugas OK/Dokter Anestesi..!!");

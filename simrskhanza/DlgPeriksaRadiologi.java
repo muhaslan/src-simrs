@@ -1202,7 +1202,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 }                
             }
             Sequel.menyimpan("temporary_radiologi","'0','Total Biaya Pemeriksaan Radiologi','"+ttl+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Transaksi Biaya Radiologi");
-            Valid.panggilUrl("billing/LaporanBiayaRadiologi.php?norm="+TNoRM.getText()+"&pasien="+TPasien.getText().replaceAll(" ","_")+"&tanggal="+Tanggal.getSelectedItem()+"&jam="+CmbJam.getSelectedItem()+":"+CmbMenit.getSelectedItem()+":"+CmbDetik.getSelectedItem()+"&pjlab="+NmDokterPj.getText().replaceAll(" ","_")+"&petugas="+NmPtg.getText().replaceAll(" ","_")+"&kasir="+Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode())+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
+            Valid.panggilUrl("billing/LaporanBiayaRadiologi.php?norm="+TNoRM.getText()+"&pasien="+TPasien.getText().replaceAll(" ","_")+"&tanggal="+Tanggal.getSelectedItem()+"&jam="+CmbJam.getSelectedItem()+":"+CmbMenit.getSelectedItem()+":"+CmbDetik.getSelectedItem()+"&pjlab="+NmDokterPj.getText().replaceAll(" ","_")+"&petugas="+NmPtg.getText().replaceAll(" ","_")+"&kasir="+Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode2())+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
         }
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnNotaActionPerformed
@@ -2052,7 +2052,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     
     public void isCek(){
         if(akses.getjml2()>=1){
-            KdPtg.setText(akses.getkode());
+            KdPtg.setText(akses.getkode2());
             Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?", NmPtg,KdPtg.getText());
         }else{
             KdPtg.setText("");
@@ -2382,7 +2382,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                         Sequel.menyimpan("tampjurnal","'"+Beban_Jasa_Menejemen_Radiologi_Ranap+"','Beban Jasa Menejemen Radiologi Ranap','"+ttlmenejemen+"','0'","debet=debet+'"+(ttlmenejemen)+"'","kd_rek='"+Beban_Jasa_Menejemen_Radiologi_Ranap+"'");     
                         Sequel.menyimpan("tampjurnal","'"+Utang_Jasa_Menejemen_Radiologi_Ranap+"','Utang Jasa Menejemen Radiologi Ranap','0','"+ttlmenejemen+"'","kredit=kredit+'"+(ttlmenejemen)+"'","kd_rek='"+Utang_Jasa_Menejemen_Radiologi_Ranap+"'");                             
                     }
-                    sukses=jur.simpanJurnal(TNoRw.getText(),"U","PEMERIKSAAN RADIOLOGI RAWAT INAP PASIEN "+TPasien.getText()+" DIPOSTING OLEH "+akses.getkode());                                              
+                    sukses=jur.simpanJurnal(TNoRw.getText(),"U","PEMERIKSAAN RADIOLOGI RAWAT INAP PASIEN "+TPasien.getText()+" DIPOSTING OLEH "+akses.getkode2());                                              
                 }else if(status.equals("Ralan")){
                     Sequel.queryu("delete from tampjurnal");    
                     if(ttlpendapatan>0){
@@ -2417,7 +2417,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                         Sequel.menyimpan("tampjurnal","'"+Beban_Jasa_Menejemen_Radiologi_Ralan+"','Beban Jasa Menejemen Radiologi Ralan','"+ttlmenejemen+"','0'","debet=debet+'"+(ttlmenejemen)+"'","kd_rek='"+Beban_Jasa_Menejemen_Radiologi_Ralan+"'");     
                         Sequel.menyimpan("tampjurnal","'"+Utang_Jasa_Menejemen_Radiologi_Ralan+"','Utang Jasa Menejemen Radiologi Ralan','0','"+ttlmenejemen+"'","kredit=kredit+'"+(ttlmenejemen)+"'","kd_rek='"+Utang_Jasa_Menejemen_Radiologi_Ralan+"'");                             
                     }
-                    sukses=jur.simpanJurnal(TNoRw.getText(),"U","PEMERIKSAAN RADIOLOGI RAWAT JALAN PASIEN "+TPasien.getText()+" DIPOSTING OLEH "+akses.getkode());                                              
+                    sukses=jur.simpanJurnal(TNoRw.getText(),"U","PEMERIKSAAN RADIOLOGI RAWAT JALAN PASIEN "+TPasien.getText()+" DIPOSTING OLEH "+akses.getkode2());                                              
                 }
             }
                 
