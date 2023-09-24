@@ -913,6 +913,18 @@
                         </Constraint>
                       </Constraints>
                     </Component>
+                    <Component class="widget.Label" name="jLabel217">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="2"/>
+                        <Property name="text" type="java.lang.String" value="1. Riwayat Jatuh (1 Tahun Terakhir)"/>
+                        <Property name="name" type="java.lang.String" value="jLabel217" noResource="true"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="34" y="90" width="260" height="23"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
                     <Component class="widget.Label" name="jLabel219">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Skala :"/>
@@ -970,7 +982,7 @@
                     <Component class="widget.Label" name="jLabel220">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="2"/>
-                        <Property name="text" type="java.lang.String" value="2. Diagnosa Medis Sekunder (&gt;1)"/>
+                        <Property name="text" type="java.lang.String" value="2. Diagnosis Sekunder (&#x2265; 2 Diagnosis Medis)"/>
                         <Property name="name" type="java.lang.String" value="jLabel220" noResource="true"/>
                       </Properties>
                       <Constraints>
@@ -1036,7 +1048,7 @@
                     <Component class="widget.Label" name="jLabel223">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="2"/>
-                        <Property name="text" type="java.lang.String" value="3. Menggunakan Alat Bantu"/>
+                        <Property name="text" type="java.lang.String" value="3. Alat Bantu"/>
                         <Property name="name" type="java.lang.String" value="jLabel223" noResource="true"/>
                       </Properties>
                       <Constraints>
@@ -1060,9 +1072,9 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="3">
-                            <StringItem index="0" value="Bed Rest"/>
-                            <StringItem index="1" value="Menyokong Tongkat/Alat Penokang"/>
-                            <StringItem index="2" value="Furnitur"/>
+                            <StringItem index="0" value="Tidak Ada/Kursi Roda/Perawat/Tirah Baring"/>
+                            <StringItem index="1" value="Tongkat/Alat Penopang"/>
+                            <StringItem index="2" value="Berpegangan Pada Perabot"/>
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="SkalaResiko3" noResource="true"/>
@@ -1103,7 +1115,7 @@
                     <Component class="widget.Label" name="jLabel226">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="2"/>
-                        <Property name="text" type="java.lang.String" value="4. Hipnotika,Naloskan,Phenotiazin,Diuretik"/>
+                        <Property name="text" type="java.lang.String" value="4. Terpasang Infuse"/>
                         <Property name="name" type="java.lang.String" value="jLabel226" noResource="true"/>
                       </Properties>
                       <Constraints>
@@ -1169,7 +1181,7 @@
                     <Component class="widget.Label" name="jLabel229">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="2"/>
-                        <Property name="text" type="java.lang.String" value="5. Berjalan"/>
+                        <Property name="text" type="java.lang.String" value="5. Gaya Berjalan"/>
                         <Property name="name" type="java.lang.String" value="jLabel229" noResource="true"/>
                       </Properties>
                       <Constraints>
@@ -1192,9 +1204,10 @@
                     <Component class="widget.ComboBox" name="SkalaResiko5">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="2">
-                            <StringItem index="0" value="Baik"/>
-                            <StringItem index="1" value="Lemah/Terganggu"/>
+                          <StringArray count="3">
+                            <StringItem index="0" value="Normal/Tirah Baring/Imobilisasi"/>
+                            <StringItem index="1" value="Lemah"/>
+                            <StringItem index="2" value="Terganggu"/>
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="SkalaResiko5" noResource="true"/>
@@ -1235,7 +1248,7 @@
                     <Component class="widget.Label" name="jLabel232">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="2"/>
-                        <Property name="text" type="java.lang.String" value="6. Kesadaran"/>
+                        <Property name="text" type="java.lang.String" value="6. Status Mental"/>
                         <Property name="name" type="java.lang.String" value="jLabel232" noResource="true"/>
                       </Properties>
                       <Constraints>
@@ -1259,8 +1272,8 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="2">
-                            <StringItem index="0" value="Baik"/>
-                            <StringItem index="1" value="Lupa/Pelupa"/>
+                            <StringItem index="0" value="Sadar Akan Kemampuan Diri Sendiri"/>
+                            <StringItem index="1" value="Sering Lupa Akan Keterbatasan Yang Dimiliki"/>
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="SkalaResiko6" noResource="true"/>
@@ -1498,7 +1511,7 @@
                     <Component class="widget.Label" name="jLabel236">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="2"/>
-                        <Property name="text" type="java.lang.String" value="1. Riwayat Jatuh yang Baru (3 Bulan Terakhir)"/>
+                        <Property name="text" type="java.lang.String" value="1. Riwayat Jatuh (1 Tahun Terakhir)"/>
                         <Property name="name" type="java.lang.String" value="jLabel236" noResource="true"/>
                       </Properties>
                       <Constraints>

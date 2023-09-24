@@ -2,6 +2,7 @@
 package widget;
 
 import java.awt.Color;
+import java.util.Date;
 import usu.widget.glass.TextBoxGlass;
 
 /**
@@ -18,5 +19,9 @@ public class TextBox extends TextBoxGlass {
         setBackground(new Color(255,255,255));
         setHorizontalAlignment(LEFT);
         setSize(WIDTH,23);
+    }
+
+    public void setDate(Date time) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -39,7 +39,7 @@ import widget.CekBox;
  *
  * @author perpustakaan
  */
-public final class RMAsesmenAwalKebidananIGD extends javax.swing.JDialog {
+public final class RMAsesmenAwalKebidananIGDPartus extends javax.swing.JDialog {
     private final DefaultTableModel tabMode,tabModeRiwayatKehamilan,tabModeRiwayatKehamilan2;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
@@ -55,7 +55,7 @@ public final class RMAsesmenAwalKebidananIGD extends javax.swing.JDialog {
     /** Creates new form DlgRujuk
      * @param parent
      * @param modal */
-    public RMAsesmenAwalKebidananIGD(java.awt.Frame parent, boolean modal) {
+    public RMAsesmenAwalKebidananIGDPartus(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
@@ -1177,7 +1177,7 @@ public final class RMAsesmenAwalKebidananIGD extends javax.swing.JDialog {
         CaraDatang.setBounds(75, 70, 150, 23);
 
         TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-09-2023 10:09:07" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-09-2023 09:01:18" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
@@ -2951,7 +2951,7 @@ public final class RMAsesmenAwalKebidananIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2965,7 +2965,7 @@ public final class RMAsesmenAwalKebidananIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4943,7 +4943,7 @@ public final class RMAsesmenAwalKebidananIGD extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            RMAsesmenAwalKebidananIGD dialog = new RMAsesmenAwalKebidananIGD(new javax.swing.JFrame(), true);
+            RMAsesmenAwalKebidananIGDPartus dialog = new RMAsesmenAwalKebidananIGDPartus(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {

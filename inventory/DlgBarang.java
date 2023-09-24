@@ -1110,7 +1110,7 @@ public class DlgBarang extends javax.swing.JDialog {
         FormInput.add(BtnJenis);
         BtnJenis.setBounds(455, 162, 25, 23);
 
-        label29.setText("Harga Beli : Rp.");
+        label29.setText("Harga Jual : Rp.");
         label29.setName("label29"); // NOI18N
         label29.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label29);
@@ -1335,7 +1335,7 @@ public class DlgBarang extends javax.swing.JDialog {
         karyawan.setBounds(630, 222, 110, 23);
 
         DTPExpired.setForeground(new java.awt.Color(50, 70, 50));
-        DTPExpired.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-04-2022" }));
+        DTPExpired.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-01-2023" }));
         DTPExpired.setDisplayFormat("dd-MM-yyyy");
         DTPExpired.setName("DTPExpired"); // NOI18N
         DTPExpired.setOpaque(false);
