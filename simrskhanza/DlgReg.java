@@ -5691,7 +5691,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass7.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5704,7 +5704,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass7.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5854,7 +5854,7 @@ public final class DlgReg extends javax.swing.JDialog {
         FormInput.add(jLabel9);
         jLabel9.setBounds(165, 72, 36, 23);
 
-        DTPReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2023" }));
+        DTPReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2023" }));
         DTPReg.setDisplayFormat("dd-MM-yyyy");
         DTPReg.setName("DTPReg"); // NOI18N
         DTPReg.setOpaque(false);
@@ -6160,7 +6160,7 @@ public final class DlgReg extends javax.swing.JDialog {
         FormInput.add(jLabel25);
         jLabel25.setBounds(860, 10, 100, 23);
 
-        CmbStts1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "REGULER", "MCU (MEDICAL CHECK UP)", "PEMKES (PEMERIKSAAN KESEHATAN)", "SKBS", "SKBN", "FOLLOW UP", "LAINNYA", "-" }));
+        CmbStts1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "REGULER", "MCU (MEDICAL CHECK UP)", "PEMKES (PEMERIKSAAN KESEHATAN)", "SKBS", "SKBN", "SKBN & SKBS", "FOLLOW UP", "LAINNYA", "-" }));
         CmbStts1.setLightWeightPopupEnabled(false);
         CmbStts1.setName("CmbStts1"); // NOI18N
         CmbStts1.addActionListener(new java.awt.event.ActionListener() {

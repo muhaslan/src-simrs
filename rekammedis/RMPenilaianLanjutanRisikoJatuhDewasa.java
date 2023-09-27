@@ -935,6 +935,11 @@ public final class RMPenilaianLanjutanRisikoJatuhDewasa extends javax.swing.JDia
         NilaiResiko6.setEditable(false);
         NilaiResiko6.setFocusTraversalPolicyProvider(true);
         NilaiResiko6.setName("NilaiResiko6"); // NOI18N
+        NilaiResiko6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NilaiResiko6ActionPerformed(evt);
+            }
+        });
         FormInput.add(NilaiResiko6);
         NilaiResiko6.setBounds(729, 240, 60, 23);
 
@@ -1445,6 +1450,10 @@ public final class RMPenilaianLanjutanRisikoJatuhDewasa extends javax.swing.JDia
     private void SaranKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SaranKeyPressed
         Valid.pindah2(evt,HasilSkrining,BtnSimpan);
     }//GEN-LAST:event_SaranKeyPressed
+
+    private void NilaiResiko6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NilaiResiko6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NilaiResiko6ActionPerformed
 
     /**
     * @param args the command line arguments

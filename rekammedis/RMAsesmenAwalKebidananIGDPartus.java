@@ -3139,7 +3139,7 @@ public final class RMAsesmenAwalKebidananIGDPartus extends javax.swing.JDialog {
         }else if(BBL.getText().trim().equals("")){
             Valid.textKosong(BBL,"BB/PB");
         }else{
-            if(Sequel.menyimpantf("riwayat_persalinan","?,?,?,?,?,?,?,?","Riwayat Persalinan",8,new String[]{
+            if(Sequel.menyimpantf("riwayat_persalinan_partus","?,?,?,?,?,?,?,?","Riwayat Persalinan",8,new String[]{
                     null,TNoRM.getText(),UmurAnak.getText(),KUAnak.getText(),RiwayatPersalinan.getText(),DitolongOleh.getText(),JK.getSelectedItem().toString().substring(0,1),BBL.getText()
                 })==true){
                 emptTeksPersalinan();
@@ -3193,10 +3193,10 @@ public final class RMAsesmenAwalKebidananIGDPartus extends javax.swing.JDialog {
             param.put("emailrs",akses.getemailrs());
             param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
             param.put("nyeri",Sequel.cariGambar("select gambar.nyeri from gambar"));
-            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
-            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),6).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),5).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString()));
+            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
+            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),7).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),6).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString()));
             try {
-                ps=koneksi.prepareStatement("select * from riwayat_persalinan where no_rkm_medis=?");
+                ps=koneksi.prepareStatement("select * from riwayat_persalinan_partus where no_rkm_medis=?");
                 try {
                     ps.setString(1,tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
                     rs=ps.executeQuery();
@@ -3225,43 +3225,43 @@ public final class RMAsesmenAwalKebidananIGDPartus extends javax.swing.JDialog {
                 System.out.println("Notif : "+e);
             }
             
-            Valid.MyReportqry("rptCetakPenilaianAwalKebidananRalanNonPartus2.jasper","report","::[ Laporan Penilaian Awal Kebidanan & Kandungan ]::",
-                "select ponek_non_partus.no_rawat,ponek_non_partus.no_rm_medis,pasien.nm_pasien,pasien.tgl_lahir,pasien.jk,ponek_non_partus.tanggal,ponek_non_partus.kd_petugas," +
-                "ponek_non_partus.nm_petugas,ponek_non_partus.kd_dpjp,ponek_non_partus.nm_dpjp,ponek_non_partus.cara_datang,ponek_non_partus.cara_datang_lainnya," +
-                "ponek_non_partus.menggunakan,ponek_non_partus.menggunakan_lainnya,ponek_non_partus.asal,ponek_non_partus.asal_lainnya,ponek_non_partus.pengkajian_dari," +
-                "ponek_non_partus.hubungan_dengan_pasien,ponek_non_partus.alasan_masuk,ponek_non_partus.penyakit_pernah_diderita,CONCAT(ponek_non_partus.nama_riwayat_penyakit, ponek_non_partus.penyakit_lainnya) AS riwayat_penyakit," +
-                "ponek_non_partus.faktor_keturunan_gamelli,ponek_non_partus.ketergantungan,ponek_non_partus.ketergantungan_dengan,ponek_non_partus.sejak," +
-                "ponek_non_partus.obat_obatan,ponek_non_partus.nama_obatan,ponek_non_partus.makanan,ponek_non_partus.nama_makanan,ponek_non_partus.debu,ponek_non_partus.nama_debu," +
-                "ponek_non_partus.alergi_lainnya,ponek_non_partus.menarche,ponek_non_partus.menstruasi,ponek_non_partus.sejak_menstruasi,ponek_non_partus.sakit_saat_menstruasi," +
-                "ponek_non_partus.menikah_ke,ponek_non_partus.lamanya_pernikahan,ponek_non_partus.kontrasepsi,ponek_non_partus.lamanya_kontrasepsi,ponek_non_partus.graphit," +
-                "ponek_non_partus.paritas,ponek_non_partus.abortus,ponek_non_partus.haid_terakhir,ponek_non_partus.perkiraan_lahir,ponek_non_partus.umur_kehamilan," +
-                "ponek_non_partus.keluhan_kehamilan,ponek_non_partus.tinggi_fundus_uteri,ponek_non_partus.letak_punggung_janin,ponek_non_partus.presentasi_janin," +
-                "ponek_non_partus.taksiran_berat_janin,ponek_non_partus.penurunan,ponek_non_partus.aukultasi,ponek_non_partus.frekuensi_aukultasi,ponek_non_partus.pemeriksaan_dalam," +
-                "ponek_non_partus.td,ponek_non_partus.nadi,ponek_non_partus.rr,ponek_non_partus.suhu,ponek_non_partus.tb,ponek_non_partus.bb,ponek_non_partus.keadaan_umum," +
-                "ponek_non_partus.gcs,ponek_non_partus.kesadaran,ponek_non_partus.input_penurunan_kesadaran,ponek_non_partus.kepala,ponek_non_partus.mata,ponek_non_partus.hidung,ponek_non_partus.gigi_mulut, "+
-                "ponek_non_partus.tenggorokan,ponek_non_partus.telinga,ponek_non_partus.ekstremitas,ponek_non_partus.leher,ponek_non_partus.thoraks,ponek_non_partus.jantung,ponek_non_partus.paru,ponek_non_partus.abdomen, "+
-                "ponek_non_partus.genitalis_anus,ponek_non_partus.nyeri,ponek_non_partus.skor,ponek_non_partus.kategori,ponek_non_partus.pengaruh_nyeri,ponek_non_partus.hb,ponek_non_partus.hasil_usg, "+
-                "ponek_non_partus.status_mental,ponek_non_partus.respon_emosi,ponek_non_partus.suport_suami,concat(ponek_non_partus.masalah_kebidanan,ponek_non_partus.masalah_kebidanan_lainnya) as masalah_kebidanann,ponek_non_partus.diagnosa_kebidanan "+
-                "from ponek_non_partus inner join pasien on ponek_non_partus.no_rm_medis=pasien.no_rkm_medis where ponek_non_partus.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+            Valid.MyReportqry("rptCetakPenilaianAwalKebidananRalanPartus2.jasper","report","::[ Laporan Penilaian Awal Kebidanan & Kandungan ]::",
+                "select ponek_partus.no_rawat,ponek_partus.no_rm_medis,pasien.nm_pasien,pasien.tgl_lahir,pasien.jk,ponek_partus.tanggal,ponek_partus.kd_petugas," +
+                "ponek_partus.nm_petugas,ponek_partus.kd_dpjp,ponek_partus.nm_dpjp,ponek_partus.cara_datang,ponek_partus.cara_datang_lainnya," +
+                "ponek_partus.menggunakan,ponek_partus.menggunakan_lainnya,ponek_partus.asal,ponek_partus.asal_lainnya,ponek_partus.pengkajian_dari," +
+                "ponek_partus.hubungan_dengan_pasien,ponek_partus.alasan_masuk,ponek_partus.penyakit_pernah_diderita,CONCAT(ponek_partus.nama_riwayat_penyakit, ponek_partus.penyakit_lainnya) AS riwayat_penyakit," +
+                "ponek_partus.faktor_keturunan_gamelli,ponek_partus.ketergantungan,ponek_partus.ketergantungan_dengan,ponek_partus.sejak," +
+                "ponek_partus.obat_obatan,ponek_partus.nama_obatan,ponek_partus.makanan,ponek_partus.nama_makanan,ponek_partus.debu,ponek_partus.nama_debu," +
+                "ponek_partus.alergi_lainnya,ponek_partus.menarche,ponek_partus.menstruasi,ponek_partus.sejak_menstruasi,ponek_partus.sakit_saat_menstruasi," +
+                "ponek_partus.menikah_ke,ponek_partus.lamanya_pernikahan,ponek_partus.kontrasepsi,ponek_partus.lamanya_kontrasepsi,ponek_partus.graphit," +
+                "ponek_partus.paritas,ponek_partus.abortus,ponek_partus.haid_terakhir,ponek_partus.perkiraan_lahir,ponek_partus.umur_kehamilan," +
+                "ponek_partus.keluhan_kehamilan,ponek_partus.tinggi_fundus_uteri,ponek_partus.letak_punggung_janin,ponek_partus.presentasi_janin," +
+                "ponek_partus.taksiran_berat_janin,ponek_partus.penurunan,ponek_partus.aukultasi,ponek_partus.frekuensi_aukultasi,ponek_partus.pemeriksaan_dalam," +
+                "ponek_partus.td,ponek_partus.nadi,ponek_partus.rr,ponek_partus.suhu,ponek_partus.tb,ponek_partus.bb,ponek_partus.keadaan_umum," +
+                "ponek_partus.gcs,ponek_partus.kesadaran,ponek_partus.input_penurunan_kesadaran,ponek_partus.kepala,ponek_partus.mata,ponek_partus.hidung,ponek_partus.gigi_mulut, "+
+                "ponek_partus.tenggorokan,ponek_partus.telinga,ponek_partus.ekstremitas,ponek_partus.leher,ponek_partus.thoraks,ponek_partus.jantung,ponek_partus.paru,ponek_partus.abdomen, "+
+                "ponek_partus.genitalis_anus,ponek_partus.nyeri,ponek_partus.skor,ponek_partus.kategori,ponek_partus.pengaruh_nyeri,ponek_partus.hb,ponek_partus.hasil_usg, "+
+                "ponek_partus.status_mental,ponek_partus.respon_emosi,ponek_partus.suport_suami,concat(ponek_partus.masalah_kebidanan,ponek_partus.masalah_kebidanan_lainnya) as masalah_kebidanann,ponek_partus.diagnosa_kebidanan "+
+                "from ponek_partus inner join pasien on ponek_partus.no_rm_medis=pasien.no_rkm_medis where ponek_partus.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
 
-            Valid.MyReportqry("rptCetakPenilaianAwalKebidananNonPartus.jasper","report","::[ Laporan Penilaian Awal Kebidanan & Kandungan ]::",
-                "select ponek_non_partus.no_rawat,ponek_non_partus.no_rm_medis,pasien.nm_pasien,pasien.tgl_lahir,pasien.jk,ponek_non_partus.tanggal,ponek_non_partus.kd_petugas," +
-                "ponek_non_partus.nm_petugas,ponek_non_partus.kd_dpjp,ponek_non_partus.nm_dpjp,ponek_non_partus.cara_datang,ponek_non_partus.cara_datang_lainnya," +
-                "ponek_non_partus.menggunakan,ponek_non_partus.menggunakan_lainnya,ponek_non_partus.asal,ponek_non_partus.asal_lainnya,ponek_non_partus.pengkajian_dari," +
-                "ponek_non_partus.hubungan_dengan_pasien,ponek_non_partus.alasan_masuk,ponek_non_partus.penyakit_pernah_diderita,CONCAT(ponek_non_partus.nama_riwayat_penyakit, ponek_non_partus.penyakit_lainnya) AS riwayat_penyakit," +
-                "ponek_non_partus.faktor_keturunan_gamelli,ponek_non_partus.ketergantungan,ponek_non_partus.ketergantungan_dengan,ponek_non_partus.sejak," +
-                "ponek_non_partus.obat_obatan,ponek_non_partus.nama_obatan,ponek_non_partus.makanan,ponek_non_partus.nama_makanan,ponek_non_partus.debu,ponek_non_partus.nama_debu," +
-                "ponek_non_partus.alergi_lainnya,ponek_non_partus.menarche,ponek_non_partus.menstruasi,ponek_non_partus.sejak_menstruasi,ponek_non_partus.sakit_saat_menstruasi," +
-                "ponek_non_partus.menikah_ke,ponek_non_partus.lamanya_pernikahan,ponek_non_partus.kontrasepsi,ponek_non_partus.lamanya_kontrasepsi,ponek_non_partus.graphit," +
-                "ponek_non_partus.paritas,ponek_non_partus.abortus,ponek_non_partus.haid_terakhir,ponek_non_partus.perkiraan_lahir,ponek_non_partus.umur_kehamilan," +
-                "ponek_non_partus.keluhan_kehamilan,ponek_non_partus.tinggi_fundus_uteri,ponek_non_partus.letak_punggung_janin,ponek_non_partus.presentasi_janin," +
-                "ponek_non_partus.taksiran_berat_janin,ponek_non_partus.penurunan,ponek_non_partus.aukultasi,ponek_non_partus.frekuensi_aukultasi,ponek_non_partus.pemeriksaan_dalam," +
-                "ponek_non_partus.td,ponek_non_partus.nadi,ponek_non_partus.rr,ponek_non_partus.suhu,ponek_non_partus.tb,ponek_non_partus.bb,ponek_non_partus.keadaan_umum," +
-                "ponek_non_partus.gcs,ponek_non_partus.kesadaran,ponek_non_partus.input_penurunan_kesadaran,ponek_non_partus.kepala,ponek_non_partus.mata,ponek_non_partus.hidung,ponek_non_partus.gigi_mulut, "+
-                "ponek_non_partus.tenggorokan,ponek_non_partus.telinga,ponek_non_partus.ekstremitas,ponek_non_partus.leher,ponek_non_partus.thoraks,ponek_non_partus.jantung,ponek_non_partus.paru,ponek_non_partus.abdomen, "+
-                "ponek_non_partus.genitalis_anus,ponek_non_partus.nyeri,ponek_non_partus.skor,ponek_non_partus.kategori,ponek_non_partus.pengaruh_nyeri,ponek_non_partus.hb,ponek_non_partus.hasil_usg, "+
-                "ponek_non_partus.status_mental,ponek_non_partus.respon_emosi,ponek_non_partus.suport_suami,concat(ponek_non_partus.masalah_kebidanan,ponek_non_partus.masalah_kebidanan_lainnya) as masalah_kebidanann,ponek_non_partus.diagnosa_kebidanan "+
-                "from ponek_non_partus inner join pasien on ponek_non_partus.no_rm_medis=pasien.no_rkm_medis where ponek_non_partus.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+            Valid.MyReportqry("rptCetakPenilaianAwalKebidananPartus.jasper","report","::[ Laporan Penilaian Awal Kebidanan & Kandungan ]::",
+                "select ponek_partus.no_rawat,ponek_partus.no_rm_medis,pasien.nm_pasien,pasien.tgl_lahir,pasien.jk,ponek_partus.tanggal,ponek_partus.kd_petugas," +
+                "ponek_partus.nm_petugas,ponek_partus.kd_dpjp,ponek_partus.nm_dpjp,ponek_partus.cara_datang,ponek_partus.cara_datang_lainnya," +
+                "ponek_partus.menggunakan,ponek_partus.menggunakan_lainnya,ponek_partus.asal,ponek_partus.asal_lainnya,ponek_partus.pengkajian_dari," +
+                "ponek_partus.hubungan_dengan_pasien,ponek_partus.alasan_masuk,ponek_partus.penyakit_pernah_diderita,CONCAT(ponek_partus.nama_riwayat_penyakit, ponek_partus.penyakit_lainnya) AS riwayat_penyakit," +
+                "ponek_partus.faktor_keturunan_gamelli,ponek_partus.ketergantungan,ponek_partus.ketergantungan_dengan,ponek_partus.sejak," +
+                "ponek_partus.obat_obatan,ponek_partus.nama_obatan,ponek_partus.makanan,ponek_partus.nama_makanan,ponek_partus.debu,ponek_partus.nama_debu," +
+                "ponek_partus.alergi_lainnya,ponek_partus.menarche,ponek_partus.menstruasi,ponek_partus.sejak_menstruasi,ponek_partus.sakit_saat_menstruasi," +
+                "ponek_partus.menikah_ke,ponek_partus.lamanya_pernikahan,ponek_partus.kontrasepsi,ponek_partus.lamanya_kontrasepsi,ponek_partus.graphit," +
+                "ponek_partus.paritas,ponek_partus.abortus,ponek_partus.haid_terakhir,ponek_partus.perkiraan_lahir,ponek_partus.umur_kehamilan," +
+                "ponek_partus.keluhan_kehamilan,ponek_partus.tinggi_fundus_uteri,ponek_partus.letak_punggung_janin,ponek_partus.presentasi_janin," +
+                "ponek_partus.taksiran_berat_janin,ponek_partus.penurunan,ponek_partus.aukultasi,ponek_partus.frekuensi_aukultasi,ponek_partus.pemeriksaan_dalam," +
+                "ponek_partus.td,ponek_partus.nadi,ponek_partus.rr,ponek_partus.suhu,ponek_partus.tb,ponek_partus.bb,ponek_partus.keadaan_umum," +
+                "ponek_partus.gcs,ponek_partus.kesadaran,ponek_partus.input_penurunan_kesadaran,ponek_partus.kepala,ponek_partus.mata,ponek_partus.hidung,ponek_partus.gigi_mulut, "+
+                "ponek_partus.tenggorokan,ponek_partus.telinga,ponek_partus.ekstremitas,ponek_partus.leher,ponek_partus.thoraks,ponek_partus.jantung,ponek_partus.paru,ponek_partus.abdomen, "+
+                "ponek_partus.genitalis_anus,ponek_partus.nyeri,ponek_partus.skor,ponek_partus.kategori,ponek_partus.pengaruh_nyeri,ponek_partus.hb,ponek_partus.hasil_usg, "+
+                "ponek_partus.status_mental,ponek_partus.respon_emosi,ponek_partus.suport_suami,concat(ponek_partus.masalah_kebidanan,ponek_partus.masalah_kebidanan_lainnya) as masalah_kebidanann,ponek_partus.diagnosa_kebidanan "+
+                "from ponek_partus inner join pasien on ponek_partus.no_rm_medis=pasien.no_rkm_medis where ponek_partus.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
         }else{
             JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data terlebih dahulu..!!!!");
         }
@@ -4369,7 +4369,7 @@ public final class RMAsesmenAwalKebidananIGDPartus extends javax.swing.JDialog {
             }else if(DiagnosaKebidanan.getText().trim().equals("")){
                 Valid.textKosong(LamanyaMenikah,"Diagnosa Kebidanan");
             }else{
-                if(Sequel.menyimpantf("ponek_non_partus","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",88,new String[]{
+                if(Sequel.menyimpantf("ponek_partus","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",88,new String[]{
                     // section 1
                     TNoRw.getText(),Valid.SetTgl(TglAsuhan.getSelectedItem()+"")+" "+TglAsuhan.getSelectedItem().toString().substring(11,19),KdPetugas.getText(),NmPetugas.getText(),KdDPJP.getText(),NmDPJP.getText(),CaraDatang.getSelectedItem().toString(),
                     CaraDatangLainnya.getText(),Menggunakan.getSelectedItem().toString(),MenggunakanLainnya.getText(),CaraMasuk.getSelectedItem().toString(),DariLainnya.getText(),
@@ -4632,7 +4632,7 @@ public final class RMAsesmenAwalKebidananIGDPartus extends javax.swing.JDialog {
 
     private void BtnHapusRiwayatPersalinanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusRiwayatPersalinanActionPerformed
         if(tbRiwayatKehamilan.getSelectedRow()>-1){
-            Sequel.meghapus("riwayat_persalinan","id_riwayat",tbRiwayatKehamilan.getValueAt(tbRiwayatKehamilan.getSelectedRow(),8).toString());
+            Sequel.meghapus("riwayat_persalinan_partus","id_riwayat",tbRiwayatKehamilan.getValueAt(tbRiwayatKehamilan.getSelectedRow(),8).toString());
             tampilPersalinan();
         }else{
             JOptionPane.showMessageDialog(rootPane,"Silahkan anda pilih data terlebih dahulu..!!");
@@ -4917,7 +4917,7 @@ public final class RMAsesmenAwalKebidananIGDPartus extends javax.swing.JDialog {
         }else if(BBL.getText().trim().equals("")){
             Valid.textKosong(BBL,"BB/PB");
         }else{
-            if(Sequel.mengedittf("riwayat_persalinan","id_riwayat=?","no_rkm_medis=?,umur_anak=?,ku_anak=?,riwayat_persalinan=?,ditolong_oleh=?,jk=?,bbl=?",8,new String[]{
+            if(Sequel.mengedittf("riwayat_persalinan_partus","id_riwayat=?","no_rkm_medis=?,umur_anak=?,ku_anak=?,riwayat_persalinan=?,ditolong_oleh=?,jk=?,bbl=?",8,new String[]{
                 TNoRM.getText(),
                 UmurAnak.getText(),
                 KUAnak.getText(),
@@ -5390,24 +5390,24 @@ public final class RMAsesmenAwalKebidananIGDPartus extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try {
             ps=koneksi.prepareStatement(
-                "select ponek_non_partus.no_rawat,ponek_non_partus.no_rm_medis,pasien.nm_pasien,pasien.tgl_lahir,pasien.jk,ponek_non_partus.tanggal,ponek_non_partus.tanggal,ponek_non_partus.kd_petugas,ponek_non_partus.nm_petugas,ponek_non_partus.kd_dpjp,ponek_non_partus.nm_dpjp, "+
-                "ponek_non_partus.cara_datang,ponek_non_partus.cara_datang_lainnya,ponek_non_partus.menggunakan,ponek_non_partus.menggunakan_lainnya,ponek_non_partus.asal,ponek_non_partus.asal_lainnya, "+
-                "ponek_non_partus.pengkajian_dari,ponek_non_partus.hubungan_dengan_pasien,ponek_non_partus.alasan_masuk,ponek_non_partus.penyakit_pernah_diderita, "+
-                "concat(ponek_non_partus.nama_riwayat_penyakit,ponek_non_partus.penyakit_lainnya) as riwayat_penyakit, "+
-                "ponek_non_partus.faktor_keturunan_gamelli,ponek_non_partus.ketergantungan,ponek_non_partus.ketergantungan_dengan,ponek_non_partus.sejak,ponek_non_partus.obat_obatan, "+
-                "ponek_non_partus.nama_obatan,ponek_non_partus.makanan,ponek_non_partus.nama_makanan,ponek_non_partus.debu,ponek_non_partus.nama_debu,ponek_non_partus.alergi_lainnya,ponek_non_partus.menarche,ponek_non_partus.menstruasi, "+
-                "ponek_non_partus.sejak_menstruasi,ponek_non_partus.sakit_saat_menstruasi,ponek_non_partus.menikah_ke,ponek_non_partus.lamanya_pernikahan,ponek_non_partus.kontrasepsi,ponek_non_partus.lamanya_kontrasepsi, "+
-                "ponek_non_partus.graphit,ponek_non_partus.paritas,ponek_non_partus.abortus,ponek_non_partus.haid_terakhir,ponek_non_partus.perkiraan_lahir,ponek_non_partus.umur_kehamilan,ponek_non_partus.keluhan_kehamilan, "+
-                "ponek_non_partus.tinggi_fundus_uteri,ponek_non_partus.letak_punggung_janin,ponek_non_partus.presentasi_janin,ponek_non_partus.taksiran_berat_janin,ponek_non_partus.penurunan,ponek_non_partus.aukultasi, "+
-                "ponek_non_partus.frekuensi_aukultasi,ponek_non_partus.pemeriksaan_dalam,ponek_non_partus.td,ponek_non_partus.nadi,ponek_non_partus.rr,ponek_non_partus.suhu,ponek_non_partus.tb,ponek_non_partus.bb, "+
-                "ponek_non_partus.keadaan_umum,ponek_non_partus.gcs,ponek_non_partus.kesadaran,ponek_non_partus.input_penurunan_kesadaran,ponek_non_partus.kepala,ponek_non_partus.mata,ponek_non_partus.hidung,ponek_non_partus.gigi_mulut, "+
-                "ponek_non_partus.tenggorokan,ponek_non_partus.telinga,ponek_non_partus.ekstremitas,ponek_non_partus.leher,ponek_non_partus.thoraks,ponek_non_partus.jantung,ponek_non_partus.paru,ponek_non_partus.abdomen, "+
-                "ponek_non_partus.genitalis_anus,ponek_non_partus.nyeri,ponek_non_partus.skor,ponek_non_partus.kategori,ponek_non_partus.pengaruh_nyeri,ponek_non_partus.hb,ponek_non_partus.hasil_usg, "+
-                "ponek_non_partus.status_mental,ponek_non_partus.respon_emosi,ponek_non_partus.suport_suami,concat(ponek_non_partus.masalah_kebidanan,ponek_non_partus.masalah_kebidanan_lainnya) as masalah_kebidanann,ponek_non_partus.diagnosa_kebidanan "+
-                "from ponek_non_partus inner join pasien on ponek_non_partus.no_rm_medis=pasien.no_rkm_medis where "+
-                "ponek_non_partus.tanggal between ? and ? "+
-                (TCari.getText().trim().equals("")?"":"and (ponek_non_partus.no_rawat like ? or ponek_non_partus.no_rm_medis like ? or pasien.nm_pasien like ? or ponek_non_partus.nm_petugas like ? or ponek_non_partus.nm_dpjp like ?)")+
-                " order by ponek_non_partus.tanggal");
+                "select ponek_partus.no_rawat,ponek_partus.no_rm_medis,pasien.nm_pasien,pasien.tgl_lahir,pasien.jk,ponek_partus.tanggal,ponek_partus.tanggal,ponek_partus.kd_petugas,ponek_partus.nm_petugas,ponek_partus.kd_dpjp,ponek_partus.nm_dpjp, "+
+                "ponek_partus.cara_datang,ponek_partus.cara_datang_lainnya,ponek_partus.menggunakan,ponek_partus.menggunakan_lainnya,ponek_partus.asal,ponek_partus.asal_lainnya, "+
+                "ponek_partus.pengkajian_dari,ponek_partus.hubungan_dengan_pasien,ponek_partus.alasan_masuk,ponek_partus.penyakit_pernah_diderita, "+
+                "concat(ponek_partus.nama_riwayat_penyakit,ponek_partus.penyakit_lainnya) as riwayat_penyakit, "+
+                "ponek_partus.faktor_keturunan_gamelli,ponek_partus.ketergantungan,ponek_partus.ketergantungan_dengan,ponek_partus.sejak,ponek_partus.obat_obatan, "+
+                "ponek_partus.nama_obatan,ponek_partus.makanan,ponek_partus.nama_makanan,ponek_partus.debu,ponek_partus.nama_debu,ponek_partus.alergi_lainnya,ponek_partus.menarche,ponek_partus.menstruasi, "+
+                "ponek_partus.sejak_menstruasi,ponek_partus.sakit_saat_menstruasi,ponek_partus.menikah_ke,ponek_partus.lamanya_pernikahan,ponek_partus.kontrasepsi,ponek_partus.lamanya_kontrasepsi, "+
+                "ponek_partus.graphit,ponek_partus.paritas,ponek_partus.abortus,ponek_partus.haid_terakhir,ponek_partus.perkiraan_lahir,ponek_partus.umur_kehamilan,ponek_partus.keluhan_kehamilan, "+
+                "ponek_partus.tinggi_fundus_uteri,ponek_partus.letak_punggung_janin,ponek_partus.presentasi_janin,ponek_partus.taksiran_berat_janin,ponek_partus.penurunan,ponek_partus.aukultasi, "+
+                "ponek_partus.frekuensi_aukultasi,ponek_partus.pemeriksaan_dalam,ponek_partus.td,ponek_partus.nadi,ponek_partus.rr,ponek_partus.suhu,ponek_partus.tb,ponek_partus.bb, "+
+                "ponek_partus.keadaan_umum,ponek_partus.gcs,ponek_partus.kesadaran,ponek_partus.input_penurunan_kesadaran,ponek_partus.kepala,ponek_partus.mata,ponek_partus.hidung,ponek_partus.gigi_mulut, "+
+                "ponek_partus.tenggorokan,ponek_partus.telinga,ponek_partus.ekstremitas,ponek_partus.leher,ponek_partus.thoraks,ponek_partus.jantung,ponek_partus.paru,ponek_partus.abdomen, "+
+                "ponek_partus.genitalis_anus,ponek_partus.nyeri,ponek_partus.skor,ponek_partus.kategori,ponek_partus.pengaruh_nyeri,ponek_partus.hb,ponek_partus.hasil_usg, "+
+                "ponek_partus.status_mental,ponek_partus.respon_emosi,ponek_partus.suport_suami,concat(ponek_partus.masalah_kebidanan,ponek_partus.masalah_kebidanan_lainnya) as masalah_kebidanann,ponek_partus.diagnosa_kebidanan "+
+                "from ponek_partus inner join pasien on ponek_partus.no_rm_medis=pasien.no_rkm_medis where "+
+                "ponek_partus.tanggal between ? and ? "+
+                (TCari.getText().trim().equals("")?"":"and (ponek_partus.no_rawat like ? or ponek_partus.no_rm_medis like ? or pasien.nm_pasien like ? or ponek_partus.nm_petugas like ? or ponek_partus.nm_dpjp like ?)")+
+                " order by ponek_partus.tanggal");
             
             try{
                 ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+"")+" 00:00:00");
@@ -5614,15 +5614,15 @@ public final class RMAsesmenAwalKebidananIGDPartus extends javax.swing.JDialog {
             NmPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());
             KdDPJP.setText(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString()); 
             NmDPJP.setText(tbObat.getValueAt(tbObat.getSelectedRow(),9).toString()); 
-            CaraDatang.setSelectedItem(Sequel.cariIsi("select cara_datang from ponek_non_partus where no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            CaraDatang.setSelectedItem(Sequel.cariIsi("select cara_datang from ponek_partus where no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
 //            Sequel.cariIsi("select reg_periksa.tgl_registrasi from reg_periksa where reg_periksa.no_rawat='"+norwt+"'", DTPCari1);
-            CaraDatangLainnya.setText(Sequel.cariIsi("select ponek_non_partus.cara_datang_lainnya from ponek_non_partus where ponek_non_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
-            Menggunakan.setSelectedItem(Sequel.cariIsi("select menggunakan from ponek_non_partus where no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
-            MenggunakanLainnya.setText(Sequel.cariIsi("select ponek_non_partus.menggunakan_lainnya from ponek_non_partus where ponek_non_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
-            CaraMasuk.setSelectedItem(Sequel.cariIsi("select asal from ponek_non_partus where no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
-            DariLainnya.setText(Sequel.cariIsi("select ponek_non_partus.asal_lainnya from ponek_non_partus where ponek_non_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
-            PengkajianOleh.setSelectedItem(Sequel.cariIsi("select pengkajian_dari from ponek_non_partus where no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
-            HubunganDenganPasien.setText(Sequel.cariIsi("select ponek_non_partus.hubungan_dengan_pasien from ponek_non_partus where ponek_non_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            CaraDatangLainnya.setText(Sequel.cariIsi("select ponek_partus.cara_datang_lainnya from ponek_partus where ponek_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            Menggunakan.setSelectedItem(Sequel.cariIsi("select menggunakan from ponek_partus where no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            MenggunakanLainnya.setText(Sequel.cariIsi("select ponek_partus.menggunakan_lainnya from ponek_partus where ponek_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            CaraMasuk.setSelectedItem(Sequel.cariIsi("select asal from ponek_partus where no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            DariLainnya.setText(Sequel.cariIsi("select ponek_partus.asal_lainnya from ponek_partus where ponek_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            PengkajianOleh.setSelectedItem(Sequel.cariIsi("select pengkajian_dari from ponek_partus where no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            HubunganDenganPasien.setText(Sequel.cariIsi("select ponek_partus.hubungan_dengan_pasien from ponek_partus where ponek_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
             AlasanMasuk.setText(tbObat.getValueAt(tbObat.getSelectedRow(),14).toString());
             // riwayat kesehatan
             PenyakitDiderita.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),15).toString());
@@ -5639,18 +5639,18 @@ public final class RMAsesmenAwalKebidananIGDPartus extends javax.swing.JDialog {
             }
             Gamelli.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),17).toString());
             Ketergantungan.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),18).toString());
-            InputKetergantungan.setText(Sequel.cariIsi("select ponek_non_partus.ketergantungan_dengan from ponek_non_partus where ponek_non_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
-            KetergantunganSejak.setText(Sequel.cariIsi("select ponek_non_partus.sejak from ponek_non_partus where ponek_non_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            InputKetergantungan.setText(Sequel.cariIsi("select ponek_partus.ketergantungan_dengan from ponek_partus where ponek_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            KetergantunganSejak.setText(Sequel.cariIsi("select ponek_partus.sejak from ponek_partus where ponek_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
 //            ObatObatan.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),19).toString());
-            ObatObatan.setSelectedItem(Sequel.cariIsi("select ponek_non_partus.obat_obatan from ponek_non_partus where ponek_non_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
-            InputObat.setText(Sequel.cariIsi("select ponek_non_partus.nama_obatan from ponek_non_partus where ponek_non_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            ObatObatan.setSelectedItem(Sequel.cariIsi("select ponek_partus.obat_obatan from ponek_partus where ponek_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            InputObat.setText(Sequel.cariIsi("select ponek_partus.nama_obatan from ponek_partus where ponek_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
 //            Makanan.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),20).toString());
-            Makanan.setSelectedItem(Sequel.cariIsi("select ponek_non_partus.makanan from ponek_non_partus where ponek_non_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
-            InputMakanan.setText(Sequel.cariIsi("select ponek_non_partus.nama_makanan from ponek_non_partus where ponek_non_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            Makanan.setSelectedItem(Sequel.cariIsi("select ponek_partus.makanan from ponek_partus where ponek_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            InputMakanan.setText(Sequel.cariIsi("select ponek_partus.nama_makanan from ponek_partus where ponek_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
 //            Debu.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),21).toString());
-            Debu.setSelectedItem(Sequel.cariIsi("select ponek_non_partus.debu from ponek_non_partus where ponek_non_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
-            InputDebu.setText(Sequel.cariIsi("select ponek_non_partus.nama_debu from ponek_non_partus where ponek_non_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
-//            AlergiLainnya.setText(Sequel.cariIsi("select ponek_non_partus.alergi_lainnya from ponek_non_partus where ponek_non_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            Debu.setSelectedItem(Sequel.cariIsi("select ponek_partus.debu from ponek_partus where ponek_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            InputDebu.setText(Sequel.cariIsi("select ponek_partus.nama_debu from ponek_partus where ponek_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+//            AlergiLainnya.setText(Sequel.cariIsi("select ponek_partus.alergi_lainnya from ponek_partus where ponek_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
             AlergiLainnya.setText(tbObat.getValueAt(tbObat.getSelectedRow(),22).toString());
             Menarche.setText(tbObat.getValueAt(tbObat.getSelectedRow(),23).toString());
             Menstruasi.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),24).toString());
@@ -5697,9 +5697,9 @@ public final class RMAsesmenAwalKebidananIGDPartus extends javax.swing.JDialog {
             Keadaan1.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),52));
             GCS.setText(tbObat.getValueAt(tbObat.getSelectedRow(),53).toString());
 //            Kesadaran.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),54));
-            Kesadaran.setSelectedItem(Sequel.cariIsi("select ponek_non_partus.kesadaran from ponek_non_partus where ponek_non_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            Kesadaran.setSelectedItem(Sequel.cariIsi("select ponek_partus.kesadaran from ponek_partus where ponek_partus.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
             // Sdisini input penurunan kesadaran
-            InputPenurunanKesadaran.setText(Sequel.cariIsi("select input_penurunan_kesadaran from ponek_non_partus where no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
+            InputPenurunanKesadaran.setText(Sequel.cariIsi("select input_penurunan_kesadaran from ponek_partus where no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
             Kepala.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),55));
             Mata.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),56));
             Hidung.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),57));
@@ -5841,7 +5841,7 @@ public final class RMAsesmenAwalKebidananIGDPartus extends javax.swing.JDialog {
             DiagnosaKebidanan1.setText(tbObat.getValueAt(tbObat.getSelectedRow(),78).toString());
             Valid.tabelKosong(tabModeRiwayatKehamilan2);
             try {
-                ps=koneksi.prepareStatement("select * from riwayat_persalinan where riwayat_persalinan.no_rkm_medis=?");
+                ps=koneksi.prepareStatement("select * from riwayat_persalinan_partus where riwayat_persalinan_partus.no_rkm_medis=?");
                 try {
                     ps.setString(1,TNoRM1.getText());
                     rs=ps.executeQuery();
@@ -5905,7 +5905,7 @@ public final class RMAsesmenAwalKebidananIGDPartus extends javax.swing.JDialog {
     private void tampilPersalinan() {
         Valid.tabelKosong(tabModeRiwayatKehamilan);
         try {
-            ps=koneksi.prepareStatement("select * from riwayat_persalinan where riwayat_persalinan.no_rkm_medis=?");
+            ps=koneksi.prepareStatement("select * from riwayat_persalinan_partus where riwayat_persalinan_partus.no_rkm_medis=?");
             try {
                 ps.setString(1,TNoRM.getText());
                 rs=ps.executeQuery();
@@ -5932,7 +5932,7 @@ public final class RMAsesmenAwalKebidananIGDPartus extends javax.swing.JDialog {
     }
 
     private void hapus() {
-        if(Sequel.queryu2tf("delete from ponek_non_partus where no_rawat=?",1,new String[]{
+        if(Sequel.queryu2tf("delete from ponek_partus where no_rawat=?",1,new String[]{
             tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
         })==true){
             TNoRM1.setText("");
@@ -5967,7 +5967,7 @@ public final class RMAsesmenAwalKebidananIGDPartus extends javax.swing.JDialog {
 //                TabRawat.setSelectedIndex(1);
 //        }
         if(Sequel.mengedittf(
-                "ponek_non_partus","no_rawat=?","no_rawat=?,tanggal=?,kd_petugas=?,nm_petugas=?,kd_dpjp=?,nm_dpjp=?,"+
+                "ponek_partus","no_rawat=?","no_rawat=?,tanggal=?,kd_petugas=?,nm_petugas=?,kd_dpjp=?,nm_dpjp=?,"+
                  "cara_datang=?,cara_datang_lainnya=?,menggunakan=?,menggunakan_lainnya=?,asal=?,asal_lainnya=?,"+
                  "pengkajian_dari=?,hubungan_dengan_pasien=?,alasan_masuk=?,penyakit_pernah_diderita=?,nama_riwayat_penyakit=?,"+
                  "penyakit_lainnya=?,faktor_keturunan_gamelli=?,ketergantungan=?,ketergantungan_dengan=?,sejak=?,obat_obatan=?,nama_obatan=?,"+
