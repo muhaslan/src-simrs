@@ -359,6 +359,9 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         jLabel100 = new widget.Label();
         jScrollPane2 = new javax.swing.JScrollPane();
         InputKala = new widget.TextArea();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnLembarObservasiPasien = new javax.swing.JMenuItem();
+        MnPDFObservasiPasien = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
@@ -564,7 +567,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         Kala.setBounds(50, 40, 80, 23);
 
         TglAsuhan1.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-09-2023 15:33:20" }));
+        TglAsuhan1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-09-2023 08:23:56" }));
         TglAsuhan1.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan1.setName("TglAsuhan1"); // NOI18N
         TglAsuhan1.setOpaque(false);
@@ -609,6 +612,37 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         internalFrame4.add(panelBiasa2, java.awt.BorderLayout.CENTER);
 
         DlgRiwayatPersalinan.getContentPane().add(internalFrame4, java.awt.BorderLayout.CENTER);
+
+        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+
+        MnLembarObservasiPasien.setBackground(new java.awt.Color(255, 255, 254));
+        MnLembarObservasiPasien.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLembarObservasiPasien.setForeground(new java.awt.Color(50, 50, 50));
+        MnLembarObservasiPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnLembarObservasiPasien.setText("Lembar Observasi Pasien");
+        MnLembarObservasiPasien.setName("MnLembarObservasiPasien"); // NOI18N
+        MnLembarObservasiPasien.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnLembarObservasiPasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnLembarObservasiPasienActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnLembarObservasiPasien);
+
+        MnPDFObservasiPasien.setBackground(new java.awt.Color(255, 255, 254));
+        MnPDFObservasiPasien.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPDFObservasiPasien.setForeground(new java.awt.Color(50, 50, 50));
+        MnPDFObservasiPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPDFObservasiPasien.setText("PDF Skrining Pasien Telepon");
+        MnPDFObservasiPasien.setActionCommand("PDF Observasi Pasien");
+        MnPDFObservasiPasien.setName("MnPDFObservasiPasien"); // NOI18N
+        MnPDFObservasiPasien.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnPDFObservasiPasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPDFObservasiPasienActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnPDFObservasiPasien);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -868,7 +902,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         label11.setBounds(730, 10, 70, 23);
 
         TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-09-2023 15:33:18" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-09-2023 08:23:54" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
@@ -1125,7 +1159,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         label8.setBounds(0, 220, 130, 23);
 
         TglLahirBayi.setForeground(new java.awt.Color(50, 70, 50));
-        TglLahirBayi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-09-2023 20:33:50" }));
+        TglLahirBayi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-09-2023 08:23:55" }));
         TglLahirBayi.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglLahirBayi.setName("TglLahirBayi"); // NOI18N
         TglLahirBayi.setOpaque(false);
@@ -1415,6 +1449,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         Scroll.setPreferredSize(new java.awt.Dimension(452, 200));
 
         tbObat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbObat.setComponentPopupMenu(jPopupMenu1);
         tbObat.setName("tbObat"); // NOI18N
         tbObat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1440,7 +1475,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1454,7 +1489,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3187,6 +3222,139 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_NilaiResiko1ActionPerformed
 
+    private void MnLembarObservasiPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLembarObservasiPasienActionPerformed
+//        if(tbPasienTelpon.getSelectedRow()> -1){
+//            Map<String, Object> param = new HashMap<>();
+//            param.put("namars",akses.getnamars());
+//            param.put("alamatrs",akses.getalamatrs());
+//            param.put("kotars",akses.getkabupatenrs());
+//            param.put("propinsirs",akses.getpropinsirs());
+//            param.put("kontakrs",akses.getkontakrs());
+//            param.put("emailrs",akses.getemailrs());
+//            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+//            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbPasienTelpon.getValueAt(tbPasienTelpon.getSelectedRow(),8).toString());
+//            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbPasienTelpon.getValueAt(tbPasienTelpon.getSelectedRow(),9).toString()+"\nID "+(finger.equals("")?tbPasienTelpon.getValueAt(tbPasienTelpon.getSelectedRow(),8).toString():finger)+"\n"+DTPReg1.getSelectedItem());
+//            Valid.MyReportqry("rptLembarSkriningPasien1.jasper","report","::[ Lembar Skrining Pasien Telepon ]::",
+//                "select skrining_pasien_telepon.tanggal,skrining_pasien_telepon.jam,skrining_pasien_telepon.no_rkm_medis,"+
+//                "skrining_pasien_telepon.nm_pasien,skrining_pasien_telepon.tgl_lahir,"+
+//                "skrining_pasien_telepon.umur,skrining_pasien_telepon.alamat,skrining_pasien_telepon.jk,skrining_pasien_telepon.kd_petugas,"+
+//                "skrining_pasien_telepon.nm_petugas,skrining_pasien_telepon.kd_ptelepon,skrining_pasien_telepon.nm_ptelepon,"+
+//                "skrining_pasien_telepon.nm_penelepon,skrining_pasien_telepon.no_telepon,skrining_pasien_telepon.keluhan,"+
+//                "skrining_pasien_telepon.tindakan,skrining_pasien_telepon.kondisi,skrining_pasien_telepon.gcs,skrining_pasien_telepon.td,"+
+//                "skrining_pasien_telepon.suhu,skrining_pasien_telepon.nadi,skrining_pasien_telepon.pernafasan,skrining_pasien_telepon.saturasi,"+
+//                "skrining_pasien_telepon.diagnosa,skrining_pasien_telepon.rekomendasi,skrining_pasien_telepon.saran "+
+//                "from skrining_pasien_telepon where skrining_pasien_telepon.no_rkm_medis='"+TNoRM.getText()+"'",param);
+//        }else{
+//            JOptionPane.showMessageDialog(null,"Maaf silahkan pilih data terlebih dahulu..!!");
+//        }
+        if(tbObat.getSelectedRow()>-1){
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());
+            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+            param.put("nyeri",Sequel.cariGambar("select gambar.nyeri from gambar"));
+            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
+            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),7).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),6).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString()));
+            try {
+                ps=koneksi.prepareStatement("select * from observasi_persalinan_lainnya where no_rkm_medis=?");
+                try {
+                    ps.setString(1,tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
+                    rs=ps.executeQuery();
+                    i=1;
+                    while(rs.next()){
+                        param.put("no"+i,i+"");
+                        param.put("tanggal"+i,rs.getString("tanggal"));
+                        param.put("kala"+i,rs.getString("kala"));
+                        param.put("inputan_kala"+i,rs.getString("inputan_kala"));
+                        param.put("terapi"+i,rs.getString("terapi"));
+                        i++;
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : "+e);
+                } finally{
+                    if(rs!=null){
+                        rs.close();
+                    }
+                    if(ps!=null){
+                        ps.close();
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            }
+            
+            Valid.MyReportqry("rptLembarObservasiPersalinan.jasper","report","::[ Laporan Observasi Persalinan ]::",
+                "select observasi_persalinan.no_rawat,observasi_persalinan.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir, "+ 
+                "observasi_persalinan.tanggal,observasi_persalinan.kd_petugas,observasi_persalinan.nm_petugas,"+
+                "observasi_persalinan.pemeriksaan_oleh,observasi_persalinan.masuk_karena,observasi_persalinan.ketuban,"+
+                "observasi_persalinan.td,observasi_persalinan.nadi,observasi_persalinan.dda,observasi_persalinan.udema,"+
+                "observasi_persalinan.fundus_uteri,observasi_persalinan.situs_anak,observasi_persalinan.bagian_paling_depan,"+
+                "observasi_persalinan.suhu,observasi_persalinan.pernafasan,observasi_persalinan.gamellitunggal,observasi_persalinan.gerak_anak,"+
+                "observasi_persalinan.pemeriksaan_paru,observasi_persalinan.pemeriksaan_jantung,observasi_persalinan.tgl_lahir_bayi,"+
+                "observasi_persalinan.sex,observasi_persalinan.jns_kelahiran,observasi_persalinan.kondisi_bayi,observasi_persalinan.sebab_kematian,"+
+                "observasi_persalinan.skala1,observasi_persalinan.nilai1,observasi_persalinan.skala2,observasi_persalinan.nilai2,"+
+                "observasi_persalinan.skala3,observasi_persalinan.nilai3,observasi_persalinan.skala4,observasi_persalinan.nilai4,"+
+                "observasi_persalinan.skala5,observasi_persalinan.nilai5,observasi_persalinan.total_nilai "+
+                "from observasi_persalinan inner join pasien on observasi_persalinan.no_rkm_medis=pasien.no_rkm_medis where observasi_persalinan.no_rawat='"+
+                tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+//
+//            Valid.MyReportqry("rptCetakPenilaianAwalKebidananPartus.jasper","report","::[ Laporan Penilaian Awal Kebidanan & Kandungan ]::",
+//                "select ponek_partus.no_rawat,ponek_partus.no_rm_medis,pasien.nm_pasien,pasien.tgl_lahir,pasien.jk,ponek_partus.tanggal,ponek_partus.kd_petugas," +
+//                "ponek_partus.nm_petugas,ponek_partus.kd_dpjp,ponek_partus.nm_dpjp,ponek_partus.cara_datang,ponek_partus.cara_datang_lainnya," +
+//                "ponek_partus.menggunakan,ponek_partus.menggunakan_lainnya,ponek_partus.asal,ponek_partus.asal_lainnya,ponek_partus.pengkajian_dari," +
+//                "ponek_partus.hubungan_dengan_pasien,ponek_partus.alasan_masuk,ponek_partus.penyakit_pernah_diderita,CONCAT(ponek_partus.nama_riwayat_penyakit, ponek_partus.penyakit_lainnya) AS riwayat_penyakit," +
+//                "ponek_partus.faktor_keturunan_gamelli,ponek_partus.ketergantungan,ponek_partus.ketergantungan_dengan,ponek_partus.sejak," +
+//                "ponek_partus.obat_obatan,ponek_partus.nama_obatan,ponek_partus.makanan,ponek_partus.nama_makanan,ponek_partus.debu,ponek_partus.nama_debu," +
+//                "ponek_partus.alergi_lainnya,ponek_partus.menarche,ponek_partus.menstruasi,ponek_partus.sejak_menstruasi,ponek_partus.sakit_saat_menstruasi," +
+//                "ponek_partus.menikah_ke,ponek_partus.lamanya_pernikahan,ponek_partus.kontrasepsi,ponek_partus.lamanya_kontrasepsi,ponek_partus.graphit," +
+//                "ponek_partus.paritas,ponek_partus.abortus,ponek_partus.haid_terakhir,ponek_partus.perkiraan_lahir,ponek_partus.umur_kehamilan," +
+//                "ponek_partus.keluhan_kehamilan,ponek_partus.tinggi_fundus_uteri,ponek_partus.letak_punggung_janin,ponek_partus.presentasi_janin," +
+//                "ponek_partus.taksiran_berat_janin,ponek_partus.penurunan,ponek_partus.aukultasi,ponek_partus.frekuensi_aukultasi,ponek_partus.pemeriksaan_dalam," +
+//                "ponek_partus.td,ponek_partus.nadi,ponek_partus.rr,ponek_partus.suhu,ponek_partus.tb,ponek_partus.bb,ponek_partus.keadaan_umum," +
+//                "ponek_partus.gcs,ponek_partus.kesadaran,ponek_partus.input_penurunan_kesadaran,ponek_partus.kepala,ponek_partus.mata,ponek_partus.hidung,ponek_partus.gigi_mulut, "+
+//                "ponek_partus.tenggorokan,ponek_partus.telinga,ponek_partus.ekstremitas,ponek_partus.leher,ponek_partus.thoraks,ponek_partus.jantung,ponek_partus.paru,ponek_partus.abdomen, "+
+//                "ponek_partus.genitalis_anus,ponek_partus.nyeri,ponek_partus.skor,ponek_partus.kategori,ponek_partus.pengaruh_nyeri,ponek_partus.hb,ponek_partus.hasil_usg, "+
+//                "ponek_partus.status_mental,ponek_partus.respon_emosi,ponek_partus.suport_suami,concat(ponek_partus.masalah_kebidanan,ponek_partus.masalah_kebidanan_lainnya) as masalah_kebidanann,ponek_partus.diagnosa_kebidanan "+
+//                "from ponek_partus inner join pasien on ponek_partus.no_rm_medis=pasien.no_rkm_medis where ponek_partus.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+        }else{
+            JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data terlebih dahulu..!!!!");
+        }
+    }//GEN-LAST:event_MnLembarObservasiPasienActionPerformed
+
+    private void MnPDFObservasiPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPDFObservasiPasienActionPerformed
+//        if(tbPasienTelpon.getSelectedRow()> -1){
+//            Map<String, Object> param = new HashMap<>();
+//            param.put("namars",akses.getnamars());
+//            param.put("alamatrs",akses.getalamatrs());
+//            param.put("kotars",akses.getkabupatenrs());
+//            param.put("propinsirs",akses.getpropinsirs());
+//            param.put("kontakrs",akses.getkontakrs());
+//            param.put("emailrs",akses.getemailrs());
+//            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+//            //            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),13).toString());
+//            //            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),14).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),13).toString():finger)+"\n"+DTPReg.getSelectedItem());
+//            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbPasienTelpon.getValueAt(tbPasienTelpon.getSelectedRow(),8).toString());
+//            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbPasienTelpon.getValueAt(tbPasienTelpon.getSelectedRow(),9).toString()+"\nID "+(finger.equals("")?tbPasienTelpon.getValueAt(tbPasienTelpon.getSelectedRow(),8).toString():finger)+"\n"+DTPReg1.getSelectedItem());
+//            Valid.MyReportqrypdf("rptLembarSkriningPasien1.jasper","report","::[ Lembar Skrining Pasien Telepon ]::",
+//                "select skrining_pasien_telepon.tanggal,skrining_pasien_telepon.jam,skrining_pasien_telepon.no_rkm_medis,"+
+//                "skrining_pasien_telepon.nm_pasien,skrining_pasien_telepon.tgl_lahir,"+
+//                "skrining_pasien_telepon.umur,skrining_pasien_telepon.alamat,skrining_pasien_telepon.jk,skrining_pasien_telepon.kd_petugas,"+
+//                "skrining_pasien_telepon.nm_petugas,skrining_pasien_telepon.kd_ptelepon,skrining_pasien_telepon.nm_ptelepon,"+
+//                "skrining_pasien_telepon.nm_penelepon,skrining_pasien_telepon.no_telepon,skrining_pasien_telepon.keluhan,"+
+//                "skrining_pasien_telepon.tindakan,skrining_pasien_telepon.kondisi,skrining_pasien_telepon.gcs,skrining_pasien_telepon.td,"+
+//                "skrining_pasien_telepon.suhu,skrining_pasien_telepon.nadi,skrining_pasien_telepon.pernafasan,skrining_pasien_telepon.saturasi,"+
+//                "skrining_pasien_telepon.diagnosa,skrining_pasien_telepon.rekomendasi,skrining_pasien_telepon.saran "+
+//                "from skrining_pasien_telepon where skrining_pasien_telepon.no_rkm_medis='"+TNoRM.getText()+"'",param);
+//        }else{
+//            JOptionPane.showMessageDialog(null,"Maaf silahkan pilih data terlebih dahulu..!!");
+//        }
+        
+    }//GEN-LAST:event_MnPDFObservasiPasienActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3243,6 +3411,8 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
     private widget.ComboBox KondisiBayi;
     private widget.Label LCount;
     private widget.TextBox MasukKarena;
+    private javax.swing.JMenuItem MnLembarObservasiPasien;
+    private javax.swing.JMenuItem MnPDFObservasiPasien;
     private widget.TextBox Nadi;
     private widget.TextBox NilaiResiko1;
     private widget.TextBox NilaiResiko2;
@@ -3312,6 +3482,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
     private widget.Label jLabel8;
     private widget.Label jLabel94;
     private widget.Label jLabel99;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
@@ -4106,7 +4277,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
                 "observasi_persalinan","no_rawat=?","no_rawat=?,tanggal=?,kd_petugas=?,nm_petugas=?,pemeriksaan_oleh=?,masuk_karena=?, "+
                 "ketuban=?,td=?,nadi=?,dda=?,udema=?,fundus_uteri=?,situs_anak=?,bagian_paling_depan=?,suhu=?,pernafasan=?, "+
                 "gamellitunggal=?,gerak_anak=?,no_rkm_medis=?,pemeriksaan_paru=?,pemeriksaan_jantung=?, "+
-                "tgl_lahir_bayi=?,sek=?,jns_kelahiran=?,kondisi_bayi=?,sebab_kematian=?, "+
+                "tgl_lahir_bayi=?,sex=?,jns_kelahiran=?,kondisi_bayi=?,sebab_kematian=?, "+
                 "skala1=?,nilai1=?,skala2=?,nilai2=?,skala3=?,nilai3=?, "+
                 "skala4=?,nilai4=?,skala5=?,nilai5=?,total_nilai=?"
                 ,38,new String[]{

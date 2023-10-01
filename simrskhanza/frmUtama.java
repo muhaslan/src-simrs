@@ -1553,6 +1553,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnLaboratoriumMB = new widget.ButtonBig();
         internalFrame1 = new widget.InternalFrame();
         BtnMenu = new widget.ButtonBig();
+        btnToolSkrinningPasien = new widget.ButtonBig();
         jSeparator4 = new javax.swing.JSeparator();
         BtnToolReg = new widget.ButtonBig();
         btnToolIGD = new widget.ButtonBig();
@@ -1766,7 +1767,7 @@ public class frmUtama extends javax.swing.JFrame {
         DlgHome.setResizable(false);
 
         panelMenu.setBackground(new java.awt.Color(255, 253, 253));
-        panelMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(223, 233, 213)), "::[ Menu Utama ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        panelMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(223, 233, 213)), "::[ Menu Utama ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 0, 13), new java.awt.Color(50, 50, 50))); // NOI18N
         panelMenu.setName("panelMenu"); // NOI18N
         panelMenu.setPreferredSize(new java.awt.Dimension(2412, 3653));
         panelMenu.setWarnaAtas(new java.awt.Color(255, 252, 252));
@@ -1947,7 +1948,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24/08/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29/09/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7049,6 +7050,24 @@ public class frmUtama extends javax.swing.JFrame {
         });
         internalFrame1.add(BtnMenu);
 
+        btnToolSkrinningPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/addressbook-edit24.png"))); // NOI18N
+        btnToolSkrinningPasien.setMnemonic('M');
+        btnToolSkrinningPasien.setText("Skrinning Pasien");
+        btnToolSkrinningPasien.setToolTipText("Alt+S");
+        btnToolSkrinningPasien.setEnabled(false);
+        btnToolSkrinningPasien.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnToolSkrinningPasien.setIconTextGap(2);
+        btnToolSkrinningPasien.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnToolSkrinningPasien.setName("btnToolSkrinningPasien"); // NOI18N
+        btnToolSkrinningPasien.setPreferredSize(new java.awt.Dimension(120, 38));
+        btnToolSkrinningPasien.setVerticalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnToolSkrinningPasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnToolSkrinningPasienActionPerformed(evt);
+            }
+        });
+        internalFrame1.add(btnToolSkrinningPasien);
+
         jSeparator4.setBackground(new java.awt.Color(255, 51, 102));
         jSeparator4.setForeground(new java.awt.Color(255, 51, 102));
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -8251,6 +8270,7 @@ public class frmUtama extends javax.swing.JFrame {
                 akses.setData(edAdmin.getText(),edPwd.getText());
                 if(akses.getjml1()>=1){    
                     BtnMenu.setEnabled(true);
+                    btnToolSkrinningPasien.setEnabled(true);
                     BtnToolReg.setEnabled(true);
                     BtnToolKamnap.setEnabled(true);
                     BtnToolKasir.setEnabled(true); 
@@ -8317,7 +8337,8 @@ public class frmUtama extends javax.swing.JFrame {
                         btnPermintaanLabMB.setEnabled(akses.getpermintaan_lab());
                     }
                         
-                    btnToolIGD.setEnabled(akses.getigd());                
+                    btnToolIGD.setEnabled(akses.getigd());
+                    btnToolSkrinningPasien.setEnabled(akses.getskrining_pasien());
                     btnLaboratorium.setEnabled(akses.getperiksa_lab());
                     btnLaboratoriumPA.setEnabled(akses.getpemeriksaan_lab_pa());
                     btnLaboratoriumMB.setEnabled(akses.getpemeriksaan_lab_pa());
@@ -14611,6 +14632,20 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnSkriningAwalPasienActionPerformed
 
+    private void btnToolSkrinningPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToolSkrinningPasienActionPerformed
+        // TODO add your handling code here:
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMSKriningPasien form=new RMSKriningPasien(this,false);
+        form.isCek();
+        form.emptTeks();
+        form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+//        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnToolSkrinningPasienActionPerformed
+
     private void btnKategoriPerpustakaanActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -20562,6 +20597,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     private widget.ButtonBig btnToolIGD;
     private widget.ButtonBig btnToolLab;
     private widget.ButtonBig btnToolRad;
+    private widget.ButtonBig btnToolSkrinningPasien;
     private widget.ButtonBig btnTracker;
     private widget.ButtonBig btnUTDCekalDarah;
     private widget.ButtonBig btnUTDDonorDarah;
@@ -20755,7 +20791,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     }
     
     private void setToolbar(){
-        if(internalFrame1.getWidth()<(BtnMenu.getWidth()+BtnToolReg.getWidth()+btnToolIGD.getWidth()+
+        if(internalFrame1.getWidth()<(BtnMenu.getWidth()+btnToolSkrinningPasien.getWidth()+BtnToolReg.getWidth()+btnToolIGD.getWidth()+
                 btnToolLab.getWidth()+btnToolRad.getWidth()+BtnToolJualObat.getWidth()+BtnToolKamnap.getWidth()+
                 BtnToolKasir.getWidth()+BtnLog.getWidth()+BtnClose.getWidth()+8)){
             internalFrame1.setSize(new Dimension(PanelUtama.getWidth(),90));
