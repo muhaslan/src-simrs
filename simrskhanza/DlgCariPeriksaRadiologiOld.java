@@ -17,28 +17,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.mail.BodyPart;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
@@ -52,8 +35,7 @@ import kepegawaian.DlgCariDokter;
 import laporan.DlgBerkasRawat;
 import rekammedis.MasterCariTemplateHasilRadiologi;
 
-public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
-    JFileChooser fileChooser = new JFileChooser();
+public class DlgCariPeriksaRadiologiOld extends javax.swing.JDialog {
     private final DefaultTableModel tabMode,tabModeDicom;
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
@@ -84,11 +66,10 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
     /** Creates new form DlgProgramStudi
      * @param parent
      * @param modal */
-    public DlgCariPeriksaRadiologi(java.awt.Frame parent, boolean modal) {
+    public DlgCariPeriksaRadiologiOld(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        DlgSendAttachment.setSize(490, 332);
+
         Object[] row={"No.Rawat","Pasien","Petugas","Tgl.Periksa","Jam Periksa","Dokter Perujuk","Penanggung Jawab"};
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
@@ -441,19 +422,6 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         NmPtgUbah = new widget.TextBox();
         btnPetugas1 = new widget.Button();
         Petugas = new widget.TextBox();
-        DlgSendAttachment = new javax.swing.JDialog();
-        internalFrame4 = new widget.InternalFrame();
-        panelBiasa2 = new widget.PanelBiasa();
-        BtnKeluarKehamilan = new widget.Button();
-        BtnSend = new widget.Button();
-        jLabel105 = new widget.Label();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Pesan = new widget.TextArea();
-        KirimKe = new widget.TextBox();
-        jLabel106 = new widget.Label();
-        DirectoryPath = new widget.TextBox();
-        Attachment = new widget.Button();
-        Subject = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         scrollPane1 = new widget.ScrollPane();
         tbDokter = new widget.Table();
@@ -480,7 +448,6 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         BtnHapus = new widget.Button();
         BtnAll = new widget.Button();
         BtnPrint = new widget.Button();
-        BtnEmail = new widget.Button();
         BtnKeluar = new widget.Button();
         PanelAccor = new widget.PanelBiasa();
         ChkAccor = new widget.CekBox();
@@ -709,93 +676,6 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         Petugas.setEditable(false);
         Petugas.setHighlighter(null);
         Petugas.setName("Petugas"); // NOI18N
-
-        DlgSendAttachment.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        DlgSendAttachment.setName("DlgSendAttachment"); // NOI18N
-        DlgSendAttachment.setUndecorated(true);
-        DlgSendAttachment.setResizable(false);
-
-        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)), "::[ Send Attachment ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 50))); // NOI18N
-        internalFrame4.setName("internalFrame4"); // NOI18N
-        internalFrame4.setPreferredSize(new java.awt.Dimension(10, 50));
-        internalFrame4.setLayout(new java.awt.BorderLayout(1, 1));
-
-        panelBiasa2.setName("panelBiasa2"); // NOI18N
-        panelBiasa2.setPreferredSize(new java.awt.Dimension(30, 50));
-        panelBiasa2.setLayout(null);
-
-        BtnKeluarKehamilan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnKeluarKehamilan.setMnemonic('U');
-        BtnKeluarKehamilan.setText("Tutup");
-        BtnKeluarKehamilan.setToolTipText("Alt+U");
-        BtnKeluarKehamilan.setName("BtnKeluarKehamilan"); // NOI18N
-        BtnKeluarKehamilan.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnKeluarKehamilan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnKeluarKehamilanActionPerformed(evt);
-            }
-        });
-        panelBiasa2.add(BtnKeluarKehamilan);
-        BtnKeluarKehamilan.setBounds(230, 260, 100, 30);
-
-        BtnSend.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSend.setMnemonic('S');
-        BtnSend.setText("Simpan");
-        BtnSend.setToolTipText("Alt+S");
-        BtnSend.setName("BtnSend"); // NOI18N
-        BtnSend.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSendActionPerformed(evt);
-            }
-        });
-        panelBiasa2.add(BtnSend);
-        BtnSend.setBounds(130, 260, 100, 30);
-
-        jLabel105.setText("Kirim Ke :");
-        jLabel105.setName("jLabel105"); // NOI18N
-        panelBiasa2.add(jLabel105);
-        jLabel105.setBounds(80, 10, 50, 20);
-
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
-
-        Pesan.setColumns(20);
-        Pesan.setRows(5);
-        Pesan.setName("Pesan"); // NOI18N
-        jScrollPane1.setViewportView(Pesan);
-
-        panelBiasa2.add(jScrollPane1);
-        jScrollPane1.setBounds(60, 130, 358, 108);
-
-        KirimKe.setName("KirimKe"); // NOI18N
-        panelBiasa2.add(KirimKe);
-        KirimKe.setBounds(140, 10, 180, 23);
-
-        jLabel106.setText("Subject :");
-        jLabel106.setName("jLabel106"); // NOI18N
-        panelBiasa2.add(jLabel106);
-        jLabel106.setBounds(80, 40, 50, 20);
-
-        DirectoryPath.setName("DirectoryPath"); // NOI18N
-        panelBiasa2.add(DirectoryPath);
-        DirectoryPath.setBounds(140, 100, 180, 23);
-
-        Attachment.setText("Attachment");
-        Attachment.setName("Attachment"); // NOI18N
-        Attachment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AttachmentActionPerformed(evt);
-            }
-        });
-        panelBiasa2.add(Attachment);
-        Attachment.setBounds(180, 70, 100, 20);
-
-        Subject.setName("Subject"); // NOI18N
-        panelBiasa2.add(Subject);
-        Subject.setBounds(140, 40, 180, 23);
-
-        internalFrame4.add(panelBiasa2, java.awt.BorderLayout.CENTER);
-
-        DlgSendAttachment.getContentPane().add(internalFrame4, java.awt.BorderLayout.CENTER);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1057,24 +937,6 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         panelisi1.add(BtnPrint);
-
-        BtnEmail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/mail_receive.png"))); // NOI18N
-        BtnEmail.setMnemonic('T');
-        BtnEmail.setText("Attachment");
-        BtnEmail.setToolTipText("Alt+T");
-        BtnEmail.setName("BtnEmail"); // NOI18N
-        BtnEmail.setPreferredSize(new java.awt.Dimension(120, 30));
-        BtnEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnEmailActionPerformed(evt);
-            }
-        });
-        BtnEmail.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnEmailKeyPressed(evt);
-            }
-        });
-        panelisi1.add(BtnEmail);
 
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
@@ -2018,69 +1880,12 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         tampilOrthanc();
     }//GEN-LAST:event_TabDataMouseClicked
 
-    private void BtnKeluarKehamilanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarKehamilanActionPerformed
-        DlgSendAttachment.dispose();
-    }//GEN-LAST:event_BtnKeluarKehamilanActionPerformed
-
-    private void BtnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSendActionPerformed
-    Boolean sendTo =!KirimKe.getText().equals("");
-    Boolean subject = !Subject.getText().equals("");  
-    Boolean directoryPath = !DirectoryPath.getText().equals("");
-    Boolean messageArea =!Pesan.getText().equals("");
-    
-        if (sendTo && subject && directoryPath && messageArea )
-        {
-        SendToEmail();
-        }
-        else 
-        {
-          System.out.print("Complete the blank textfield or text area..");
-                 
-        }
-    }//GEN-LAST:event_BtnSendActionPerformed
-
-    private void BtnEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEmailActionPerformed
-        // TODO add your handling code here:
-//        if(NoRawat.getText().equals("")){
-//            JOptionPane.showMessageDialog(null,"Pilih terlebih dahulu pasien data pasien dari table");
-//            //            CaraDatang.requestFocus();
-//        }else{
-////            emptTeksPersalinan();
-//            DlgSendAttachment.setLocationRelativeTo(internalFrame1);
-//            DlgSendAttachment.setVisible(true);
-//        }
-        if(tbDokter.getSelectedRow()!= -1){
-            DlgSendAttachment.setLocationRelativeTo(internalFrame1);
-            DlgSendAttachment.setVisible(true);
-        }else{
-            ChkAccor.setSelected(false);
-            JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data dari table terlebih dahulu...!!!!");
-        }
-    }//GEN-LAST:event_BtnEmailActionPerformed
-
-    private void BtnEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnEmailKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnEmailKeyPressed
-
-    private void AttachmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AttachmentActionPerformed
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-  
-        int result = fileChooser.showOpenDialog(this);
-
-        if (result == JFileChooser.APPROVE_OPTION) 
-        {
-            File selectedFile = fileChooser.getSelectedFile();
-            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-            DirectoryPath.setText(selectedFile.getAbsolutePath());
-        }
-    }//GEN-LAST:event_AttachmentActionPerformed
-
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgCariPeriksaRadiologi dialog = new DlgCariPeriksaRadiologi(new javax.swing.JFrame(), true);
+            DlgCariPeriksaRadiologiOld dialog = new DlgCariPeriksaRadiologiOld(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -2093,23 +1898,17 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.TextBox Alamat;
-    private widget.Button Attachment;
     private widget.Button BtnAll;
     private widget.Button BtnCari;
     private widget.Button BtnCloseIn4;
-    private widget.Button BtnEmail;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
-    private widget.Button BtnKeluarKehamilan;
     private widget.Button BtnPrint;
     private widget.Button BtnPrint1;
     private widget.Button BtnRefreshPhoto;
-    private widget.Button BtnSend;
     private widget.Button BtnSimpan;
     private widget.Button BtnSimpan4;
     private widget.CekBox ChkAccor;
-    private widget.TextBox DirectoryPath;
-    private javax.swing.JDialog DlgSendAttachment;
     private widget.PanelBiasa FormHasilRadiologi;
     private widget.panelisi FormInput;
     private widget.PanelBiasa FormPass2;
@@ -2118,7 +1917,6 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.TextBox Jk;
     private widget.TextBox Kd2;
     private widget.TextBox KdPtgUbah;
-    private widget.TextBox KirimKe;
     private widget.TextBox KodePerujuk;
     private widget.TextBox KodePj;
     private widget.editorpane LoadHTML;
@@ -2131,11 +1929,9 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.TextBox NoRawat;
     private widget.PanelBiasa PanelAccor;
     private widget.TextBox Penjab;
-    private widget.TextArea Pesan;
     private widget.TextBox Petugas;
     private widget.ScrollPane Scroll3;
     private widget.ScrollPane Scroll4;
-    private widget.TextBox Subject;
     private widget.TextBox TCari;
     private javax.swing.JTabbedPane TabData;
     private widget.Tanggal Tgl1;
@@ -2150,15 +1946,11 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.Button btnPetugas;
     private widget.Button btnPetugas1;
     private widget.InternalFrame internalFrame1;
-    private widget.InternalFrame internalFrame4;
     private widget.InternalFrame internalFrame5;
-    private widget.Label jLabel105;
-    private widget.Label jLabel106;
     private widget.Label jLabel12;
     private widget.Label jLabel7;
     private widget.Label jLabel9;
     private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JScrollPane jScrollPane1;
     private widget.TextBox kdmem;
     private widget.TextBox kdptg;
     private widget.Label label10;
@@ -2170,7 +1962,6 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.Label label9;
     private widget.TextBox nmmem;
     private widget.TextBox nmptg;
-    private widget.PanelBiasa panelBiasa2;
     private widget.panelisi panelGlass6;
     private widget.panelisi panelisi1;
     private widget.panelisi panelisi3;
@@ -2495,80 +2286,5 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                 }
             }
         }
-    }
-    
-    public void SendToEmail(){
-        final String to = KirimKe.getText();
-
-      // Sender's email ID needs to be mentioned
-        final String from = "muhamadaslan22@gmail.com"; //change accordingly to your email: 
-
-           //Embedded account
-          String username = "muhamadaslan22@gmail.com";//change accordingly your email:
-          String password = "@aslan123";//change accordingly to your email password
-
-          //Server and hosting 
-         Properties props = new Properties();
-          props.put("mail.smtp.host", "smtp.gmail.com");
-           props.put("mail.smtp.port", "587");	
-           props.put("mail.smtp.auth", "true");
-           props.put("mail.smtp.starttls.enable", "true");
-
-         // Get the Session object.
-         Session session = Session.getInstance(props,
-            new javax.mail.Authenticator() {
-               @Override
-               protected PasswordAuthentication getPasswordAuthentication() {
-                  return new PasswordAuthentication(username, password);
-               }
-            });
-
-         try {
-            // Create a default MimeMessage object.
-            Message message = new MimeMessage(session);
-
-            // Set From: header field of the header.
-            message.setFrom(new InternetAddress(from));
-
-            // Set To: header field of the header.
-            message.setRecipients(Message.RecipientType.TO,
-               InternetAddress.parse(to));
-
-            // Set Subject: header field
-            message.setSubject(Subject.getText());
-
-            // Create the message part
-            BodyPart messageBodyPart = new MimeBodyPart();
-
-            // Now set the actual message via getText
-            messageBodyPart.setText(Pesan.getText());
-
-            // Create a multipar message
-            Multipart multipart = new MimeMultipart();
-
-            // Set text message part via getText
-            multipart.addBodyPart(messageBodyPart);
-
-            //get your file and executed 
-            messageBodyPart = new MimeBodyPart();
-             File selectedFile = fileChooser.getSelectedFile();
-
-            String fileChooser = selectedFile.getAbsolutePath();
-            DataSource source = new FileDataSource(fileChooser);
-            messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName(fileChooser);
-            multipart.addBodyPart(messageBodyPart);
-
-            // Send the complete message parts
-            message.setContent(multipart);
-
-            // Send message
-            Transport.send(message);
-
-            System.out.println("Sent message successfully....");
-
-         } catch (MessagingException e) {
-            throw new RuntimeException(e);
-         }
     }
 }
