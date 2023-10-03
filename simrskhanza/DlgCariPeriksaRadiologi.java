@@ -18,6 +18,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,10 +51,13 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariDokter;
 import laporan.DlgBerkasRawat;
+import AESsecurity.EnkripsiAES;
 import rekammedis.MasterCariTemplateHasilRadiologi;
 
 public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
     JFileChooser fileChooser = new JFileChooser();
+    private static String emailAttachment,passAttachment;
+    private static final Properties prop = new Properties();  
     private final DefaultTableModel tabMode,tabModeDicom;
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
@@ -402,6 +406,16 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
      
         ChkAccor.setSelected(false);
         isPhoto();
+        
+        // get nama email dan password attachment
+        try{
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            emailAttachment = EnkripsiAES.decrypt(prop.getProperty("EMAILATTACHMENT"));
+            passAttachment = EnkripsiAES.decrypt(prop.getProperty("PASSATTACHMENT"));
+        }catch(Exception e){
+            System.out.print("Notifikasi : "+e);
+        }
+        
     }
 
     /** This method is called from within the constructor to
@@ -2023,32 +2037,22 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     }//GEN-LAST:event_BtnKeluarKehamilanActionPerformed
 
     private void BtnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSendActionPerformed
-    Boolean sendTo =!KirimKe.getText().equals("");
-    Boolean subject = !Subject.getText().equals("");  
-    Boolean directoryPath = !DirectoryPath.getText().equals("");
-    Boolean messageArea =!Pesan.getText().equals("");
-    
-        if (sendTo && subject && directoryPath && messageArea )
-        {
-        SendToEmail();
-        }
-        else 
-        {
-          System.out.print("Complete the blank textfield or text area..");
-                 
+        if(KirimKe.getText().trim().equals("")){
+            Valid.textKosong(KirimKe,"Kirim Ke");
+        }else if(Subject.getText().trim().equals("")){
+            Valid.textKosong(Subject, "Subject");
+        }else if(DirectoryPath.getText().trim().equals("")){
+            Valid.textKosong(DirectoryPath, "Directory Path");
+        }else if(Pesan.getText().trim().equals("")){
+            Valid.textKosong(Pesan, "Directory Path");
+        }else{
+            SendToEmail();
+//            emptyAttachment();
         }
     }//GEN-LAST:event_BtnSendActionPerformed
 
     private void BtnEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEmailActionPerformed
         // TODO add your handling code here:
-//        if(NoRawat.getText().equals("")){
-//            JOptionPane.showMessageDialog(null,"Pilih terlebih dahulu pasien data pasien dari table");
-//            //            CaraDatang.requestFocus();
-//        }else{
-////            emptTeksPersalinan();
-//            DlgSendAttachment.setLocationRelativeTo(internalFrame1);
-//            DlgSendAttachment.setVisible(true);
-//        }
         if(tbDokter.getSelectedRow()!= -1){
             DlgSendAttachment.setLocationRelativeTo(internalFrame1);
             DlgSendAttachment.setVisible(true);
@@ -2071,7 +2075,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         {
             File selectedFile = fileChooser.getSelectedFile();
             System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-            DirectoryPath.setText(selectedFile.getAbsolutePath());
+            DirectoryPath.setText(selectedFile.getName());
         }
     }//GEN-LAST:event_AttachmentActionPerformed
 
@@ -2501,11 +2505,13 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         final String to = KirimKe.getText();
 
       // Sender's email ID needs to be mentioned
-        final String from = "youremail"; //change accordingly to your email: 
+//        final String from = "muhamadaslan22@gmail.com"; //change accordingly to your email: 
+        final String from = emailAttachment; //change accordingly to your email: 
 
            //Embedded account
-          String username = "youremail";//change accordingly your email:
-          String password = "yourpassword";//change accordingly to your email password
+//          String username = "muhamadaslan22@gmail.com";//change accordingly your email:
+          String username = emailAttachment;//change accordingly your email:
+          String password = passAttachment;//change accordingly to your email password
 
           //Server and hosting 
          Properties props = new Properties();
@@ -2513,6 +2519,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
            props.put("mail.smtp.port", "587");	
            props.put("mail.smtp.auth", "true");
            props.put("mail.smtp.starttls.enable", "true");
+           props.put("mail.smtp.ssl.trust", "smtp.gmail.com"); 
 
          // Get the Session object.
          Session session = Session.getInstance(props,
@@ -2551,7 +2558,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
 
             //get your file and executed 
             messageBodyPart = new MimeBodyPart();
-             File selectedFile = fileChooser.getSelectedFile();
+            File selectedFile = fileChooser.getSelectedFile();
 
             String fileChooser = selectedFile.getAbsolutePath();
             DataSource source = new FileDataSource(fileChooser);
@@ -2565,10 +2572,20 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             // Send message
             Transport.send(message);
 
-            System.out.println("Sent message successfully....");
+//          System.out.println("Sent message successfully....");
+            JOptionPane.showMessageDialog(null,"Sent message successfully....");
+
+            emptyAttachment();
 
          } catch (MessagingException e) {
             throw new RuntimeException(e);
          }
+    }
+    
+    public void emptyAttachment(){
+        KirimKe.setText("");
+        Subject.setText("");
+        DirectoryPath.setText("");
+        Pesan.setText("");
     }
 }

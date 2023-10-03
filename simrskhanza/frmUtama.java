@@ -8233,7 +8233,8 @@ public class frmUtama extends javax.swing.JFrame {
                 BtnToolKasir.setEnabled(false);
                 btnToolIGD.setEnabled(false);
                 MnGantiPassword.setEnabled(false);
-                MnPengajuanCutiPegawai.setEnabled(false);        
+                MnPengajuanCutiPegawai.setEnabled(false);     
+                btnToolSkrinningPasien.setEnabled(false);
                 akses.setpenjualan_obatfalse();
                 akses.setpenjualan_obatfalse();
                 akses.setutd_penyerahan_darahfalse();
