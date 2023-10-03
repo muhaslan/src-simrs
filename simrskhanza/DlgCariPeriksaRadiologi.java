@@ -2501,11 +2501,11 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         final String to = KirimKe.getText();
 
       // Sender's email ID needs to be mentioned
-        final String from = "muhamadaslan22@gmail.com"; //change accordingly to your email: 
+        final String from = "youremail"; //change accordingly to your email: 
 
            //Embedded account
-          String username = "muhamadaslan22@gmail.com";//change accordingly your email:
-          String password = "@aslan123";//change accordingly to your email password
+          String username = "youremail";//change accordingly your email:
+          String password = "yourpassword";//change accordingly to your email password
 
           //Server and hosting 
          Properties props = new Properties();
