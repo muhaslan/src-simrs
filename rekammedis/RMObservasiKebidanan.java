@@ -60,9 +60,10 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         tabMode=new DefaultTableModel(null,new Object[]{
             // header
             "No.Rawat","No.RM","Nama Pasien","Tgl.Lahir","Tanggal","kd_petugas","Nama Petugas","Pemeriksaan Oleh","Masuk Karena",
-            "Ketuban","TD","Nadi","D.D.A","Udema","Pemeriksaan Paru - Paru","Pemeriksaan Jantung","Fundus Uteri","Situs Anak","Bagian Paling Depan","Suhu","Pernafasan","Gamelli/Tunggal",
+            "Ketuban","TD","Nadi","D.D.A","Udema","Pemeriksaan Paru - Paru","Pemeriksaan Jantung","Fundus Uteri","Situs Anak","Posisi Punggung",
+            "Bagian Paling Depan","Suhu","Pernafasan","Gamelli/Tunggal",
             "Gerak Anak","Tanggal Lahir Bayi","Jenis Kelamin","Jenis Kelahiran","Kondisi Bayi","Sebab Kematian",
-            "Frekuensi Jantun","Nilai 1","Usaha Bernafas","Nilai 2","Tonus Otot","Nilai 3","Refleks","Nilai 4","Warna","Nilai 5","Nilai Total"
+            "Frekuensi Jantung","Nilai 1","Usaha Bernafas","Nilai 2","Tonus Otot","Nilai 3","Refleks","Nilai 4","Warna","Nilai 5","Nilai Total"
         }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -72,7 +73,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 39; i++) {
+        for (i = 0; i < 40; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(130);
@@ -153,6 +154,8 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
             }else if(i==37){
                 column.setPreferredWidth(100);
             }else if(i==38){
+                column.setPreferredWidth(100);
+            }else if(i==39){
                 column.setPreferredWidth(100);
             }
         }
@@ -458,6 +461,9 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         Sex = new widget.ComboBox();
         JenisKelahiran = new widget.ComboBox();
         KondisiBayi = new widget.ComboBox();
+        label23 = new widget.Label();
+        label24 = new widget.Label();
+        PosisiPunggung = new widget.TextBox();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -562,7 +568,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         Kala.setBounds(50, 40, 80, 23);
 
         TglAsuhan1.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2023 17:30:36" }));
+        TglAsuhan1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2023 22:01:32" }));
         TglAsuhan1.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan1.setName("TglAsuhan1"); // NOI18N
         TglAsuhan1.setOpaque(false);
@@ -833,11 +839,11 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         FormInput.add(TNoRM);
         TNoRM.setBounds(207, 10, 100, 23);
 
-        label14.setText("Situs Anak :");
+        label14.setText("Posisi Punggung :");
         label14.setName("label14"); // NOI18N
         label14.setPreferredSize(new java.awt.Dimension(70, 23));
         FormInput.add(label14);
-        label14.setBounds(440, 100, 70, 23);
+        label14.setBounds(420, 130, 90, 23);
 
         KdPetugas.setEditable(false);
         KdPetugas.setName("KdPetugas"); // NOI18N
@@ -897,7 +903,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         label11.setBounds(730, 10, 70, 23);
 
         TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2023 17:30:32" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2023 22:01:29" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
@@ -1079,7 +1085,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         label17.setName("label17"); // NOI18N
         label17.setPreferredSize(new java.awt.Dimension(70, 23));
         FormInput.add(label17);
-        label17.setBounds(400, 160, 40, 23);
+        label17.setBounds(400, 190, 40, 23);
 
         Suhu.setName("Suhu"); // NOI18N
         Suhu.addActionListener(new java.awt.event.ActionListener() {
@@ -1088,23 +1094,23 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
             }
         });
         FormInput.add(Suhu);
-        Suhu.setBounds(450, 160, 90, 23);
+        Suhu.setBounds(450, 190, 90, 23);
 
-        label18.setText("Bagian Paling Depan :");
+        label18.setText("Gamelli/Tunggal :");
         label18.setName("label18"); // NOI18N
         label18.setPreferredSize(new java.awt.Dimension(70, 23));
         FormInput.add(label18);
-        label18.setBounds(400, 130, 110, 23);
+        label18.setBounds(400, 220, 110, 23);
 
         BagianDepan.setName("BagianDepan"); // NOI18N
         FormInput.add(BagianDepan);
-        BagianDepan.setBounds(520, 130, 140, 23);
+        BagianDepan.setBounds(520, 160, 140, 23);
 
         label19.setText("Pernafasan :");
         label19.setName("label19"); // NOI18N
         label19.setPreferredSize(new java.awt.Dimension(70, 23));
         FormInput.add(label19);
-        label19.setBounds(550, 160, 70, 23);
+        label19.setBounds(550, 190, 70, 23);
 
         Pernafasan.setName("Pernafasan"); // NOI18N
         Pernafasan.addActionListener(new java.awt.event.ActionListener() {
@@ -1113,7 +1119,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
             }
         });
         FormInput.add(Pernafasan);
-        Pernafasan.setBounds(630, 160, 90, 23);
+        Pernafasan.setBounds(630, 190, 90, 23);
 
         Gamelli.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gamelli", "Tunggal" }));
         Gamelli.setName("Gamelli"); // NOI18N
@@ -1123,17 +1129,17 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
             }
         });
         FormInput.add(Gamelli);
-        Gamelli.setBounds(400, 190, 100, 23);
+        Gamelli.setBounds(520, 220, 110, 23);
 
         GerakAnak.setName("GerakAnak"); // NOI18N
         FormInput.add(GerakAnak);
-        GerakAnak.setBounds(520, 220, 130, 23);
+        GerakAnak.setBounds(520, 250, 130, 23);
 
         label20.setText("Gerak Anak :");
         label20.setName("label20"); // NOI18N
         label20.setPreferredSize(new java.awt.Dimension(70, 23));
         FormInput.add(label20);
-        label20.setBounds(400, 220, 110, 23);
+        label20.setBounds(400, 250, 110, 23);
 
         jSeparator2.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator2.setForeground(new java.awt.Color(239, 244, 234));
@@ -1154,7 +1160,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         label8.setBounds(0, 220, 130, 23);
 
         TglLahirBayi.setForeground(new java.awt.Color(50, 70, 50));
-        TglLahirBayi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2023 17:30:35" }));
+        TglLahirBayi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2023 22:01:31" }));
         TglLahirBayi.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglLahirBayi.setName("TglLahirBayi"); // NOI18N
         TglLahirBayi.setOpaque(false);
@@ -1428,6 +1434,27 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         });
         FormInput.add(KondisiBayi);
         KondisiBayi.setBounds(150, 570, 90, 23);
+
+        label23.setText("Bagian Paling Depan :");
+        label23.setName("label23"); // NOI18N
+        label23.setPreferredSize(new java.awt.Dimension(70, 23));
+        FormInput.add(label23);
+        label23.setBounds(400, 160, 110, 23);
+
+        label24.setText("Situs Anak :");
+        label24.setName("label24"); // NOI18N
+        label24.setPreferredSize(new java.awt.Dimension(70, 23));
+        FormInput.add(label24);
+        label24.setBounds(440, 100, 70, 23);
+
+        PosisiPunggung.setName("PosisiPunggung"); // NOI18N
+        PosisiPunggung.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PosisiPunggungActionPerformed(evt);
+            }
+        });
+        FormInput.add(PosisiPunggung);
+        PosisiPunggung.setBounds(520, 130, 140, 23);
 
         scrollInput.setViewportView(FormInput);
 
@@ -2910,8 +2937,10 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
               Valid.textKosong(Pernafasan, "Pernafasan");
           }else if(GerakAnak.getText().trim().equals("")){
               Valid.textKosong(GerakAnak, "Gerak Anak");
+          }else if(PosisiPunggung.getText().trim().equals("")){
+              Valid.textKosong(PosisiPunggung,"Posisi Punggung");
           }else{
-              if(Sequel.menyimpantf("observasi_persalinan","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",37,new String[]{
+              if(Sequel.menyimpantf("observasi_persalinan","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",38,new String[]{
                     TNoRw.getText(),Valid.SetTgl(TglAsuhan.getSelectedItem()+"")+" "+TglAsuhan.getSelectedItem().toString().substring(11,19),
                     KdPetugas.getText(),NmPetugas.getText(),PemeriksaanOleh.getText(),MasukKarena.getText(),
                     Ketuban.getSelectedItem().toString(),TD.getText(),Nadi.getText(),DDA.getText(),Udemaa,
@@ -2922,7 +2951,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
                     SebabKematian.getSelectedItem().toString(),SkalaResiko1.getSelectedItem().toString(),
                     NilaiResiko1.getText(),SkalaResiko2.getSelectedItem().toString(),NilaiResiko2.getText(),
                     SkalaResiko3.getSelectedItem().toString(),NilaiResiko3.getText(),SkalaResiko4.getSelectedItem().toString(),NilaiResiko4.getText(),
-                    SkalaResiko5.getSelectedItem().toString(),NilaiResiko5.getText(),NilaiResikoTotal.getText()
+                    SkalaResiko5.getSelectedItem().toString(),NilaiResiko5.getText(),NilaiResikoTotal.getText(),PosisiPunggung.getText()
               })==true){
                     emptTeks();
               }
@@ -3350,6 +3379,10 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         
     }//GEN-LAST:event_MnPDFObservasiPasienActionPerformed
 
+    private void PosisiPunggungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PosisiPunggungActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PosisiPunggungActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3421,6 +3454,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
     private widget.TextBox PemeriksaanOleh;
     private widget.TextBox Pernafasan;
     private widget.TextArea PimpinanTerapi;
+    private widget.TextBox PosisiPunggung;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll6;
     private widget.ComboBox SebabKematian;
@@ -3496,6 +3530,8 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
     private widget.Label label20;
     private widget.Label label21;
     private widget.Label label22;
+    private widget.Label label23;
+    private widget.Label label24;
     private widget.Label label3;
     private widget.Label label4;
     private widget.Label label5;
@@ -3661,7 +3697,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
                 "observasi_persalinan.udema,observasi_persalinan.fundus_uteri,observasi_persalinan.situs_anak,observasi_persalinan.bagian_paling_depan,"+
                 "observasi_persalinan.suhu,observasi_persalinan.pernafasan,observasi_persalinan.gamellitunggal,observasi_persalinan.gerak_anak,observasi_persalinan.no_rkm_medis,observasi_persalinan.pemeriksaan_paru,observasi_persalinan.pemeriksaan_jantung, "+
                 "observasi_persalinan.tgl_lahir_bayi,observasi_persalinan.sex,observasi_persalinan.jns_kelahiran,observasi_persalinan.kondisi_bayi,observasi_persalinan.sebab_kematian,observasi_persalinan.skala1,observasi_persalinan.nilai1, "+
-                "observasi_persalinan.skala2,observasi_persalinan.nilai2,observasi_persalinan.skala3,observasi_persalinan.nilai3,observasi_persalinan.skala4,observasi_persalinan.nilai4,observasi_persalinan.skala5, observasi_persalinan.nilai5,observasi_persalinan.total_nilai "+
+                "observasi_persalinan.skala2,observasi_persalinan.nilai2,observasi_persalinan.skala3,observasi_persalinan.nilai3,observasi_persalinan.skala4,observasi_persalinan.nilai4,observasi_persalinan.skala5, observasi_persalinan.nilai5,observasi_persalinan.total_nilai,observasi_persalinan.posisi_punggung "+
                 "from observasi_persalinan inner join pasien on observasi_persalinan.no_rkm_medis=pasien.no_rkm_medis where "+
                 "observasi_persalinan.tanggal between ? and ? "+
                 (TCari.getText().trim().equals("")?"":"and (observasi_persalinan.no_rawat like ? or observasi_persalinan.no_rkm_medis like ? or pasien.nm_pasien like ? or observasi_persalinan.nm_petugas like ?)")+
@@ -3685,7 +3721,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
                         rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("tgl_lahir"),rs.getString("tanggal"),
                         rs.getString("kd_petugas"),rs.getString("nm_petugas"),rs.getString("pemeriksaan_oleh"),rs.getString("masuk_karena"),
                         rs.getString("ketuban"),rs.getString("td"),rs.getString("nadi"),rs.getString("dda"),rs.getString("udema"),rs.getString("pemeriksaan_paru"),rs.getString("pemeriksaan_jantung"),rs.getString("fundus_uteri"),
-                        rs.getString("situs_anak"),rs.getString("bagian_paling_depan"),rs.getString("suhu"),rs.getString("pernafasan"),rs.getString("gamellitunggal"),rs.getString("gerak_anak"),
+                        rs.getString("situs_anak"),rs.getString("posisi_punggung"),rs.getString("bagian_paling_depan"),rs.getString("suhu"),rs.getString("pernafasan"),rs.getString("gamellitunggal"),rs.getString("gerak_anak"),
                         rs.getString("tgl_lahir_bayi"),rs.getString("sex"),rs.getString("jns_kelahiran"),rs.getString("kondisi_bayi"),rs.getString("sebab_kematian"),
                         rs.getString("skala1"),rs.getString("nilai1"),rs.getString("skala2"),rs.getString("nilai2"),
                         rs.getString("skala3"),rs.getString("nilai3"),rs.getString("skala4"),rs.getString("nilai4"),
@@ -3838,6 +3874,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
          SkalaResiko5.setSelectedIndex(0);
          NilaiResiko5.setText("");
          NilaiResikoTotal.setText("");
+         PosisiPunggung.setText("");
     } 
 
     private void getData() {
@@ -4019,27 +4056,28 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
                Jantung.setText(tbObat.getValueAt(tbObat.getSelectedRow(),15).toString());
                FundusUteri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),16).toString());
                SitusAnak.setText(tbObat.getValueAt(tbObat.getSelectedRow(),17).toString());
-               BagianDepan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),18).toString());
-               Suhu.setText(tbObat.getValueAt(tbObat.getSelectedRow(),19).toString());
-               Pernafasan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),20).toString());
-               Gamelli.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),21).toString());
-               GerakAnak.setText(tbObat.getValueAt(tbObat.getSelectedRow(),22).toString());
-               Valid.SetTgl2(TglLahirBayi,tbObat.getValueAt(tbObat.getSelectedRow(),23).toString());
-               Sex.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),24).toString());
-               JenisKelahiran.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),25).toString());
-               KondisiBayi.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),26).toString());
-               SebabKematian.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),27).toString());
-               SkalaResiko1.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),28).toString());
-               NilaiResiko1.setText(tbObat.getValueAt(tbObat.getSelectedRow(),29).toString());
-               SkalaResiko2.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),30).toString());
-               NilaiResiko2.setText(tbObat.getValueAt(tbObat.getSelectedRow(),31).toString());
-               SkalaResiko3.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),32).toString());
-               NilaiResiko3.setText(tbObat.getValueAt(tbObat.getSelectedRow(),33).toString());
-               SkalaResiko4.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),34).toString());
-               NilaiResiko4.setText(tbObat.getValueAt(tbObat.getSelectedRow(),35).toString());
-               SkalaResiko5.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),36).toString());
-               NilaiResiko5.setText(tbObat.getValueAt(tbObat.getSelectedRow(),37).toString());
-               NilaiResikoTotal.setText(tbObat.getValueAt(tbObat.getSelectedRow(),38).toString());
+               PosisiPunggung.setText(tbObat.getValueAt(tbObat.getSelectedRow(),18).toString());
+               BagianDepan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),19).toString());
+               Suhu.setText(tbObat.getValueAt(tbObat.getSelectedRow(),20).toString());
+               Pernafasan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),21).toString());
+               Gamelli.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),22).toString());
+               GerakAnak.setText(tbObat.getValueAt(tbObat.getSelectedRow(),23).toString());
+               Valid.SetTgl2(TglLahirBayi,tbObat.getValueAt(tbObat.getSelectedRow(),24).toString());
+               Sex.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),25).toString());
+               JenisKelahiran.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),26).toString());
+               KondisiBayi.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),27).toString());
+               SebabKematian.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),28).toString());
+               SkalaResiko1.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),29).toString());
+               NilaiResiko1.setText(tbObat.getValueAt(tbObat.getSelectedRow(),30).toString());
+               SkalaResiko2.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),31).toString());
+               NilaiResiko2.setText(tbObat.getValueAt(tbObat.getSelectedRow(),32).toString());
+               SkalaResiko3.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),33).toString());
+               NilaiResiko3.setText(tbObat.getValueAt(tbObat.getSelectedRow(),34).toString());
+               SkalaResiko4.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),35).toString());
+               NilaiResiko4.setText(tbObat.getValueAt(tbObat.getSelectedRow(),36).toString());
+               SkalaResiko5.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),37).toString());
+               NilaiResiko5.setText(tbObat.getValueAt(tbObat.getSelectedRow(),38).toString());
+               NilaiResikoTotal.setText(tbObat.getValueAt(tbObat.getSelectedRow(),39).toString());
                
                tampilPersalinan();
                
@@ -4274,8 +4312,8 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
                 "gamellitunggal=?,gerak_anak=?,no_rkm_medis=?,pemeriksaan_paru=?,pemeriksaan_jantung=?, "+
                 "tgl_lahir_bayi=?,sex=?,jns_kelahiran=?,kondisi_bayi=?,sebab_kematian=?, "+
                 "skala1=?,nilai1=?,skala2=?,nilai2=?,skala3=?,nilai3=?, "+
-                "skala4=?,nilai4=?,skala5=?,nilai5=?,total_nilai=?"
-                ,38,new String[]{
+                "skala4=?,nilai4=?,skala5=?,nilai5=?,total_nilai=?,posisi_punggung=?"
+                ,39,new String[]{
             // get value dari field yang diisikan
             TNoRw.getText(),Valid.SetTgl(TglAsuhan.getSelectedItem()+"")+" "+TglAsuhan.getSelectedItem().toString().substring(11,19),KdPetugas.getText(),NmPetugas.getText(),PemeriksaanOleh.getText(),MasukKarena.getText(),
             Ketuban.getSelectedItem().toString(),TD.getText(),Nadi.getText(),DDA.getText(),Udemaa,FundusUteri.getText(),SitusAnak.getText(),BagianDepan.getText(),
@@ -4285,7 +4323,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
             KondisiBayi.getSelectedItem().toString(),SebabKematian.getSelectedItem().toString(),SkalaResiko1.getSelectedItem().toString(),
             NilaiResiko1.getText(),SkalaResiko2.getSelectedItem().toString(),NilaiResiko2.getText(),
             SkalaResiko3.getSelectedItem().toString(),NilaiResiko3.getText(),SkalaResiko4.getSelectedItem().toString(),NilaiResiko4.getText(),
-            SkalaResiko5.getSelectedItem().toString(),NilaiResiko5.getText(),NilaiResikoTotal.getText(),
+            SkalaResiko5.getSelectedItem().toString(),NilaiResiko5.getText(),NilaiResikoTotal.getText(),PosisiPunggung.getText(),
             tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
         })==true){
             tampil();
