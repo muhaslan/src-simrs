@@ -98,6 +98,7 @@ import rekammedis.RMDataMonitoringAsuhanGizi;
 import rekammedis.RMDataSkriningGiziLanjut;
 import rekammedis.RMHemodialisa;
 import rekammedis.RMDeteksiDiniCorona;
+import rekammedis.RMIdentitasBayi;
 import rekammedis.RMKonselingFarmasi;
 import rekammedis.RMObservasiKebidanan;
 import rekammedis.RMPemantauanPEWS;
@@ -657,6 +658,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         Partus = new javax.swing.JMenuItem();
         NonPartus = new javax.swing.JMenuItem();
         ObservasiPersalinan = new javax.swing.JMenuItem();
+        IdentitasBayi = new javax.swing.JMenuItem();
         MnRMOperasi = new javax.swing.JMenu();
         MnChecklistPreOperasi = new javax.swing.JMenuItem();
         MnSignInSebelumAnestesi = new javax.swing.JMenuItem();
@@ -1075,6 +1077,22 @@ public final class DlgIGD extends javax.swing.JDialog {
             }
         });
         MnIGDPonek.add(ObservasiPersalinan);
+
+        IdentitasBayi.setBackground(new java.awt.Color(255, 255, 254));
+        IdentitasBayi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        IdentitasBayi.setForeground(new java.awt.Color(50, 50, 50));
+        IdentitasBayi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        IdentitasBayi.setText("Identitas Bayi");
+        IdentitasBayi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        IdentitasBayi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        IdentitasBayi.setName("IdentitasBayi"); // NOI18N
+        IdentitasBayi.setPreferredSize(new java.awt.Dimension(210, 26));
+        IdentitasBayi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IdentitasBayiActionPerformed(evt);
+            }
+        });
+        MnIGDPonek.add(IdentitasBayi);
 
         MnRMIGD.add(MnIGDPonek);
 
@@ -4103,7 +4121,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         panelGlass7.add(jLabel15);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4117,7 +4135,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         panelGlass7.add(jLabel17);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4209,7 +4227,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel9.setBounds(165, 72, 36, 23);
 
         DTPReg.setForeground(new java.awt.Color(50, 70, 50));
-        DTPReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-09-2023" }));
+        DTPReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-09-2023" }));
         DTPReg.setDisplayFormat("dd-MM-yyyy");
         DTPReg.setName("DTPReg"); // NOI18N
         DTPReg.setOpaque(false);
@@ -8699,6 +8717,28 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         }
     }//GEN-LAST:event_ObservasiPersalinanActionPerformed
 
+    private void IdentitasBayiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdentitasBayiActionPerformed
+        // TODO add your handling code here:
+         if(tabMode.getRowCount()==0){
+            JOptionPane.showMessageDialog(null,"Maaf, data registrasi sudah habis...!!!!");
+            TNoRM.requestFocus();
+        }else if(TPasien.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu data pasien dengan menklik data pada table...!!!");
+            tbPetugas.requestFocus();
+        }else{
+            if(tbPetugas.getSelectedRow()!= -1){
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                RMIdentitasBayi form=new RMIdentitasBayi(null,false);
+                form.isCek();
+//                form.setNoRm(TNoRw.getText(),DTPCari2.getDate(),TNoRM.getText(),TPasien.getText());
+                form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_IdentitasBayiActionPerformed
+
     /**
     * @data args the command line arguments
     */
@@ -8748,6 +8788,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private javax.swing.JDialog DlgDemografi;
     private javax.swing.JDialog DlgSakit2;
     private widget.PanelBiasa FormInput;
+    private javax.swing.JMenuItem IdentitasBayi;
     private widget.TextBox Kabupaten2;
     private widget.TextBox Kd2;
     private widget.TextBox KdDokter;
