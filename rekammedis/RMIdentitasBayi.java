@@ -52,6 +52,7 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
 //    private DlgCariPetugas petugas=new DlgCariPetugas(null,false);
     private DlgCariPegawai petugas=new DlgCariPegawai(null,false);
     private String finger="";
+    String nama_dokter="";
     /** Creates new form DlgRujuk
      * @param parent
      * @param modal */
@@ -187,7 +188,7 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnPenilaianLanjutanRisikoJatuh = new javax.swing.JMenuItem();
+        MnCetakIdentitasBayi = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -256,19 +257,19 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnPenilaianLanjutanRisikoJatuh.setBackground(new java.awt.Color(255, 255, 254));
-        MnPenilaianLanjutanRisikoJatuh.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnPenilaianLanjutanRisikoJatuh.setForeground(new java.awt.Color(50, 50, 50));
-        MnPenilaianLanjutanRisikoJatuh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnPenilaianLanjutanRisikoJatuh.setText("Formulir Penilaian Lanjutan Risiko Jatuh Dewasa");
-        MnPenilaianLanjutanRisikoJatuh.setName("MnPenilaianLanjutanRisikoJatuh"); // NOI18N
-        MnPenilaianLanjutanRisikoJatuh.setPreferredSize(new java.awt.Dimension(290, 26));
-        MnPenilaianLanjutanRisikoJatuh.addActionListener(new java.awt.event.ActionListener() {
+        MnCetakIdentitasBayi.setBackground(new java.awt.Color(255, 255, 254));
+        MnCetakIdentitasBayi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakIdentitasBayi.setForeground(new java.awt.Color(50, 50, 50));
+        MnCetakIdentitasBayi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCetakIdentitasBayi.setText("Cetak Identitas Bayi");
+        MnCetakIdentitasBayi.setName("MnCetakIdentitasBayi"); // NOI18N
+        MnCetakIdentitasBayi.setPreferredSize(new java.awt.Dimension(290, 26));
+        MnCetakIdentitasBayi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnPenilaianLanjutanRisikoJatuhActionPerformed(evt);
+                MnCetakIdentitasBayiActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(MnPenilaianLanjutanRisikoJatuh);
+        jPopupMenu1.add(MnCetakIdentitasBayi);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1145,33 +1146,32 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
         //Valid.pindah(evt,Detik,GCS);
     }//GEN-LAST:event_btnPetugasKeyPressed
 
-    private void MnPenilaianLanjutanRisikoJatuhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPenilaianLanjutanRisikoJatuhActionPerformed
-//        if(tbObat.getSelectedRow()>-1){
-//            Map<String, Object> param = new HashMap<>();
-//            param.put("namars",akses.getnamars());
-//            param.put("alamatrs",akses.getalamatrs());
-//            param.put("kotars",akses.getkabupatenrs());
-//            param.put("propinsirs",akses.getpropinsirs());
-//            param.put("kontakrs",akses.getkontakrs());
-//            param.put("emailrs",akses.getemailrs());   
-//            param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
-//            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),21).toString());
-//            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),22).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),21).toString():finger)+"\n"+Tanggal.getSelectedItem());
-//            Valid.MyReportqry("rptFormulirPenilaianLanjutanRisikoJatuhDewasa.jasper","report","::[ Formulir Penilaian Lanjutan Risiko Jatuh Dewasa ]::",
-//                    "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.jk,pasien.tgl_lahir,penilaian_lanjutan_resiko_jatuh_dewasa.tanggal,"+
-//                    "penilaian_lanjutan_resiko_jatuh_dewasa.penilaian_jatuhmorse_skala1,penilaian_lanjutan_resiko_jatuh_dewasa.penilaian_jatuhmorse_nilai1,"+
-//                    "penilaian_lanjutan_resiko_jatuh_dewasa.penilaian_jatuhmorse_skala2,penilaian_lanjutan_resiko_jatuh_dewasa.penilaian_jatuhmorse_nilai2,"+
-//                    "penilaian_lanjutan_resiko_jatuh_dewasa.penilaian_jatuhmorse_skala3,penilaian_lanjutan_resiko_jatuh_dewasa.penilaian_jatuhmorse_nilai3,"+
-//                    "penilaian_lanjutan_resiko_jatuh_dewasa.penilaian_jatuhmorse_skala4,penilaian_lanjutan_resiko_jatuh_dewasa.penilaian_jatuhmorse_nilai4,"+
-//                    "penilaian_lanjutan_resiko_jatuh_dewasa.penilaian_jatuhmorse_skala5,penilaian_lanjutan_resiko_jatuh_dewasa.penilaian_jatuhmorse_nilai5,"+
-//                    "penilaian_lanjutan_resiko_jatuh_dewasa.penilaian_jatuhmorse_skala6,penilaian_lanjutan_resiko_jatuh_dewasa.penilaian_jatuhmorse_nilai6,"+
-//                    "penilaian_lanjutan_resiko_jatuh_dewasa.penilaian_jatuhmorse_totalnilai,penilaian_lanjutan_resiko_jatuh_dewasa.hasil_skrining,"+
-//                    "penilaian_lanjutan_resiko_jatuh_dewasa.saran,penilaian_lanjutan_resiko_jatuh_dewasa.nip,petugas.nama "+
-//                    "from penilaian_lanjutan_resiko_jatuh_dewasa inner join reg_periksa on penilaian_lanjutan_resiko_jatuh_dewasa.no_rawat=reg_periksa.no_rawat "+
-//                    "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-//                    "inner join petugas on penilaian_lanjutan_resiko_jatuh_dewasa.nip=petugas.nip where reg_periksa.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
-//        }
-    }//GEN-LAST:event_MnPenilaianLanjutanRisikoJatuhActionPerformed
+    private void MnCetakIdentitasBayiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakIdentitasBayiActionPerformed
+        if(tbObat.getSelectedRow()>-1){
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());   
+            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+            param.put("nm_dokter",nama_dokter);
+//            "No. Rawat","No. Rekam Medis","Nama Pasien","Tanggal Lahir","kd_pegawai","Nama Pegawai","Nama Ibu","Nama Ayah","Nama Bayi",
+//            "Jenis Kelamin","Tgl Lahir Bayi","Jenis Persalinan","Warna Kulit","Berat Badan","Panjang","Lingkar Kepala",
+//            "Lingkar Data","Lingkar Perut","Lingkar Lengan Atas Bawah"
+            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),4).toString());
+            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),5).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),4).toString():finger)+"\n"+Tanggal.getSelectedItem());
+            
+            Valid.MyReportqry("rptLembarIdentitasBayi.jasper","report","::[ Lembar Identitas Bayi ]::",
+                    "select identitas_bayi.no_rawat,identitas_bayi.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir,identitas_bayi.kd_pegawai,"+
+                    "identitas_bayi.nm_pegawai,identitas_bayi.nm_ibu,identitas_bayi.nm_ayah,identitas_bayi.nm_bayi, "+
+                    "identitas_bayi.jk,identitas_bayi.tgl_lahir_bayi,identitas_bayi.jns_persalinan,identitas_bayi.warna_kulit, "+
+                    "identitas_bayi.berat_badan,identitas_bayi.panjang,identitas_bayi.lingkar_kepala,identitas_bayi.lingkar_dada,"+
+                    "identitas_bayi.lingkar_perut,identitas_bayi.lingkar_lengan,identitas_bayi.tanggal "+
+                    "from identitas_bayi inner join pasien on identitas_bayi.no_rkm_medis=pasien.no_rkm_medis where identitas_bayi.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+        }
+    }//GEN-LAST:event_MnCetakIdentitasBayiActionPerformed
 
     private void TglLahirBayiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TglLahirBayiActionPerformed
         // TODO add your handling code here:
@@ -1230,7 +1230,7 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
     private widget.TextBox LingkarKepala;
     private widget.TextBox LingkarLengan;
     private widget.TextBox LingkarPerut;
-    private javax.swing.JMenuItem MnPenilaianLanjutanRisikoJatuh;
+    private javax.swing.JMenuItem MnCetakIdentitasBayi;
     private widget.TextBox NIP;
     private widget.TextBox NamaAyah;
     private widget.TextBox NamaBayi;
@@ -1475,8 +1475,12 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
         TPasien.setText(nmpasien);
         TCari.setText(norwt);
         Sequel.cariIsi("select reg_periksa.tgl_registrasi from reg_periksa where reg_periksa.no_rawat='"+norwt+"'", DTPCari1);
-        DTPCari2.setDate(tgl2);    
+        DTPCari2.setDate(tgl2);
         isRawat(); 
         tampil();
+    }
+    
+    public void getNmDokter(String nm_dokter){
+        nama_dokter = nm_dokter;
     }
 }

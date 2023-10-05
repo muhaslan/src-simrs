@@ -8730,7 +8730,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 RMIdentitasBayi form=new RMIdentitasBayi(null,false);
                 form.isCek();
-//                form.setNoRm(TNoRw.getText(),DTPCari2.getDate(),TNoRM.getText(),TPasien.getText());
+                form.setNoRm(TNoRw.getText(),DTPCari2.getDate(),TNoRM.getText(),TPasien.getText());
                 form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
