@@ -569,7 +569,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         Kala.setBounds(50, 40, 80, 23);
 
         TglAsuhan1.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2023 14:05:52" }));
+        TglAsuhan1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2023 14:57:57" }));
         TglAsuhan1.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan1.setName("TglAsuhan1"); // NOI18N
         TglAsuhan1.setOpaque(false);
@@ -904,7 +904,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         label11.setBounds(730, 10, 70, 23);
 
         TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2023 14:05:49" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2023 14:57:55" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
@@ -1161,7 +1161,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         label8.setBounds(0, 250, 130, 23);
 
         TglLahirBayi.setForeground(new java.awt.Color(50, 70, 50));
-        TglLahirBayi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2023 14:05:51" }));
+        TglLahirBayi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2023 14:57:56" }));
         TglLahirBayi.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglLahirBayi.setName("TglLahirBayi"); // NOI18N
         TglLahirBayi.setOpaque(false);
@@ -1498,7 +1498,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1512,7 +1512,7 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1704,88 +1704,88 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
     }//GEN-LAST:event_DiagnosaKebidanan1KeyPressed
 
     private void BtnPrint1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint1ActionPerformed
-        if(tbObat.getSelectedRow()>-1){
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars",akses.getnamars());
-            param.put("alamatrs",akses.getalamatrs());
-            param.put("kotars",akses.getkabupatenrs());
-            param.put("propinsirs",akses.getpropinsirs());
-            param.put("kontakrs",akses.getkontakrs());
-            param.put("emailrs",akses.getemailrs());
-            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
-            param.put("nyeri",Sequel.cariGambar("select gambar.nyeri from gambar"));
-            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
-            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),6).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),5).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString()));
-            try {
-                ps=koneksi.prepareStatement("select * from riwayat_persalinan where no_rkm_medis=?");
-                try {
-                    ps.setString(1,tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
-                    rs=ps.executeQuery();
-                    i=1;
-                    while(rs.next()){
-                        param.put("no"+i,i+"");
-                        param.put("umur_anak"+i,rs.getString("umur_anak"));
-                        param.put("ku_anak"+i,rs.getString("ku_anak"));
-                        param.put("riwayat_persalinan"+i,rs.getString("riwayat_persalinan"));
-                        param.put("ditolong_oleh"+i,rs.getString("ditolong_oleh"));
-                        param.put("jk"+i,rs.getString("jk"));
-                        param.put("bbl"+i,rs.getString("bbl"));
-                        i++;
-                    }
-                } catch (Exception e) {
-                    System.out.println("Notif : "+e);
-                } finally{
-                    if(rs!=null){
-                        rs.close();
-                    }
-                    if(ps!=null){
-                        ps.close();
-                    }
-                }
-            } catch (Exception e) {
-                System.out.println("Notif : "+e);
-            }
-            
-            Valid.MyReportqry("rptCetakPenilaianAwalKebidananRalanNonPartus2.jasper","report","::[ Laporan Penilaian Awal Kebidanan & Kandungan ]::",
-                "select observasi_persalinan.no_rawat,observasi_persalinan.no_rm_medis,pasien.nm_pasien,pasien.tgl_lahir,pasien.jk,observasi_persalinan.tanggal,observasi_persalinan.kd_petugas," +
-                "observasi_persalinan.nm_petugas,observasi_persalinan.kd_dpjp,observasi_persalinan.nm_dpjp,observasi_persalinan.cara_datang,observasi_persalinan.cara_datang_lainnya," +
-                "observasi_persalinan.menggunakan,observasi_persalinan.menggunakan_lainnya,observasi_persalinan.asal,observasi_persalinan.asal_lainnya,observasi_persalinan.pengkajian_dari," +
-                "observasi_persalinan.hubungan_dengan_pasien,observasi_persalinan.alasan_masuk,observasi_persalinan.penyakit_pernah_diderita,CONCAT(observasi_persalinan.nama_riwayat_penyakit, observasi_persalinan.penyakit_lainnya) AS riwayat_penyakit," +
-                "observasi_persalinan.faktor_keturunan_gamelli,observasi_persalinan.ketergantungan,observasi_persalinan.ketergantungan_dengan,observasi_persalinan.sejak," +
-                "observasi_persalinan.obat_obatan,observasi_persalinan.nama_obatan,observasi_persalinan.makanan,observasi_persalinan.nama_makanan,observasi_persalinan.debu,observasi_persalinan.nama_debu," +
-                "observasi_persalinan.alergi_lainnya,observasi_persalinan.menarche,observasi_persalinan.menstruasi,observasi_persalinan.sejak_menstruasi,observasi_persalinan.sakit_saat_menstruasi," +
-                "observasi_persalinan.menikah_ke,observasi_persalinan.lamanya_pernikahan,observasi_persalinan.kontrasepsi,observasi_persalinan.lamanya_kontrasepsi,observasi_persalinan.graphit," +
-                "observasi_persalinan.paritas,observasi_persalinan.abortus,observasi_persalinan.haid_terakhir,observasi_persalinan.perkiraan_lahir,observasi_persalinan.umur_kehamilan," +
-                "observasi_persalinan.keluhan_kehamilan,observasi_persalinan.tinggi_fundus_uteri,observasi_persalinan.letak_punggung_janin,observasi_persalinan.presentasi_janin," +
-                "observasi_persalinan.taksiran_berat_janin,observasi_persalinan.penurunan,observasi_persalinan.aukultasi,observasi_persalinan.frekuensi_aukultasi,observasi_persalinan.pemeriksaan_dalam," +
-                "observasi_persalinan.td,observasi_persalinan.nadi,observasi_persalinan.rr,observasi_persalinan.suhu,observasi_persalinan.tb,observasi_persalinan.bb,observasi_persalinan.keadaan_umum," +
-                "observasi_persalinan.gcs,observasi_persalinan.kesadaran,observasi_persalinan.input_penurunan_kesadaran,observasi_persalinan.kepala,observasi_persalinan.mata,observasi_persalinan.hidung,observasi_persalinan.gigi_mulut, "+
-                "observasi_persalinan.tenggorokan,observasi_persalinan.telinga,observasi_persalinan.ekstremitas,observasi_persalinan.leher,observasi_persalinan.thoraks,observasi_persalinan.jantung,observasi_persalinan.paru,observasi_persalinan.abdomen, "+
-                "observasi_persalinan.genitalis_anus,observasi_persalinan.nyeri,observasi_persalinan.skor,observasi_persalinan.kategori,observasi_persalinan.pengaruh_nyeri,observasi_persalinan.hb,observasi_persalinan.hasil_usg, "+
-                "observasi_persalinan.status_mental,observasi_persalinan.respon_emosi,observasi_persalinan.suport_suami,concat(observasi_persalinan.masalah_kebidanan,observasi_persalinan.masalah_kebidanan_lainnya) as masalah_kebidanann,observasi_persalinan.diagnosa_kebidanan "+
-                "from observasi_persalinan inner join pasien on observasi_persalinan.no_rm_medis=pasien.no_rkm_medis where observasi_persalinan.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
-
-            Valid.MyReportqry("rptCetakPenilaianAwalKebidananNonPartus.jasper","report","::[ Laporan Penilaian Awal Kebidanan & Kandungan ]::",
-                "select observasi_persalinan.no_rawat,observasi_persalinan.no_rm_medis,pasien.nm_pasien,pasien.tgl_lahir,pasien.jk,observasi_persalinan.tanggal,observasi_persalinan.kd_petugas," +
-                "observasi_persalinan.nm_petugas,observasi_persalinan.kd_dpjp,observasi_persalinan.nm_dpjp,observasi_persalinan.cara_datang,observasi_persalinan.cara_datang_lainnya," +
-                "observasi_persalinan.menggunakan,observasi_persalinan.menggunakan_lainnya,observasi_persalinan.asal,observasi_persalinan.asal_lainnya,observasi_persalinan.pengkajian_dari," +
-                "observasi_persalinan.hubungan_dengan_pasien,observasi_persalinan.alasan_masuk,observasi_persalinan.penyakit_pernah_diderita,CONCAT(observasi_persalinan.nama_riwayat_penyakit, observasi_persalinan.penyakit_lainnya) AS riwayat_penyakit," +
-                "observasi_persalinan.faktor_keturunan_gamelli,observasi_persalinan.ketergantungan,observasi_persalinan.ketergantungan_dengan,observasi_persalinan.sejak," +
-                "observasi_persalinan.obat_obatan,observasi_persalinan.nama_obatan,observasi_persalinan.makanan,observasi_persalinan.nama_makanan,observasi_persalinan.debu,observasi_persalinan.nama_debu," +
-                "observasi_persalinan.alergi_lainnya,observasi_persalinan.menarche,observasi_persalinan.menstruasi,observasi_persalinan.sejak_menstruasi,observasi_persalinan.sakit_saat_menstruasi," +
-                "observasi_persalinan.menikah_ke,observasi_persalinan.lamanya_pernikahan,observasi_persalinan.kontrasepsi,observasi_persalinan.lamanya_kontrasepsi,observasi_persalinan.graphit," +
-                "observasi_persalinan.paritas,observasi_persalinan.abortus,observasi_persalinan.haid_terakhir,observasi_persalinan.perkiraan_lahir,observasi_persalinan.umur_kehamilan," +
-                "observasi_persalinan.keluhan_kehamilan,observasi_persalinan.tinggi_fundus_uteri,observasi_persalinan.letak_punggung_janin,observasi_persalinan.presentasi_janin," +
-                "observasi_persalinan.taksiran_berat_janin,observasi_persalinan.penurunan,observasi_persalinan.aukultasi,observasi_persalinan.frekuensi_aukultasi,observasi_persalinan.pemeriksaan_dalam," +
-                "observasi_persalinan.td,observasi_persalinan.nadi,observasi_persalinan.rr,observasi_persalinan.suhu,observasi_persalinan.tb,observasi_persalinan.bb,observasi_persalinan.keadaan_umum," +
-                "observasi_persalinan.gcs,observasi_persalinan.kesadaran,observasi_persalinan.input_penurunan_kesadaran,observasi_persalinan.kepala,observasi_persalinan.mata,observasi_persalinan.hidung,observasi_persalinan.gigi_mulut, "+
-                "observasi_persalinan.tenggorokan,observasi_persalinan.telinga,observasi_persalinan.ekstremitas,observasi_persalinan.leher,observasi_persalinan.thoraks,observasi_persalinan.jantung,observasi_persalinan.paru,observasi_persalinan.abdomen, "+
-                "observasi_persalinan.genitalis_anus,observasi_persalinan.nyeri,observasi_persalinan.skor,observasi_persalinan.kategori,observasi_persalinan.pengaruh_nyeri,observasi_persalinan.hb,observasi_persalinan.hasil_usg, "+
-                "observasi_persalinan.status_mental,observasi_persalinan.respon_emosi,observasi_persalinan.suport_suami,concat(observasi_persalinan.masalah_kebidanan,observasi_persalinan.masalah_kebidanan_lainnya) as masalah_kebidanann,observasi_persalinan.diagnosa_kebidanan "+
-                "from observasi_persalinan inner join pasien on observasi_persalinan.no_rm_medis=pasien.no_rkm_medis where observasi_persalinan.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
-        }else{
-            JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data terlebih dahulu..!!!!");
-        }
+//        if(tbObat.getSelectedRow()>-1){
+//            Map<String, Object> param = new HashMap<>();
+//            param.put("namars",akses.getnamars());
+//            param.put("alamatrs",akses.getalamatrs());
+//            param.put("kotars",akses.getkabupatenrs());
+//            param.put("propinsirs",akses.getpropinsirs());
+//            param.put("kontakrs",akses.getkontakrs());
+//            param.put("emailrs",akses.getemailrs());
+//            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+//            param.put("nyeri",Sequel.cariGambar("select gambar.nyeri from gambar"));
+//            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
+//            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),6).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),5).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString()));
+//            try {
+//                ps=koneksi.prepareStatement("select * from riwayat_persalinan where no_rkm_medis=?");
+//                try {
+//                    ps.setString(1,tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
+//                    rs=ps.executeQuery();
+//                    i=1;
+//                    while(rs.next()){
+//                        param.put("no"+i,i+"");
+//                        param.put("umur_anak"+i,rs.getString("umur_anak"));
+//                        param.put("ku_anak"+i,rs.getString("ku_anak"));
+//                        param.put("riwayat_persalinan"+i,rs.getString("riwayat_persalinan"));
+//                        param.put("ditolong_oleh"+i,rs.getString("ditolong_oleh"));
+//                        param.put("jk"+i,rs.getString("jk"));
+//                        param.put("bbl"+i,rs.getString("bbl"));
+//                        i++;
+//                    }
+//                } catch (Exception e) {
+//                    System.out.println("Notif : "+e);
+//                } finally{
+//                    if(rs!=null){
+//                        rs.close();
+//                    }
+//                    if(ps!=null){
+//                        ps.close();
+//                    }
+//                }
+//            } catch (Exception e) {
+//                System.out.println("Notif : "+e);
+//            }
+//            
+//            Valid.MyReportqry("rptCetakPenilaianAwalKebidananRalanNonPartus2.jasper","report","::[ Laporan Penilaian Awal Kebidanan & Kandungan ]::",
+//                "select observasi_persalinan.no_rawat,observasi_persalinan.no_rm_medis,pasien.nm_pasien,pasien.tgl_lahir,pasien.jk,observasi_persalinan.tanggal,observasi_persalinan.kd_petugas," +
+//                "observasi_persalinan.nm_petugas,observasi_persalinan.kd_dpjp,observasi_persalinan.nm_dpjp,observasi_persalinan.cara_datang,observasi_persalinan.cara_datang_lainnya," +
+//                "observasi_persalinan.menggunakan,observasi_persalinan.menggunakan_lainnya,observasi_persalinan.asal,observasi_persalinan.asal_lainnya,observasi_persalinan.pengkajian_dari," +
+//                "observasi_persalinan.hubungan_dengan_pasien,observasi_persalinan.alasan_masuk,observasi_persalinan.penyakit_pernah_diderita,CONCAT(observasi_persalinan.nama_riwayat_penyakit, observasi_persalinan.penyakit_lainnya) AS riwayat_penyakit," +
+//                "observasi_persalinan.faktor_keturunan_gamelli,observasi_persalinan.ketergantungan,observasi_persalinan.ketergantungan_dengan,observasi_persalinan.sejak," +
+//                "observasi_persalinan.obat_obatan,observasi_persalinan.nama_obatan,observasi_persalinan.makanan,observasi_persalinan.nama_makanan,observasi_persalinan.debu,observasi_persalinan.nama_debu," +
+//                "observasi_persalinan.alergi_lainnya,observasi_persalinan.menarche,observasi_persalinan.menstruasi,observasi_persalinan.sejak_menstruasi,observasi_persalinan.sakit_saat_menstruasi," +
+//                "observasi_persalinan.menikah_ke,observasi_persalinan.lamanya_pernikahan,observasi_persalinan.kontrasepsi,observasi_persalinan.lamanya_kontrasepsi,observasi_persalinan.graphit," +
+//                "observasi_persalinan.paritas,observasi_persalinan.abortus,observasi_persalinan.haid_terakhir,observasi_persalinan.perkiraan_lahir,observasi_persalinan.umur_kehamilan," +
+//                "observasi_persalinan.keluhan_kehamilan,observasi_persalinan.tinggi_fundus_uteri,observasi_persalinan.letak_punggung_janin,observasi_persalinan.presentasi_janin," +
+//                "observasi_persalinan.taksiran_berat_janin,observasi_persalinan.penurunan,observasi_persalinan.aukultasi,observasi_persalinan.frekuensi_aukultasi,observasi_persalinan.pemeriksaan_dalam," +
+//                "observasi_persalinan.td,observasi_persalinan.nadi,observasi_persalinan.rr,observasi_persalinan.suhu,observasi_persalinan.tb,observasi_persalinan.bb,observasi_persalinan.keadaan_umum," +
+//                "observasi_persalinan.gcs,observasi_persalinan.kesadaran,observasi_persalinan.input_penurunan_kesadaran,observasi_persalinan.kepala,observasi_persalinan.mata,observasi_persalinan.hidung,observasi_persalinan.gigi_mulut, "+
+//                "observasi_persalinan.tenggorokan,observasi_persalinan.telinga,observasi_persalinan.ekstremitas,observasi_persalinan.leher,observasi_persalinan.thoraks,observasi_persalinan.jantung,observasi_persalinan.paru,observasi_persalinan.abdomen, "+
+//                "observasi_persalinan.genitalis_anus,observasi_persalinan.nyeri,observasi_persalinan.skor,observasi_persalinan.kategori,observasi_persalinan.pengaruh_nyeri,observasi_persalinan.hb,observasi_persalinan.hasil_usg, "+
+//                "observasi_persalinan.status_mental,observasi_persalinan.respon_emosi,observasi_persalinan.suport_suami,concat(observasi_persalinan.masalah_kebidanan,observasi_persalinan.masalah_kebidanan_lainnya) as masalah_kebidanann,observasi_persalinan.diagnosa_kebidanan "+
+//                "from observasi_persalinan inner join pasien on observasi_persalinan.no_rm_medis=pasien.no_rkm_medis where observasi_persalinan.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+//
+//            Valid.MyReportqry("rptCetakPenilaianAwalKebidananNonPartus.jasper","report","::[ Laporan Penilaian Awal Kebidanan & Kandungan ]::",
+//                "select observasi_persalinan.no_rawat,observasi_persalinan.no_rm_medis,pasien.nm_pasien,pasien.tgl_lahir,pasien.jk,observasi_persalinan.tanggal,observasi_persalinan.kd_petugas," +
+//                "observasi_persalinan.nm_petugas,observasi_persalinan.kd_dpjp,observasi_persalinan.nm_dpjp,observasi_persalinan.cara_datang,observasi_persalinan.cara_datang_lainnya," +
+//                "observasi_persalinan.menggunakan,observasi_persalinan.menggunakan_lainnya,observasi_persalinan.asal,observasi_persalinan.asal_lainnya,observasi_persalinan.pengkajian_dari," +
+//                "observasi_persalinan.hubungan_dengan_pasien,observasi_persalinan.alasan_masuk,observasi_persalinan.penyakit_pernah_diderita,CONCAT(observasi_persalinan.nama_riwayat_penyakit, observasi_persalinan.penyakit_lainnya) AS riwayat_penyakit," +
+//                "observasi_persalinan.faktor_keturunan_gamelli,observasi_persalinan.ketergantungan,observasi_persalinan.ketergantungan_dengan,observasi_persalinan.sejak," +
+//                "observasi_persalinan.obat_obatan,observasi_persalinan.nama_obatan,observasi_persalinan.makanan,observasi_persalinan.nama_makanan,observasi_persalinan.debu,observasi_persalinan.nama_debu," +
+//                "observasi_persalinan.alergi_lainnya,observasi_persalinan.menarche,observasi_persalinan.menstruasi,observasi_persalinan.sejak_menstruasi,observasi_persalinan.sakit_saat_menstruasi," +
+//                "observasi_persalinan.menikah_ke,observasi_persalinan.lamanya_pernikahan,observasi_persalinan.kontrasepsi,observasi_persalinan.lamanya_kontrasepsi,observasi_persalinan.graphit," +
+//                "observasi_persalinan.paritas,observasi_persalinan.abortus,observasi_persalinan.haid_terakhir,observasi_persalinan.perkiraan_lahir,observasi_persalinan.umur_kehamilan," +
+//                "observasi_persalinan.keluhan_kehamilan,observasi_persalinan.tinggi_fundus_uteri,observasi_persalinan.letak_punggung_janin,observasi_persalinan.presentasi_janin," +
+//                "observasi_persalinan.taksiran_berat_janin,observasi_persalinan.penurunan,observasi_persalinan.aukultasi,observasi_persalinan.frekuensi_aukultasi,observasi_persalinan.pemeriksaan_dalam," +
+//                "observasi_persalinan.td,observasi_persalinan.nadi,observasi_persalinan.rr,observasi_persalinan.suhu,observasi_persalinan.tb,observasi_persalinan.bb,observasi_persalinan.keadaan_umum," +
+//                "observasi_persalinan.gcs,observasi_persalinan.kesadaran,observasi_persalinan.input_penurunan_kesadaran,observasi_persalinan.kepala,observasi_persalinan.mata,observasi_persalinan.hidung,observasi_persalinan.gigi_mulut, "+
+//                "observasi_persalinan.tenggorokan,observasi_persalinan.telinga,observasi_persalinan.ekstremitas,observasi_persalinan.leher,observasi_persalinan.thoraks,observasi_persalinan.jantung,observasi_persalinan.paru,observasi_persalinan.abdomen, "+
+//                "observasi_persalinan.genitalis_anus,observasi_persalinan.nyeri,observasi_persalinan.skor,observasi_persalinan.kategori,observasi_persalinan.pengaruh_nyeri,observasi_persalinan.hb,observasi_persalinan.hasil_usg, "+
+//                "observasi_persalinan.status_mental,observasi_persalinan.respon_emosi,observasi_persalinan.suport_suami,concat(observasi_persalinan.masalah_kebidanan,observasi_persalinan.masalah_kebidanan_lainnya) as masalah_kebidanann,observasi_persalinan.diagnosa_kebidanan "+
+//                "from observasi_persalinan inner join pasien on observasi_persalinan.no_rm_medis=pasien.no_rkm_medis where observasi_persalinan.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+//        }else{
+//            JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data terlebih dahulu..!!!!");
+//        }
     }//GEN-LAST:event_BtnPrint1ActionPerformed
 
     private void ChkAccorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkAccorActionPerformed
@@ -3281,18 +3281,27 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());
             param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+            param.put("logo2",Sequel.cariGambar("select setting.logo from setting"));
             param.put("nyeri",Sequel.cariGambar("select gambar.nyeri from gambar"));
-            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
-            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),7).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),6).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString()));
+//            "No.Rawat","No.RM","Nama Pasien","Tgl.Lahir","Tanggal","kd_petugas","Nama Petugas","Pemeriksaan Oleh","Masuk Karena",
+//            "Ketuban","TD","Nadi","D.D.A","Udema","Pemeriksaan Paru - Paru","Pemeriksaan Jantung","Fundus Uteri","Situs Anak","Posisi Punggung",
+//            "Bagian Paling Depan","Suhu","Pernafasan","Gamelli/Tunggal",
+//            "Gerak Anak","Tanggal Lahir Bayi","Jenis Kelamin","Jenis Kelahiran","Kondisi Bayi","Waktu Kematian","Sebab Kematian",
+//            "Frekuensi Jantung","Nilai 1","Usaha Bernafas","Nilai 2","Tonus Otot","Nilai 3","Refleks","Nilai 4","Warna","Nilai 5","Nilai Total"
+            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
+            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),6).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),5).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString()));
+            
+            // get data kala 1
             try {
-                ps=koneksi.prepareStatement("select * from observasi_persalinan_lainnya where no_rkm_medis=?");
+                ps=koneksi.prepareStatement("select * from observasi_persalinan_lainnya where no_rkm_medis=? and kala='Kala 1'");
                 try {
                     ps.setString(1,tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
                     rs=ps.executeQuery();
                     i=1;
                     while(rs.next()){
                         param.put("no"+i,i+"");
-                        param.put("tanggal"+i,rs.getString("tanggal"));
+//                        param.put("tanggal"+i,Valid.SetTgl(rs.getString("tanggal").toString()));
+                        param.put("tgl"+i,rs.getTimestamp("tanggal"));
                         param.put("kala"+i,rs.getString("kala"));
                         param.put("inputan_kala"+i,rs.getString("inputan_kala"));
                         param.put("terapi"+i,rs.getString("terapi"));
@@ -3312,7 +3321,98 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
                 System.out.println("Notif : "+e);
             }
             
-            Valid.MyReportqry("rptLembarObservasiPersalinan.jasper","report","::[ Laporan Observasi Persalinan ]::",
+            // get data kala 2
+            try {
+                ps=koneksi.prepareStatement("select * from observasi_persalinan_lainnya where no_rkm_medis=? and kala='Kala 2'");
+                try {
+                    ps.setString(1,tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
+                    rs=ps.executeQuery();
+                    i=1;
+                    while(rs.next()){
+                        param.put("no"+i,i+"");
+//                        param.put("tanggal"+i,Valid.SetTgl(rs.getString("tanggal").toString()));
+                        param.put("tgl2_"+i,rs.getTimestamp("tanggal"));
+                        param.put("kala2_"+i,rs.getString("kala"));
+                        param.put("inputan_kala2_"+i,rs.getString("inputan_kala"));
+                        param.put("terapi2_"+i,rs.getString("terapi"));
+                        i++;
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : "+e);
+                } finally{
+                    if(rs!=null){
+                        rs.close();
+                    }
+                    if(ps!=null){
+                        ps.close();
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            }
+            
+            // get data dari kala 3
+            try {
+                ps=koneksi.prepareStatement("select * from observasi_persalinan_lainnya where no_rkm_medis=? and kala='Kala 3'");
+                try {
+                    ps.setString(1,tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
+                    rs=ps.executeQuery();
+                    i=1;
+                    while(rs.next()){
+                        param.put("no"+i,i+"");
+//                        param.put("tanggal"+i,Valid.SetTgl(rs.getString("tanggal").toString()));
+                        param.put("tgl3_"+i,rs.getTimestamp("tanggal"));
+                        param.put("kala3_"+i,rs.getString("kala"));
+                        param.put("inputan_kala3_"+i,rs.getString("inputan_kala"));
+                        param.put("terapi3_"+i,rs.getString("terapi"));
+                        i++;
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : "+e);
+                } finally{
+                    if(rs!=null){
+                        rs.close();
+                    }
+                    if(ps!=null){
+                        ps.close();
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            }
+            
+            // get data dari kala 2
+            try {
+                ps=koneksi.prepareStatement("select * from observasi_persalinan_lainnya where no_rkm_medis=? and kala='Kala 4'");
+                try {
+                    ps.setString(1,tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
+                    rs=ps.executeQuery();
+                    i=1;
+                    while(rs.next()){
+                        param.put("no"+i,i+"");
+//                        param.put("tanggal"+i,Valid.SetTgl(rs.getString("tanggal").toString()));
+                        param.put("tgl4_"+i,rs.getTimestamp("tanggal"));
+                        param.put("kala4_"+i,rs.getString("kala"));
+                        param.put("inputan_kala4_"+i,rs.getString("inputan_kala"));
+                        param.put("terapi4_"+i,rs.getString("terapi"));
+                        i++;
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : "+e);
+                } finally{
+                    if(rs!=null){
+                        rs.close();
+                    }
+                    if(ps!=null){
+                        ps.close();
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            }
+            
+            // page 2
+            Valid.MyReportqry("rptLembarObservasiPersalinan2.jasper","report","::[ Laporan Observasi Persalinan 2 ]::",
                 "select observasi_persalinan.no_rawat,observasi_persalinan.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir, "+ 
                 "observasi_persalinan.tanggal,observasi_persalinan.kd_petugas,observasi_persalinan.nm_petugas,"+
                 "observasi_persalinan.pemeriksaan_oleh,observasi_persalinan.masuk_karena,observasi_persalinan.ketuban,"+
@@ -3323,28 +3423,25 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
                 "observasi_persalinan.sex,observasi_persalinan.jns_kelahiran,observasi_persalinan.kondisi_bayi,observasi_persalinan.sebab_kematian,"+
                 "observasi_persalinan.skala1,observasi_persalinan.nilai1,observasi_persalinan.skala2,observasi_persalinan.nilai2,"+
                 "observasi_persalinan.skala3,observasi_persalinan.nilai3,observasi_persalinan.skala4,observasi_persalinan.nilai4,"+
-                "observasi_persalinan.skala5,observasi_persalinan.nilai5,observasi_persalinan.total_nilai "+
+                "observasi_persalinan.skala5,observasi_persalinan.nilai5,observasi_persalinan.total_nilai,observasi_persalinan.posisi_punggung,observasi_persalinan.sebab_kematian2 "+
                 "from observasi_persalinan inner join pasien on observasi_persalinan.no_rkm_medis=pasien.no_rkm_medis where observasi_persalinan.no_rawat='"+
                 tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
-//
-//            Valid.MyReportqry("rptCetakPenilaianAwalKebidananPartus.jasper","report","::[ Laporan Penilaian Awal Kebidanan & Kandungan ]::",
-//                "select ponek_partus.no_rawat,ponek_partus.no_rm_medis,pasien.nm_pasien,pasien.tgl_lahir,pasien.jk,ponek_partus.tanggal,ponek_partus.kd_petugas," +
-//                "ponek_partus.nm_petugas,ponek_partus.kd_dpjp,ponek_partus.nm_dpjp,ponek_partus.cara_datang,ponek_partus.cara_datang_lainnya," +
-//                "ponek_partus.menggunakan,ponek_partus.menggunakan_lainnya,ponek_partus.asal,ponek_partus.asal_lainnya,ponek_partus.pengkajian_dari," +
-//                "ponek_partus.hubungan_dengan_pasien,ponek_partus.alasan_masuk,ponek_partus.penyakit_pernah_diderita,CONCAT(ponek_partus.nama_riwayat_penyakit, ponek_partus.penyakit_lainnya) AS riwayat_penyakit," +
-//                "ponek_partus.faktor_keturunan_gamelli,ponek_partus.ketergantungan,ponek_partus.ketergantungan_dengan,ponek_partus.sejak," +
-//                "ponek_partus.obat_obatan,ponek_partus.nama_obatan,ponek_partus.makanan,ponek_partus.nama_makanan,ponek_partus.debu,ponek_partus.nama_debu," +
-//                "ponek_partus.alergi_lainnya,ponek_partus.menarche,ponek_partus.menstruasi,ponek_partus.sejak_menstruasi,ponek_partus.sakit_saat_menstruasi," +
-//                "ponek_partus.menikah_ke,ponek_partus.lamanya_pernikahan,ponek_partus.kontrasepsi,ponek_partus.lamanya_kontrasepsi,ponek_partus.graphit," +
-//                "ponek_partus.paritas,ponek_partus.abortus,ponek_partus.haid_terakhir,ponek_partus.perkiraan_lahir,ponek_partus.umur_kehamilan," +
-//                "ponek_partus.keluhan_kehamilan,ponek_partus.tinggi_fundus_uteri,ponek_partus.letak_punggung_janin,ponek_partus.presentasi_janin," +
-//                "ponek_partus.taksiran_berat_janin,ponek_partus.penurunan,ponek_partus.aukultasi,ponek_partus.frekuensi_aukultasi,ponek_partus.pemeriksaan_dalam," +
-//                "ponek_partus.td,ponek_partus.nadi,ponek_partus.rr,ponek_partus.suhu,ponek_partus.tb,ponek_partus.bb,ponek_partus.keadaan_umum," +
-//                "ponek_partus.gcs,ponek_partus.kesadaran,ponek_partus.input_penurunan_kesadaran,ponek_partus.kepala,ponek_partus.mata,ponek_partus.hidung,ponek_partus.gigi_mulut, "+
-//                "ponek_partus.tenggorokan,ponek_partus.telinga,ponek_partus.ekstremitas,ponek_partus.leher,ponek_partus.thoraks,ponek_partus.jantung,ponek_partus.paru,ponek_partus.abdomen, "+
-//                "ponek_partus.genitalis_anus,ponek_partus.nyeri,ponek_partus.skor,ponek_partus.kategori,ponek_partus.pengaruh_nyeri,ponek_partus.hb,ponek_partus.hasil_usg, "+
-//                "ponek_partus.status_mental,ponek_partus.respon_emosi,ponek_partus.suport_suami,concat(ponek_partus.masalah_kebidanan,ponek_partus.masalah_kebidanan_lainnya) as masalah_kebidanann,ponek_partus.diagnosa_kebidanan "+
-//                "from ponek_partus inner join pasien on ponek_partus.no_rm_medis=pasien.no_rkm_medis where ponek_partus.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+            
+            // page 1
+            Valid.MyReportqry("rptLembarObservasiPersalinan.jasper","report","::[ Laporan Observasi Persalinan 1 ]::",
+                "select observasi_persalinan.no_rawat,observasi_persalinan.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir, "+ 
+                "observasi_persalinan.tanggal,observasi_persalinan.kd_petugas,observasi_persalinan.nm_petugas,"+
+                "observasi_persalinan.pemeriksaan_oleh,observasi_persalinan.masuk_karena,observasi_persalinan.ketuban,"+
+                "observasi_persalinan.td,observasi_persalinan.nadi,observasi_persalinan.dda,observasi_persalinan.udema,"+
+                "observasi_persalinan.fundus_uteri,observasi_persalinan.situs_anak,observasi_persalinan.bagian_paling_depan,"+
+                "observasi_persalinan.suhu,observasi_persalinan.pernafasan,observasi_persalinan.gamellitunggal,observasi_persalinan.gerak_anak,"+
+                "observasi_persalinan.pemeriksaan_paru,observasi_persalinan.pemeriksaan_jantung,observasi_persalinan.tgl_lahir_bayi,"+
+                "observasi_persalinan.sex,observasi_persalinan.jns_kelahiran,observasi_persalinan.kondisi_bayi,observasi_persalinan.sebab_kematian,"+
+                "observasi_persalinan.skala1,observasi_persalinan.nilai1,observasi_persalinan.skala2,observasi_persalinan.nilai2,"+
+                "observasi_persalinan.skala3,observasi_persalinan.nilai3,observasi_persalinan.skala4,observasi_persalinan.nilai4,"+
+                "observasi_persalinan.skala5,observasi_persalinan.nilai5,observasi_persalinan.total_nilai,observasi_persalinan.posisi_punggung,observasi_persalinan.sebab_kematian2 "+
+                "from observasi_persalinan inner join pasien on observasi_persalinan.no_rkm_medis=pasien.no_rkm_medis where observasi_persalinan.no_rawat='"+
+                tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
         }else{
             JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data terlebih dahulu..!!!!");
         }
