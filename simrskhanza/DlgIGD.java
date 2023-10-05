@@ -8730,6 +8730,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 RMIdentitasBayi form=new RMIdentitasBayi(null,false);
                 form.isCek();
+                form.getNmDokter(tbPetugas.getValueAt(tbPetugas.getSelectedRow(),6).toString());
                 form.setNoRm(TNoRw.getText(),DTPCari2.getDate(),TNoRM.getText(),TPasien.getText());
                 form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
                 form.setLocationRelativeTo(internalFrame1);
