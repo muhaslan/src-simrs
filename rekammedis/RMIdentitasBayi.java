@@ -1175,6 +1175,7 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
 
     private void TglLahirBayiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TglLahirBayiActionPerformed
         // TODO add your handling code here:
+        // coba
     }//GEN-LAST:event_TglLahirBayiActionPerformed
 
     private void TglLahirBayiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TglLahirBayiKeyPressed
