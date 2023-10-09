@@ -34,7 +34,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPegawai;
-import kepegawaian.DlgCariPetugas;
+import kepegawaian.DlgCariDokter;
 
 
 /**
@@ -51,6 +51,7 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
     private int i=0;    
 //    private DlgCariPetugas petugas=new DlgCariPetugas(null,false);
     private DlgCariPegawai petugas=new DlgCariPegawai(null,false);
+    private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private String finger="";
     String nama_dokter="";
     /** Creates new form DlgRujuk
@@ -170,11 +171,42 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
             public void windowActivated(WindowEvent e) {}
             @Override
             public void windowDeactivated(WindowEvent e) {}
-        }); 
+        });
+        
+        dokter.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {;}
+            @Override
+            public void windowClosing(WindowEvent e) {}
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if(akses.getform().equals("DlgIGD")){
+                    if(dokter.getTable().getSelectedRow()!= -1){    
+                            NIPDokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(),0).toString());
+                            NamaDokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(),2).toString());
+//                            isNumber();
+                            NIPDokter.requestFocus();
+                    }                
+                }
+            }
+            @Override
+            public void windowIconified(WindowEvent e) {}
+            @Override
+            public void windowDeiconified(WindowEvent e) {}
+            @Override
+            public void windowActivated(WindowEvent e) {}
+            @Override
+            public void windowDeactivated(WindowEvent e) {}
+        });
         
         ChkInput.setSelected(false);
         isForm();
         Tanggal.setVisible(false);
+        
+        jLabel20.setVisible(false);
+        NIPDokter.setVisible(false);
+        NamaDokter.setVisible(false);
+        btnDokter.setVisible(false);
     }
 
 
@@ -254,6 +286,10 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
         label12 = new widget.Label();
         LingkarLengan = new widget.TextBox();
         Tanggal = new widget.Tanggal();
+        jLabel20 = new widget.Label();
+        NIPDokter = new widget.TextBox();
+        NamaDokter = new widget.TextBox();
+        btnDokter = new widget.Button();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -661,7 +697,7 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
         jSeparator3.setBounds(0, 170, 810, 1);
 
         TglLahirBayi.setForeground(new java.awt.Color(50, 70, 50));
-        TglLahirBayi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2023 00:06:56" }));
+        TglLahirBayi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2023 22:14:42" }));
         TglLahirBayi.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglLahirBayi.setName("TglLahirBayi"); // NOI18N
         TglLahirBayi.setOpaque(false);
@@ -676,7 +712,7 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(TglLahirBayi);
-        TglLahirBayi.setBounds(560, 110, 143, 23);
+        TglLahirBayi.setBounds(560, 110, 145, 23);
 
         label1.setText("Nama Ibu :");
         label1.setName("label1"); // NOI18N
@@ -788,7 +824,7 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
         LingkarLengan.setBounds(380, 240, 120, 23);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2023 02:09:00" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2023 22:14:42" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -803,7 +839,50 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tanggal);
-        Tanggal.setBounds(470, 40, 143, 23);
+        Tanggal.setBounds(560, 170, 145, 23);
+
+        jLabel20.setText("DPJP :");
+        jLabel20.setName("jLabel20"); // NOI18N
+        FormInput.add(jLabel20);
+        jLabel20.setBounds(460, 40, 40, 23);
+
+        NIPDokter.setEditable(false);
+        NIPDokter.setHighlighter(null);
+        NIPDokter.setName("NIPDokter"); // NOI18N
+        NIPDokter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NIPDokterKeyPressed(evt);
+            }
+        });
+        FormInput.add(NIPDokter);
+        NIPDokter.setBounds(510, 40, 94, 23);
+
+        NamaDokter.setEditable(false);
+        NamaDokter.setName("NamaDokter"); // NOI18N
+        NamaDokter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NamaDokterActionPerformed(evt);
+            }
+        });
+        FormInput.add(NamaDokter);
+        NamaDokter.setBounds(610, 40, 180, 23);
+
+        btnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnDokter.setMnemonic('2');
+        btnDokter.setToolTipText("ALt+2");
+        btnDokter.setName("btnDokter"); // NOI18N
+        btnDokter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDokterActionPerformed(evt);
+            }
+        });
+        btnDokter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnDokterKeyPressed(evt);
+            }
+        });
+        FormInput.add(btnDokter);
+        btnDokter.setBounds(790, 40, 28, 23);
 
         scrollInput.setViewportView(FormInput);
 
@@ -830,26 +909,6 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
 }//GEN-LAST:event_TPasienKeyPressed
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
-//        if(TNoRw.getText().trim().equals("")||TPasien.getText().trim().equals("")){
-//            Valid.textKosong(TNoRw,"pasien");
-//        }else if(NIP.getText().trim().equals("")||NamaPetugas.getText().trim().equals("")){
-//            Valid.textKosong(NIP,"Petugas");
-//        }else if(HasilSkrining.getText().trim().equals("")){
-//            Valid.textKosong(HasilSkrining,"Hasil Skrining");
-//        }else if(Saran.getText().trim().equals("")){
-//            Valid.textKosong(Saran,"Saran");
-//        }else{
-//            if(Sequel.menyimpantf("penilaian_lanjutan_resiko_jatuh_dewasa","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","Data",18,new String[]{
-//                TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Jam.getSelectedItem()+":"+Menit.getSelectedItem()+":"+Detik.getSelectedItem(),
-//                SkalaResiko1.getSelectedItem().toString(),NilaiResiko1.getText(),SkalaResiko2.getSelectedItem().toString(),NilaiResiko2.getText(),
-//                SkalaResiko3.getSelectedItem().toString(),NilaiResiko3.getText(),SkalaResiko4.getSelectedItem().toString(),NilaiResiko4.getText(), 
-//                SkalaResiko5.getSelectedItem().toString(),NilaiResiko5.getText(),SkalaResiko6.getSelectedItem().toString(),NilaiResiko6.getText(),
-//                NilaiResikoTotal.getText(),HasilSkrining.getText(),Saran.getText(),NIP.getText()
-//            })==true){
-//                tampil();
-//                emptTeks();
-//            }  
-//        }
         if(TNoRw.getText().trim().equals("")||TPasien.getText().trim().equals("")){
             Valid.textKosong(TNoRw,"pasien");
         }else if(NIP.getText().trim().equals("")||NamaPetugas.getText().trim().equals("")){
@@ -1194,6 +1253,28 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_TanggalKeyPressed
 
+    private void NIPDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NIPDokterKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NIPDokterKeyPressed
+
+    private void NamaDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NamaDokterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NamaDokterActionPerformed
+
+    private void btnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDokterActionPerformed
+        // TODO add your handling code here:
+        akses.setform("DlgIGD");
+        dokter.isCek();        
+        dokter.TCari.requestFocus();
+        dokter.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        dokter.setLocationRelativeTo(internalFrame1);
+        dokter.setVisible(true);
+    }//GEN-LAST:event_btnDokterActionPerformed
+
+    private void btnDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDokterKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDokterKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -1233,8 +1314,10 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
     private widget.TextBox LingkarPerut;
     private javax.swing.JMenuItem MnCetakIdentitasBayi;
     private widget.TextBox NIP;
+    private widget.TextBox NIPDokter;
     private widget.TextBox NamaAyah;
     private widget.TextBox NamaBayi;
+    private widget.TextBox NamaDokter;
     private widget.TextBox NamaIbu;
     private widget.TextBox NamaPetugas;
     private javax.swing.JPanel PanelInput;
@@ -1248,11 +1331,13 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
     private widget.TextBox TglLahir;
     private widget.Tanggal TglLahirBayi;
     private widget.TextBox WarnaKulit;
+    private widget.Button btnDokter;
     private widget.Button btnPetugas;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel16;
     private widget.Label jLabel18;
     private widget.Label jLabel19;
+    private widget.Label jLabel20;
     private widget.Label jLabel21;
     private widget.Label jLabel4;
     private widget.Label jLabel6;
