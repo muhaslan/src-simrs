@@ -203,7 +203,7 @@ public final class akses {
             timeout_sebelum_insisi=false,signout_sebelum_menutup_luka=false,dapur_barang=false,dapur_opname=false,satu_sehat_mapping_vaksin=false,dapur_suplier=false,
             satu_sehat_kirim_Immunization=false,checklist_post_operasi=false,dapur_pembelian=false,dapur_stok_keluar=false,dapur_riwayat_barang=false,permintaan_dapur=false,
             rekonsiliasi_obat=false,biaya_pengadaan_dapur=false,rekap_pengadaan_dapur=false,ba_pemusnahan_obat=false,riwayat_pemberian_obat=false,indikator_mutu=false,ampra=false,tarif_mcu=false,
-            gethasil_lab=false,gethasil_rad=false,igd_ponek=false,skrining_pasien=false;
+            gethasil_lab=false,gethasil_rad=false,igd_ponek=false,skrining_pasien=false,partus=false,non_partus=false,observasi_persalinan=false,identitas_bayi=false;
     
     public static void setData(String user, String pass) {
         try {        
@@ -1163,6 +1163,10 @@ public final class akses {
                         akses.gethasil_rad=true;
                         akses.igd_ponek=true;
                         akses.skrining_pasien=true;
+                        akses.partus=true;
+                        akses.non_partus=true;
+                        akses.observasi_persalinan=true;
+                        akses.identitas_bayi=true;
                     }else if(rs2.getRow()>=1){   
                         rs2.beforeFirst();
                         rs2.next();
@@ -2098,6 +2102,10 @@ public final class akses {
                         akses.gethasil_rad=rs2.getBoolean("seek_rad");
                         akses.igd_ponek=rs2.getBoolean("igd_ponek");
                         akses.skrining_pasien=rs2.getBoolean("skrining_pasien");
+                        akses.partus=rs2.getBoolean("partus");
+                        akses.non_partus=rs2.getBoolean("non_partus");
+                        akses.observasi_persalinan=rs2.getBoolean("observasi_persalinan");
+                        akses.identitas_bayi=rs2.getBoolean("identitas_bayi");
                     }else if((rs.getRow()==0)&&(rs2.getRow()==0)){
                         akses.kode="";                  
                         akses.penyakit= false;
@@ -3030,6 +3038,10 @@ public final class akses {
                         akses.gethasil_rad=false;
                         akses.igd_ponek=false;
                         akses.skrining_pasien=false;
+                        akses.partus=false;
+                        akses.non_partus=false;
+                        akses.observasi_persalinan=false;
+                        akses.identitas_bayi=false;
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -4021,4 +4033,8 @@ public final class akses {
     public static boolean gethasil_rad(){return akses.gethasil_rad;}
     public static boolean getigd_ponek(){return akses.igd_ponek;}
     public static boolean getskrining_pasien(){return akses.skrining_pasien;}
+    public static boolean getpartus(){return akses.partus;}
+    public static boolean getnon_partus(){return akses.non_partus;}
+    public static boolean getobservasi_persalinan(){return akses.observasi_persalinan;}
+    public static boolean getidentitas_bayi(){return akses.identitas_bayi;}
 }   

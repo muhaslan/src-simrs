@@ -9430,6 +9430,10 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         MnChecklistPostOperasi.setEnabled(akses.getchecklist_post_operasi());
         MnSeekLab.setEnabled(akses.gethasil_lab());
         MnSeekRad.setEnabled(akses.gethasil_rad());
+        Partus.setEnabled(akses.getpartus());
+        NonPartus.setEnabled(akses.getnon_partus());
+        ObservasiPersalinan.setEnabled(akses.getobservasi_persalinan());
+        IdentitasBayi.setEnabled(akses.getidentitas_bayi());
     }
     
     private void isNumber(){

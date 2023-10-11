@@ -4162,10 +4162,10 @@ public final class RMObservasiKebidanan extends javax.swing.JDialog {
     
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.getpenilaian_awal_keperawatan_ranapkebidanan());
-        BtnHapus.setEnabled(akses.getpenilaian_awal_keperawatan_ranapkebidanan());
-        BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_ranapkebidanan());
-        BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_ranapkebidanan()); 
+//        BtnSimpan.setEnabled(akses.getpenilaian_awal_keperawatan_ranapkebidanan());
+//        BtnHapus.setEnabled(akses.getpenilaian_awal_keperawatan_ranapkebidanan());
+//        BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_ranapkebidanan());
+//        BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_ranapkebidanan()); 
         if(akses.getjml2()>=1){
             KdPetugas.setEditable(false);
             BtnPetugas.setEnabled(false);
