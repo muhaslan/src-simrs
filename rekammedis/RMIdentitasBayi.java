@@ -67,7 +67,7 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
             // sembunyi index 2
             "No. Rawat","No. Rekam Medis","Nama Pasien","Tanggal Lahir","kd_pegawai","Nama Pegawai","Nama Ibu","Nama Ayah","Nama Bayi",
             "Jenis Kelamin","Tgl Lahir Bayi","Jenis Persalinan","Warna Kulit","Berat Badan","Panjang","Lingkar Kepala",
-            "Lingkar Data","Lingkar Perut","Lingkar Lengan Atas Bawah"
+            "Lingkar Data","Lingkar Perut","Lingkar Lengan Atas Bawah","kd_dpjp","Nama Dokter DPJP"
         }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -77,7 +77,7 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 19; i++) {
+        for (i = 0; i < 21; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(105);
@@ -118,6 +118,12 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
             }else if(i==17){
                 column.setPreferredWidth(100);
             }else if(i==18){
+                column.setPreferredWidth(100);
+            }else if(i==19){
+//                column.setPreferredWidth(100);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            }else if(i==20){
                 column.setPreferredWidth(100);
             }
         }
@@ -202,11 +208,6 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
         ChkInput.setSelected(false);
         isForm();
         Tanggal.setVisible(false);
-        
-        jLabel20.setVisible(false);
-        NIPDokter.setVisible(false);
-        NamaDokter.setVisible(false);
-        btnDokter.setVisible(false);
     }
 
 
@@ -913,6 +914,8 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
             Valid.textKosong(TNoRw,"pasien");
         }else if(NIP.getText().trim().equals("")||NamaPetugas.getText().trim().equals("")){
             Valid.textKosong(NIP,"Petugas");
+        }else if(NIPDokter.getText().trim().equals("")||NamaDokter.getText().trim().equals("")){
+            Valid.textKosong(NIPDokter,"Dokter");
         }else if(NamaIbu.getText().equals("")){
             Valid.textKosong(NamaIbu,"Nama Ibu");
         }else if(NamaAyah.getText().equals("")){
@@ -936,13 +939,14 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
         }else if(LingkarLengan.getText().equals("")){
             Valid.textKosong(LingkarLengan,"Lingkar Lengan");
         }else{
-            if(Sequel.menyimpantf("identitas_bayi","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","Data",18,new String[]{
+            if(Sequel.menyimpantf("identitas_bayi","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","Data",20,new String[]{
                 TNoRw.getText(),TNoRM.getText(),NIP.getText(),NamaPetugas.getText(),NamaIbu.getText(),NamaAyah.getText(),
                 NamaBayi.getText(),JenisKelamin.getSelectedItem().toString(),
                 Valid.SetTgl(TglLahirBayi.getSelectedItem()+"")+" "+TglLahirBayi.getSelectedItem().toString().substring(11,19),
                 JenisPersalinan.getText(),WarnaKulit.getText(),BeratBadan.getText(),Panjang.getText(),LingkarKepala.getText(),
                 LingkarDada.getText(),LingkarPerut.getText(),LingkarLengan.getText(),
                 Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Tanggal.getSelectedItem().toString().substring(11,19),
+                NIPDokter.getText(),NamaDokter.getText()
             })==true){
                 tampil();
                 emptTeks();
@@ -998,6 +1002,8 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
             Valid.textKosong(TNoRw,"pasien");
         }else if(NIP.getText().trim().equals("")||NamaPetugas.getText().trim().equals("")){
             Valid.textKosong(NIP,"Petugas");
+        }else if(NIPDokter.getText().trim().equals("")||NamaDokter.getText().trim().equals("")){
+            Valid.textKosong(NIPDokter,"Dokter");
         }else if(NamaIbu.getText().equals("")){
             Valid.textKosong(NamaIbu,"Nama Ibu");
         }else if(NamaAyah.getText().equals("")){
@@ -1227,7 +1233,7 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
                     "identitas_bayi.nm_pegawai,identitas_bayi.nm_ibu,identitas_bayi.nm_ayah,identitas_bayi.nm_bayi, "+
                     "identitas_bayi.jk,identitas_bayi.tgl_lahir_bayi,identitas_bayi.jns_persalinan,identitas_bayi.warna_kulit, "+
                     "identitas_bayi.berat_badan,identitas_bayi.panjang,identitas_bayi.lingkar_kepala,identitas_bayi.lingkar_dada,"+
-                    "identitas_bayi.lingkar_perut,identitas_bayi.lingkar_lengan,identitas_bayi.tanggal "+
+                    "identitas_bayi.lingkar_perut,identitas_bayi.lingkar_lengan,identitas_bayi.tanggal,identitas_bayi.kd_dpjp,identitas_bayi.nm_dpjp "+
                     "from identitas_bayi inner join pasien on identitas_bayi.no_rkm_medis=pasien.no_rkm_medis where identitas_bayi.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
         }
     }//GEN-LAST:event_MnCetakIdentitasBayiActionPerformed
@@ -1373,10 +1379,10 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
                 "identitas_bayi.nm_pegawai,identitas_bayi.nm_ibu,identitas_bayi.nm_ayah,identitas_bayi.nm_bayi, "+
                 "identitas_bayi.jk,identitas_bayi.tgl_lahir_bayi,identitas_bayi.jns_persalinan,identitas_bayi.warna_kulit, "+
                 "identitas_bayi.berat_badan,identitas_bayi.panjang,identitas_bayi.lingkar_kepala,identitas_bayi.lingkar_dada,"+
-                "identitas_bayi.lingkar_perut,identitas_bayi.lingkar_lengan,identitas_bayi.tanggal "+
+                "identitas_bayi.lingkar_perut,identitas_bayi.lingkar_lengan,identitas_bayi.tanggal,identitas_bayi.kd_dpjp,identitas_bayi.nm_dpjp "+
                 "from identitas_bayi inner join pasien on identitas_bayi.no_rkm_medis=pasien.no_rkm_medis where "+
                 "identitas_bayi.tanggal between ? and ? "+
-                (TCari.getText().trim().equals("")?"":"and (identitas_bayi.no_rawat like ? or identitas_bayi.no_rkm_medis like ? or pasien.nm_pasien like ? or identitas_bayi.nm_pegawai like ?)")+
+                (TCari.getText().trim().equals("")?"":"and (identitas_bayi.no_rawat like ? or identitas_bayi.no_rkm_medis like ? or pasien.nm_pasien like ? or identitas_bayi.nm_pegawai like ? or identitas_bayi.nm_dpjp like ?)")+
                 " order by identitas_bayi.tanggal");
             
             try{
@@ -1387,6 +1393,7 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
                     ps.setString(4, "%"+TCari.getText().trim()+"%");
                     ps.setString(5, "%"+TCari.getText().trim()+"%");
                     ps.setString(6, "%"+TCari.getText().trim()+"%");
+                    ps.setString(7, "%"+TCari.getText().trim()+"%");
                 }
                 rs=ps.executeQuery();
                 while(rs.next()){
@@ -1395,7 +1402,7 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
                           rs.getString("kd_pegawai"),rs.getString("nm_pegawai"),rs.getString("nm_ibu"),rs.getString("nm_ayah"),
                           rs.getString("nm_bayi"),rs.getString("jk"),rs.getString("tgl_lahir_bayi"),rs.getString("jns_persalinan"),
                           rs.getString("warna_kulit"),rs.getString("berat_badan"),rs.getString("panjang"),rs.getString("lingkar_kepala"),
-                          rs.getString("lingkar_dada"),rs.getString("lingkar_perut"),rs.getString("lingkar_lengan")
+                          rs.getString("lingkar_dada"),rs.getString("lingkar_perut"),rs.getString("lingkar_lengan"),rs.getString("kd_dpjp"),rs.getString("nm_dpjp")
                     });
                 }
             }catch (Exception e){
@@ -1431,6 +1438,8 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
         LingkarDada.setText("");
         LingkarPerut.setText("");
         LingkarLengan.setText("");
+        NIPDokter.setText("");
+        NamaDokter.setText("");
     } 
 
     private void getData() {
@@ -1450,6 +1459,8 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
             LingkarDada.setText(tbObat.getValueAt(tbObat.getSelectedRow(),16).toString());
             LingkarPerut.setText(tbObat.getValueAt(tbObat.getSelectedRow(),17).toString());
             LingkarLengan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),18).toString());
+            NIPDokter.setText(tbObat.getValueAt(tbObat.getSelectedRow(),19).toString());
+            NamaDokter.setText(tbObat.getValueAt(tbObat.getSelectedRow(),20).toString());
         }
     }
     private void isRawat() {
@@ -1514,14 +1525,14 @@ public final class RMIdentitasBayi extends javax.swing.JDialog {
         Sequel.mengedit("identitas_bayi","no_rawat=?",
         "no_rawat=?,no_rkm_medis=?,kd_pegawai=?,nm_pegawai=?,nm_ibu=?,nm_ayah=?,nm_bayi=?,"+
         "jk=?,tgl_lahir_bayi=?,jns_persalinan=?,warna_kulit=?,berat_badan=?,panjang=?,lingkar_kepala=?,"+
-        "lingkar_dada=?,lingkar_perut=?,lingkar_lengan=?"
+        "lingkar_dada=?,lingkar_perut=?,lingkar_lengan=?,kd_dpjp=?,nm_dpjp=?"
          ,
-    18,new String[]{
+    20,new String[]{
             TNoRw.getText(),TNoRM.getText(),NIP.getText(),NamaPetugas.getText(),NamaIbu.getText(),NamaAyah.getText(),
             NamaBayi.getText(),JenisKelamin.getSelectedItem().toString(),
             Valid.SetTgl(TglLahirBayi.getSelectedItem()+"")+" "+TglLahirBayi.getSelectedItem().toString().substring(11,19),
             JenisPersalinan.getText(),WarnaKulit.getText(),BeratBadan.getText(),Panjang.getText(),LingkarKepala.getText(),
-            LingkarDada.getText(),LingkarPerut.getText(),LingkarLengan.getText(),
+            LingkarDada.getText(),LingkarPerut.getText(),LingkarLengan.getText(),NIPDokter.getText(),NamaDokter.getText(),
             tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
         });
         if(tabMode.getRowCount()!=0){tampil();}
